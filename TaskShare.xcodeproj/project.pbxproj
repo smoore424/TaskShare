@@ -58,16 +58,48 @@
 		01640DA126CA92C1000CC565 /* TaskShare */ = {
 			isa = PBXGroup;
 			children = (
+				01640DBB26CA965C000CC565 /* Controller */,
+				01640DB926CA9642000CC565 /* Model */,
+				01640DBA26CA964A000CC565 /* View */,
+				01640DBC26CA9666000CC565 /* Supporting */,
 				01640DA226CA92C1000CC565 /* AppDelegate.swift */,
 				01640DA426CA92C1000CC565 /* SceneDelegate.swift */,
-				01640DA626CA92C1000CC565 /* ViewController.swift */,
-				01640DA826CA92C1000CC565 /* Main.storyboard */,
-				01640DAE26CA92C4000CC565 /* Assets.xcassets */,
-				01640DB026CA92C4000CC565 /* LaunchScreen.storyboard */,
 				01640DB326CA92C4000CC565 /* Info.plist */,
-				01640DAB26CA92C1000CC565 /* TaskShare.xcdatamodeld */,
 			);
 			path = TaskShare;
+			sourceTree = "<group>";
+		};
+		01640DB926CA9642000CC565 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				01640DAB26CA92C1000CC565 /* TaskShare.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		01640DBA26CA964A000CC565 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				01640DA826CA92C1000CC565 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		01640DBB26CA965C000CC565 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				01640DA626CA92C1000CC565 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		01640DBC26CA9666000CC565 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				01640DB026CA92C4000CC565 /* LaunchScreen.storyboard */,
+				01640DAE26CA92C4000CC565 /* Assets.xcassets */,
+			);
+			path = Supporting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
