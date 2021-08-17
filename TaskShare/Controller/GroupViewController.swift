@@ -21,7 +21,6 @@ class GroupViewController: UITableViewController {
     }
     
     //MARK: - Add Item
-    
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Add Group", message: "", preferredStyle: .alert)
         
@@ -46,19 +45,18 @@ class GroupViewController: UITableViewController {
     }
     
     //MARK: - TableView DataSource
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.groupCell, for: indexPath)
-        
         let group = groupArray[indexPath.row]
         cell.textLabel?.text = group.title
         cell.accessoryType = .disclosureIndicator
         return cell
     }
+    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "") { (contextualAction, view, actionPerformed: (Bool) -> Void) in
             self.context.delete(self.groupArray[indexPath.row])
@@ -71,28 +69,26 @@ class GroupViewController: UITableViewController {
     }
 
     //MARK: - TableView Delegate
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //TODO: - Prepare for segue
-        //let destinationVC = segue.destination as! TasksViewController
-        
-        //if let indexPath = tableView.indexPathForSelectedRow { destinationVC.selectedGroup = groupArray[indexPath.row }
+        let destinationVC = segue.destination as! TasksViewController
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedGroup = groupArray[indexPath.row]
+            destinationVC.title = groupArray[indexPath.row].title
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO: - Segue to tasksTableViewController
-        //perform segue with identifier
+        performSegue(withIdentifier: K.goToTasksSegue, sender: self)
     }
     
     //MARK: - CRUD methods
-    
     func saveData() {
         do {
             try context.save()
         } catch {
             print("error saving data to context \(error)")
         }
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     func loadData(with request: NSFetchRequest<Group> = Group.fetchRequest()) {

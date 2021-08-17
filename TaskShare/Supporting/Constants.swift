@@ -10,4 +10,8 @@ import Foundation
 struct K {
     //cell identifiers
     static let groupCell = "groupCell"
+    static let taskCell = "taskCell"
+    
+    //segue identifiers
+    static let goToTasksSegue = "goToTasks"
 }
