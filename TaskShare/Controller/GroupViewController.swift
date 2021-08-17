@@ -45,7 +45,46 @@ class GroupViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    //MARK: - Data Manipulation
+    //MARK: - TableView DataSource
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return groupArray.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.groupCell, for: indexPath)
+        
+        let group = groupArray[indexPath.row]
+        cell.textLabel?.text = group.title
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "") { (contextualAction, view, actionPerformed: (Bool) -> Void) in
+            self.context.delete(self.groupArray[indexPath.row])
+            self.groupArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.saveData()
+        }
+        delete.image = UIImage(systemName: "trash")
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+
+    //MARK: - TableView Delegate
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //TODO: - Prepare for segue
+        //let destinationVC = segue.destination as! TasksViewController
+        
+        //if let indexPath = tableView.indexPathForSelectedRow { destinationVC.selectedGroup = groupArray[indexPath.row }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //TODO: - Segue to tasksTableViewController
+        //perform segue with identifier
+    }
+    
+    //MARK: - CRUD methods
     
     func saveData() {
         do {
@@ -65,33 +104,12 @@ class GroupViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    //MARK: - TableView DataSource
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupArray.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.groupCell, for: indexPath)
+    func updateData() {
         
-        let group = groupArray[indexPath.row]
-        cell.textLabel?.text = group.title
-        cell.accessoryType = .disclosureIndicator
-        return cell
     }
-
-    //MARK: - TableView Delegate
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //TODO: - Prepare for segue
-        //let destinationVC = segue.destination as! TasksViewController
+    func deleteData() {
         
-        //if let indexPath = tableView.indexPathForSelectedRow { destinationVC.selectedGroup = groupArray[indexPath.row }
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO: - Segue to tasksTableViewController
-        //perform segue with identifier
     }
 }
 
