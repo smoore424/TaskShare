@@ -70,7 +70,7 @@ class GroupViewController: UITableViewController {
 
     //MARK: - TableView Delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! TasksViewController
+        let destinationVC = segue.destination as! TaskViewController
         if let indexPath = tableView.indexPathForSelectedRow {
             destinationVC.selectedGroup = groupArray[indexPath.row]
             destinationVC.title = groupArray[indexPath.row].title

@@ -8,7 +8,7 @@
 import CoreData
 import UIKit
 
-class TasksViewController: UITableViewController {
+class TaskViewController: UITableViewController {
 
     var taskArray = [Task]()
     var selectedGroup: Group? {
@@ -22,7 +22,22 @@ class TasksViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! TaskInfoViewController
+        destinationVC.selectedGroup = selectedGroup!
+    }
+    
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: K.goToTaskInfoSegue, sender: self)
+    }
+    
+    @IBAction func unwindToTaskVC(_ unwindSegue: UIStoryboardSegue) {
+        guard let taskInfoVC = unwindSegue.source as? TaskInfoViewController, let newTask = taskInfoVC.task else { return }
+        taskArray.append(newTask)
+        tableView.reloadData()
+    }
+    
     // MARK: - TableView DataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count

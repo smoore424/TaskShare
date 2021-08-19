@@ -5,11 +5,12 @@
         <relationship name="task" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="parentGroup" inverseEntity="Task"/>
     </entity>
     <entity name="Task" representedClassName="Task" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String" defaultValueString="New Task"/>
         <relationship name="parentGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="task" inverseEntity="Group"/>
     </entity>
     <elements>
         <element name="Group" positionX="-61.7904052734375" positionY="-54.28775024414062" width="128" height="73"/>
-        <element name="Task" positionX="264.076416015625" positionY="57.8060302734375" width="128" height="73"/>
+        <element name="Task" positionX="264.076416015625" positionY="57.8060302734375" width="128" height="74"/>
     </elements>
 </model>
