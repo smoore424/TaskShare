@@ -24,8 +24,16 @@ class TaskViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! TaskInfoViewController
-        destinationVC.selectedGroup = selectedGroup!
+        switch segue.identifier {
+        case K.goToTaskInfoSegue:
+            let destinationVC = segue.destination as! TaskInfoViewController
+            destinationVC.presentationController?.delegate = destinationVC
+            destinationVC.delegate = self
+            destinationVC.selectedGroup = selectedGroup!
+        default:
+            break
+        }
+
     }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
@@ -73,5 +81,11 @@ class TaskViewController: UITableViewController {
             print("Error fetching data from context \(error)")
         }
         tableView.reloadData()
+    }
+}
+
+extension TaskViewController: TaskInfoViewControllerDelegate {
+    func taskInfoViewControllerDidCancel(_ taskInfoViewController: TaskInfoViewController) {
+        dismiss(animated: true, completion: nil)
     }
 }

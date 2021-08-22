@@ -22,7 +22,7 @@ class GroupViewController: UITableViewController {
     
     //MARK: - Add Item
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Add Group", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add Group", message: nil, preferredStyle: .alert)
         
         var textField = UITextField()
         
