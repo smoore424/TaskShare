@@ -21,14 +21,17 @@ class TaskInfoViewController: UITableViewController {
     weak var delegate: TaskInfoViewControllerDelegate?
     
     //MARK: - View
-    //Task & Note Section
+    //Task Section
     @IBOutlet weak var taskNameTextField: UITextField!
-    @IBOutlet weak var taskNoteTextView: UITextView!
+    
+    //Note Section
+    @IBOutlet weak var noteTextView: UITextView!
+    let noteTextViewCellIndexPath = IndexPath(row: 0, section: 1)
     
     //Date section
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
-    let datePickerCellIndexPath = IndexPath(row: 1, section: 1)
+    let datePickerCellIndexPath = IndexPath(row: 1, section: 2)
     var isDatePickerShown: Bool = false {
         didSet {
             datePicker.isHidden = !isDatePickerShown
@@ -38,7 +41,7 @@ class TaskInfoViewController: UITableViewController {
     //Repeat Section
     @IBOutlet weak var repeatSwitch: UISwitch!
     @IBOutlet weak var repeatPicker: UIPickerView!
-    let repeatPickerCellIndexPath = IndexPath(row: 1, section: 2)
+    let repeatPickerCellIndexPath = IndexPath(row: 1, section: 3)
     var isRepeatPickerShown: Bool = false {
         didSet {
             repeatPicker.isHidden = !isRepeatPickerShown
@@ -48,7 +51,7 @@ class TaskInfoViewController: UITableViewController {
     //Reminder Section
     @IBOutlet weak var reminderSwitch: UISwitch!
     @IBOutlet weak var reminderPicker: UIDatePicker!
-    let reminderPickerCellIndexPath = IndexPath(row: 1, section: 3)
+    let reminderPickerCellIndexPath = IndexPath(row: 1, section: 4)
     var isReminderPickerShown: Bool = false {
         didSet {
             reminderPicker.isHidden = !isReminderPickerShown
@@ -97,11 +100,13 @@ class TaskInfoViewController: UITableViewController {
         tableView.beginUpdates()
         tableView.endUpdates()
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let newTask = Task(context: self.context)
         newTask.name = taskNameTextField.text
         newTask.parentGroup = selectedGroup
         newTask.date = datePicker.date
+        newTask.note = noteTextView.text
         task = newTask
         saveItem()
         print(newTask)
@@ -146,6 +151,8 @@ class TaskInfoViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch (indexPath.row, indexPath.section) {
+        case (noteTextViewCellIndexPath.row, noteTextViewCellIndexPath.section):
+            return 88
         case (datePickerCellIndexPath.row, datePickerCellIndexPath.section):
             if isDatePickerShown {
                 return 216

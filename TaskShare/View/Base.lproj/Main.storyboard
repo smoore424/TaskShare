@@ -153,8 +153,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Notes" id="aNo-EP-4wQ" userLabel="Note Section">
+                                <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="88" id="G93-pT-8GS">
-                                        <rect key="frame" x="20" y="137.5" width="374" height="88"/>
+                                        <rect key="frame" x="20" y="187.5" width="374" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G93-pT-8GS" id="w4F-Ay-Gc2">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="88"/>
@@ -163,10 +167,10 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KSL-1i-bRC">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="88"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" systemColor="labelColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" flightNumber="YES"/>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -183,7 +187,7 @@
                             <tableViewSection id="Cnw-bU-cCX" userLabel="Date Label">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="a4y-7k-8f4" rowHeight="44" style="IBUITableViewCellStyleDefault" id="4k0-BW-Vq7">
-                                        <rect key="frame" x="20" y="261.5" width="374" height="44"/>
+                                        <rect key="frame" x="20" y="311.5" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4k0-BW-Vq7" id="4kc-8T-K9i">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
@@ -200,7 +204,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="162" id="xta-Rx-A1A">
-                                        <rect key="frame" x="20" y="305.5" width="374" height="162"/>
+                                        <rect key="frame" x="20" y="355.5" width="374" height="162"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xta-Rx-A1A" id="bLD-bN-lTX">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="162"/>
@@ -226,7 +230,7 @@
                             <tableViewSection id="eWt-MD-Jx8" userLabel="Repeat">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="f1r-tl-jA5">
-                                        <rect key="frame" x="20" y="503.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="553.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f1r-tl-jA5" id="p5E-Kx-4R2">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -259,7 +263,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="162" id="mXb-bg-nxa">
-                                        <rect key="frame" x="20" y="547" width="374" height="162"/>
+                                        <rect key="frame" x="20" y="597" width="374" height="162"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mXb-bg-nxa" id="Jdb-d6-Ugd">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="162"/>
@@ -282,7 +286,7 @@
                             <tableViewSection id="uLA-uT-Yxf" userLabel="Reminder Label">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="E1f-IW-zlj">
-                                        <rect key="frame" x="20" y="745" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="795" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E1f-IW-zlj" id="3Hn-xI-BNT">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -315,7 +319,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="162" id="xtM-d7-ZsW">
-                                        <rect key="frame" x="20" y="788.5" width="374" height="162"/>
+                                        <rect key="frame" x="20" y="838.5" width="374" height="162"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xtM-d7-ZsW" id="PLu-5V-PkP">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="162"/>
@@ -344,12 +348,12 @@
                     <connections>
                         <outlet property="dateLabel" destination="a4y-7k-8f4" id="rWz-XX-xBT"/>
                         <outlet property="datePicker" destination="xeu-DG-1Tw" id="WC7-28-dHN"/>
+                        <outlet property="noteTextView" destination="KSL-1i-bRC" id="Zju-Ad-fX1"/>
                         <outlet property="reminderPicker" destination="dn5-c0-G22" id="mUQ-eV-Jmp"/>
                         <outlet property="reminderSwitch" destination="FyB-80-1vL" id="sS5-OZ-56M"/>
                         <outlet property="repeatPicker" destination="tfD-ds-Cke" id="yiy-yI-oyI"/>
                         <outlet property="repeatSwitch" destination="GeN-QX-5hD" id="7R8-Nv-UhP"/>
                         <outlet property="taskNameTextField" destination="evh-MX-z9g" id="FH1-RF-2AF"/>
-                        <outlet property="taskNoteTextView" destination="KSL-1i-bRC" id="Zju-Ad-fX1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8h2-Ec-OVM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
