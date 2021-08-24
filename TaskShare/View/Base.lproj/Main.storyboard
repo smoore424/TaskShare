@@ -74,13 +74,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="taskCell" id="cEH-cq-Ph7">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="taskCell" id="cEH-cq-Ph7" customClass="TaskTableViewCell" customModule="TaskShare" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="36.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cEH-cq-Ph7" id="OXI-HF-sc1">
-                                    <rect key="frame" x="0.0" y="0.0" width="373.5" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="373.5" height="36.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbC-d3-a1E">
+                                            <rect key="frame" x="20" y="7" width="46" height="22.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="46" id="N64-bg-nDm"/>
+                                            </constraints>
+                                            <color key="tintColor" systemColor="labelColor"/>
+                                            <state key="normal" image="circle" catalog="system"/>
+                                            <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                            <connections>
+                                                <action selector="checkmarkToggle:" destination="cEH-cq-Ph7" eventType="touchUpInside" id="Tu7-lm-B8l"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tfq-eE-HKY">
+                                            <rect key="frame" x="74" y="7" width="300" height="22.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="bbC-d3-a1E" firstAttribute="top" secondItem="Tfq-eE-HKY" secondAttribute="top" id="LWW-PT-71f"/>
+                                        <constraint firstItem="Tfq-eE-HKY" firstAttribute="leading" secondItem="bbC-d3-a1E" secondAttribute="trailing" constant="8" symbolic="YES" id="Xrs-xV-BJm"/>
+                                        <constraint firstItem="bbC-d3-a1E" firstAttribute="bottom" secondItem="Tfq-eE-HKY" secondAttribute="bottom" id="aeI-sH-i6G"/>
+                                        <constraint firstItem="bbC-d3-a1E" firstAttribute="centerY" secondItem="OXI-HF-sc1" secondAttribute="centerY" id="bEq-Cr-8Bb"/>
+                                        <constraint firstItem="bbC-d3-a1E" firstAttribute="top" secondItem="OXI-HF-sc1" secondAttribute="topMargin" constant="-4" id="p5p-od-gDD"/>
+                                        <constraint firstItem="bbC-d3-a1E" firstAttribute="leading" secondItem="OXI-HF-sc1" secondAttribute="leadingMargin" id="pas-Ci-2Fu"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Tfq-eE-HKY" secondAttribute="trailing" constant="-8.5" id="whc-s7-saa"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="checkmarkButton" destination="bbC-d3-a1E" id="i8i-75-neP"/>
+                                    <outlet property="taskLabel" destination="Tfq-eE-HKY" id="GxE-kR-1eP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -102,7 +135,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6L7-1b-tfI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2043" y="-1110"/>
+            <point key="canvasLocation" x="2042.0289855072465" y="-1110.2678571428571"/>
         </scene>
         <!--Task Info View Controller-->
         <scene sceneID="j8h-1a-nJE">
@@ -373,6 +406,8 @@
     </scenes>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="circle" catalog="system" width="128" height="121"/>
         <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <image name="note.text" catalog="system" width="128" height="106"/>
         <systemColor name="labelColor">

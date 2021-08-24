@@ -90,6 +90,7 @@ class TaskInfoViewController: UITableViewController {
         newTask.note = noteTextView.text
         newTask.repeatSwtichIsOn = repeatSwitch.isOn
         newTask.repeatPickerComponent1 = ""
+        newTask.completed = false
         task = newTask
         saveItem()
         print(newTask)

@@ -17,6 +17,7 @@
 		01640DAD26CA92C1000CC565 /* TaskShare.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01640DAB26CA92C1000CC565 /* TaskShare.xcdatamodeld */; };
 		01640DAF26CA92C4000CC565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01640DAE26CA92C4000CC565 /* Assets.xcassets */; };
 		01640DB226CA92C4000CC565 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01640DB026CA92C4000CC565 /* LaunchScreen.storyboard */; };
+		01F88DAF26D5319D00C0A76B /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		01640DAE26CA92C4000CC565 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01640DB126CA92C4000CC565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01640DB326CA92C4000CC565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				01640DA826CA92C1000CC565 /* Main.storyboard */,
+				01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01F88DAF26D5319D00C0A76B /* TaskTableViewCell.swift in Sources */,
 				0102F4DE26CC02F900000945 /* TaskViewController.swift in Sources */,
 				0135C2A826CC6A3400732596 /* TaskInfoViewController.swift in Sources */,
 				0102F4DA26CB44F400000945 /* Constants.swift in Sources */,
