@@ -47,7 +47,8 @@ class TaskInfoViewController: UITableViewController {
             repeatPicker.isHidden = !isRepeatPickerShown
         }
     }
-    
+    let repeatPickerData = [["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"], ["Day(s)", "Week(s)", "Month(s)", "Year(s)"]]
+
     //Reminder Section
     @IBOutlet weak var reminderSwitch: UISwitch!
     @IBOutlet weak var reminderPicker: UIDatePicker!
@@ -107,6 +108,8 @@ class TaskInfoViewController: UITableViewController {
         newTask.parentGroup = selectedGroup
         newTask.date = datePicker.date
         newTask.note = noteTextView.text
+        newTask.repeatSwtichIsOn = repeatSwitch.isOn
+        newTask.repeatPickerComponent1 = ""
         task = newTask
         saveItem()
         print(newTask)
@@ -175,7 +178,7 @@ class TaskInfoViewController: UITableViewController {
             return 44
         }
     }
-    
+    //MARK: - CRUD Methods
     func saveItem() {
         do {
             try context.save()
@@ -186,21 +189,33 @@ class TaskInfoViewController: UITableViewController {
 }
 
 //MARK: - UIPickerViewDataSource
+
 extension TaskInfoViewController: UIPickerViewDataSource {
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
+        return repeatPickerData[component].count
     }
 }
 
 //MARK: - UIPickerViewDelegate
+
 extension TaskInfoViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return repeatPickerData[component][row]
+    }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //TODO: Read value from picker and put into core data
+        //TODO: Add feedback label in repeat picker section
+        print("\(repeatPickerData[component][row])")
+    }
 }
 
+//MARK: - PresentationControllerDelegate
 extension TaskInfoViewController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
         cancel()
