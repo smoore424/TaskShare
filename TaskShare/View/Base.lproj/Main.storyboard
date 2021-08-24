@@ -283,62 +283,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="uLA-uT-Yxf" userLabel="Reminder Label">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="E1f-IW-zlj">
-                                        <rect key="frame" x="20" y="795" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E1f-IW-zlj" id="3Hn-xI-BNT">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cwU-h0-rZz">
-                                                    <rect key="frame" x="20" y="11" width="334" height="21.5"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eh-M3-aDf">
-                                                            <rect key="frame" x="0.0" y="0.0" width="277" height="21.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FyB-80-1vL">
-                                                            <rect key="frame" x="285" y="0.0" width="51" height="21.5"/>
-                                                            <connections>
-                                                                <action selector="reminderSwitchDidChange:" destination="8Wk-Lj-4Ml" eventType="valueChanged" id="XXf-rf-q1w"/>
-                                                            </connections>
-                                                        </switch>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="cwU-h0-rZz" secondAttribute="bottom" id="H8u-Im-i9R"/>
-                                                <constraint firstItem="cwU-h0-rZz" firstAttribute="top" secondItem="3Hn-xI-BNT" secondAttribute="topMargin" id="b4n-53-bFd"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="cwU-h0-rZz" secondAttribute="trailing" id="nUK-5X-CWh"/>
-                                                <constraint firstItem="cwU-h0-rZz" firstAttribute="leading" secondItem="3Hn-xI-BNT" secondAttribute="leadingMargin" id="s0v-Dv-2Bm"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="162" id="xtM-d7-ZsW">
-                                        <rect key="frame" x="20" y="838.5" width="374" height="162"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xtM-d7-ZsW" id="PLu-5V-PkP">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="162"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="dn5-c0-G22">
-                                                    <rect key="frame" x="20" y="11" width="334" height="140"/>
-                                                </datePicker>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="dn5-c0-G22" secondAttribute="bottom" id="39i-Lp-cBm"/>
-                                                <constraint firstItem="dn5-c0-G22" firstAttribute="top" secondItem="PLu-5V-PkP" secondAttribute="topMargin" id="HZp-VX-YM4"/>
-                                                <constraint firstItem="dn5-c0-G22" firstAttribute="leading" secondItem="PLu-5V-PkP" secondAttribute="leadingMargin" id="PbP-DI-1MK"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="dn5-c0-G22" secondAttribute="trailing" id="yUJ-yu-tXO"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="8Wk-Lj-4Ml" id="gCj-gR-j36"/>
@@ -349,8 +293,6 @@
                         <outlet property="dateLabel" destination="a4y-7k-8f4" id="rWz-XX-xBT"/>
                         <outlet property="datePicker" destination="xeu-DG-1Tw" id="WC7-28-dHN"/>
                         <outlet property="noteTextView" destination="KSL-1i-bRC" id="Zju-Ad-fX1"/>
-                        <outlet property="reminderPicker" destination="dn5-c0-G22" id="mUQ-eV-Jmp"/>
-                        <outlet property="reminderSwitch" destination="FyB-80-1vL" id="sS5-OZ-56M"/>
                         <outlet property="repeatPicker" destination="tfD-ds-Cke" id="yiy-yI-oyI"/>
                         <outlet property="repeatSwitch" destination="GeN-QX-5hD" id="7R8-Nv-UhP"/>
                         <outlet property="taskNameTextField" destination="evh-MX-z9g" id="FH1-RF-2AF"/>

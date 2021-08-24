@@ -48,16 +48,6 @@ class TaskInfoViewController: UITableViewController {
         }
     }
     let repeatPickerData = [["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"], ["Day(s)", "Week(s)", "Month(s)", "Year(s)"]]
-
-    //Reminder Section
-    @IBOutlet weak var reminderSwitch: UISwitch!
-    @IBOutlet weak var reminderPicker: UIDatePicker!
-    let reminderPickerCellIndexPath = IndexPath(row: 1, section: 4)
-    var isReminderPickerShown: Bool = false {
-        didSet {
-            reminderPicker.isHidden = !isReminderPickerShown
-        }
-    }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -87,16 +77,6 @@ class TaskInfoViewController: UITableViewController {
             isRepeatPickerShown = true
         } else {
             isRepeatPickerShown = false
-        }
-        tableView.beginUpdates()
-        tableView.endUpdates()
-    }
-    
-    @IBAction func reminderSwitchDidChange(_ sender: UISwitch) {
-        if sender.isOn {
-            isReminderPickerShown = true
-        } else {
-            isReminderPickerShown = false
         }
         tableView.beginUpdates()
         tableView.endUpdates()
@@ -164,12 +144,6 @@ class TaskInfoViewController: UITableViewController {
             }
         case (repeatPickerCellIndexPath.row, repeatPickerCellIndexPath.section):
             if isRepeatPickerShown {
-                return 216
-            } else {
-                return 0
-            }
-        case (reminderPickerCellIndexPath.row, reminderPickerCellIndexPath.section):
-            if isReminderPickerShown {
                 return 216
             } else {
                 return 0
