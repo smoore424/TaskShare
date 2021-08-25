@@ -57,8 +57,12 @@ class TaskInfoViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         repeatPicker.dataSource = self
         repeatPicker.delegate = self
+        taskNameTextField.text = task?.name
+        noteTextView.text = task?.note
+        repeatSwitch.isSelected = ((task?.repeatSwtichIsOn) != nil)
         updateDateLabel()
     }
 
@@ -69,7 +73,14 @@ class TaskInfoViewController: UITableViewController {
     func updateDateLabel() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
-        dateLabel.text = dateFormatter.string(from: datePicker.date)
+        
+        if let selectedDate = task?.date {
+            dateLabel.text = dateFormatter.string(from: selectedDate)
+            datePicker.date = selectedDate
+        } else {
+            dateLabel.text = dateFormatter.string(from: datePicker.date)
+        }
+        
     }
     
     @IBAction func repeatSwitchDidChange(_ sender: UISwitch) {
@@ -83,17 +94,28 @@ class TaskInfoViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let newTask = Task(context: self.context)
-        newTask.name = taskNameTextField.text
-        newTask.parentGroup = selectedGroup
-        newTask.date = datePicker.date
-        newTask.note = noteTextView.text
-        newTask.repeatSwtichIsOn = repeatSwitch.isOn
-        newTask.repeatPickerComponent1 = ""
-        newTask.completed = false
-        task = newTask
-        saveItem()
-        print(newTask)
+        if let task = task {
+            //update coredata here
+            task.name = taskNameTextField.text
+            //TODO: Test date changed - does the date picker need to update to reflect the date in the dateLabel?
+            task.date = datePicker.date
+            task.note = noteTextView.text
+            task.repeatSwtichIsOn = repeatSwitch.isOn
+            task.repeatPickerComponent1 = ""
+            saveItem()
+        } else {
+            let newTask = Task(context: self.context)
+            newTask.name = taskNameTextField.text
+            newTask.parentGroup = selectedGroup
+            newTask.date = datePicker.date
+            newTask.note = noteTextView.text
+            newTask.repeatSwtichIsOn = repeatSwitch.isOn
+            newTask.repeatPickerComponent1 = ""
+            newTask.completed = false
+            task = newTask
+            saveItem()
+        }
+
     }
     
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
@@ -157,6 +179,7 @@ class TaskInfoViewController: UITableViewController {
     func saveItem() {
         do {
             try context.save()
+            print("💾 item saved")
         } catch {
             print("Error saving context \(error)")
         }

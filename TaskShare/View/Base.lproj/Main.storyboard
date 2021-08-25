@@ -113,6 +113,7 @@
                                 <connections>
                                     <outlet property="checkmarkButton" destination="bbC-d3-a1E" id="i8i-75-neP"/>
                                     <outlet property="taskLabel" destination="Tfq-eE-HKY" id="GxE-kR-1eP"/>
+                                    <segue destination="8Wk-Lj-4Ml" kind="presentation" identifier="goToTaskEdit" id="Xt2-rU-DiV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -132,6 +133,9 @@
                             <barButtonItem image="ellipsis.circle" catalog="system" id="pSf-wp-hiG"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addButton" destination="MC7-8l-mxw" id="jXT-La-MM6"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6L7-1b-tfI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -404,6 +408,9 @@
             <point key="canvasLocation" x="583" y="-462"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Xt2-rU-DiV"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>

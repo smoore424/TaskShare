@@ -17,6 +17,8 @@ class TaskViewController: UITableViewController {
         }
     }
     
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
@@ -24,16 +26,18 @@ class TaskViewController: UITableViewController {
     }
     //MARK: - Segue Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! TaskInfoViewController
+        destinationVC.presentationController?.delegate = destinationVC
+        destinationVC.delegate = self
+        
         switch segue.identifier {
         case K.goToTaskInfoSegue:
-            let destinationVC = segue.destination as! TaskInfoViewController
-            destinationVC.presentationController?.delegate = destinationVC
-            destinationVC.delegate = self
             destinationVC.selectedGroup = selectedGroup!
+        case K.goToTaskEditSegue:
+            destinationVC.task = taskArray[tableView.indexPathForSelectedRow!.row]
         default:
             break
         }
-
     }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
@@ -41,8 +45,16 @@ class TaskViewController: UITableViewController {
     }
     
     @IBAction func unwindToTaskVC(_ unwindSegue: UIStoryboardSegue) {
-        guard let taskInfoVC = unwindSegue.source as? TaskInfoViewController, let newTask = taskInfoVC.task else { return }
-        taskArray.append(newTask)
+        let taskInfoVC = unwindSegue.source as! TaskInfoViewController
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            taskArray[selectedIndexPath.row] = taskInfoVC.task!
+        } else {
+            let newIndexPath = IndexPath(row: taskArray.count, section: 0)
+            taskArray.append(taskInfoVC.task!)
+            print("\(taskArray)")
+            tableView.insertRows(at: [newIndexPath], with: .bottom)
+            tableView.scrollToRow(at: newIndexPath, at: .bottom, animated: true)
+        }
         tableView.reloadData()
     }
     
