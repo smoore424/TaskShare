@@ -99,14 +99,6 @@ class GroupViewController: UITableViewController {
         }
         tableView.reloadData()
     }
-    
-    func updateData() {
-        
-    }
-    
-    func deleteData() {
-        
-    }
 }
 
 

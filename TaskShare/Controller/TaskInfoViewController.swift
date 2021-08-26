@@ -39,7 +39,10 @@ class TaskInfoViewController: UITableViewController {
     }
     
     //Repeat Section
+    var repeatNumber = "1"
+    var repeatTimeFrame = "Day(s)"
     @IBOutlet weak var repeatSwitch: UISwitch!
+    @IBOutlet weak var repeatLabel: UILabel!
     @IBOutlet weak var repeatPicker: UIPickerView!
     let repeatPickerCellIndexPath = IndexPath(row: 1, section: 3)
     var isRepeatPickerShown: Bool = false {
@@ -47,6 +50,7 @@ class TaskInfoViewController: UITableViewController {
             repeatPicker.isHidden = !isRepeatPickerShown
         }
     }
+
     let repeatPickerData = [["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"], ["Day(s)", "Week(s)", "Month(s)", "Year(s)"]]
     
     override func viewWillLayoutSubviews() {
@@ -86,8 +90,12 @@ class TaskInfoViewController: UITableViewController {
     @IBAction func repeatSwitchDidChange(_ sender: UISwitch) {
         if sender.isOn {
             isRepeatPickerShown = true
+            repeatLabel.text = "Repeat Every \(repeatNumber) \(repeatTimeFrame)"
         } else {
             isRepeatPickerShown = false
+            repeatLabel.text = "Repeat"
+            repeatNumber = ""
+            repeatTimeFrame = ""
         }
         tableView.beginUpdates()
         tableView.endUpdates()
@@ -95,13 +103,12 @@ class TaskInfoViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let task = task {
-            //update coredata here
             task.name = taskNameTextField.text
-            //TODO: Test date changed - does the date picker need to update to reflect the date in the dateLabel?
             task.date = datePicker.date
             task.note = noteTextView.text
             task.repeatSwtichIsOn = repeatSwitch.isOn
-            task.repeatPickerComponent1 = ""
+            task.repeatPickerComponent1 = repeatNumber
+            task.repeatPickerComponent2 = repeatTimeFrame
             saveItem()
         } else {
             let newTask = Task(context: self.context)
@@ -110,12 +117,12 @@ class TaskInfoViewController: UITableViewController {
             newTask.date = datePicker.date
             newTask.note = noteTextView.text
             newTask.repeatSwtichIsOn = repeatSwitch.isOn
-            newTask.repeatPickerComponent1 = ""
+            newTask.repeatPickerComponent1 = repeatNumber
+            newTask.repeatPickerComponent2 = repeatTimeFrame
             newTask.completed = false
             task = newTask
             saveItem()
         }
-
     }
     
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
@@ -179,7 +186,6 @@ class TaskInfoViewController: UITableViewController {
     func saveItem() {
         do {
             try context.save()
-            print("💾 item saved")
         } catch {
             print("Error saving context \(error)")
         }
@@ -207,10 +213,13 @@ extension TaskInfoViewController: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //TODO: Read value from picker and put into core data
-        //TODO: Add feedback label in repeat picker section
-        print("\(repeatPickerData[component][row])")
+        let selectedNumber = pickerView.selectedRow(inComponent: 0)
+        let selectedTimeFrame = pickerView.selectedRow(inComponent: 1)
+        repeatNumber = repeatPickerData[0][selectedNumber]
+        repeatTimeFrame = repeatPickerData[1][selectedTimeFrame]
+        repeatLabel.text = "Repeat Every \(repeatNumber) \(repeatTimeFrame)"
     }
+    
 }
 
 //MARK: - PresentationControllerDelegate

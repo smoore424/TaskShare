@@ -330,6 +330,7 @@
                         <outlet property="dateLabel" destination="a4y-7k-8f4" id="rWz-XX-xBT"/>
                         <outlet property="datePicker" destination="xeu-DG-1Tw" id="WC7-28-dHN"/>
                         <outlet property="noteTextView" destination="KSL-1i-bRC" id="Zju-Ad-fX1"/>
+                        <outlet property="repeatLabel" destination="2hn-fT-2dx" id="z2t-DA-nEn"/>
                         <outlet property="repeatPicker" destination="tfD-ds-Cke" id="yiy-yI-oyI"/>
                         <outlet property="repeatSwitch" destination="GeN-QX-5hD" id="7R8-Nv-UhP"/>
                         <outlet property="taskNameTextField" destination="evh-MX-z9g" id="FH1-RF-2AF"/>
