@@ -17,31 +17,17 @@ class GroupViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        tableView.allowsSelectionDuringEditing = true
         title = "My Groups"
     }
     
     //MARK: - Add Item
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Add Group", message: nil, preferredStyle: .alert)
-        
-        var textField = UITextField()
-        
-        let action = UIAlertAction(title: "Add", style: .default) { action in
-            let newGroup = Group(context: self.context)
-            newGroup.title = textField.text!
-            self.groupArray.append(newGroup)
-            self.saveData()
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alert.addTextField { alertTextField in
-            alertTextField.placeholder = "Create New Group"
-            textField = alertTextField
-        }
-        alert.addAction(action)
-        alert.addAction(cancel)
-        present(alert, animated: true, completion: nil)
+        addItemAlert()
+    }
+    
+    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
+        self.isEditing = !self.isEditing
     }
     
     //MARK: - TableView DataSource
@@ -67,6 +53,15 @@ class GroupViewController: UITableViewController {
         delete.image = UIImage(systemName: "trash")
         return UISwipeActionsConfiguration(actions: [delete])
     }
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        groupArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        saveData()
+    }
 
     //MARK: - TableView Delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -78,7 +73,12 @@ class GroupViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: K.goToTasksSegue, sender: self)
+        if self.isEditing {
+            
+            editItemAlert(selectedGroup: groupArray[indexPath.row])
+        } else {
+            performSegue(withIdentifier: K.goToTasksSegue, sender: self)
+        }
     }
     
     //MARK: - CRUD methods
@@ -98,6 +98,52 @@ class GroupViewController: UITableViewController {
             print("error fetching data from context \(error)")
         }
         tableView.reloadData()
+    }
+    
+    //MARK: - Alerts
+    func addItemAlert() {
+        let alert = UIAlertController(title: "Add Group", message: nil, preferredStyle: .alert)
+        
+        var textField = UITextField()
+        
+        let action = UIAlertAction(title: "Add", style: .default) { action in
+            let newGroup = Group(context: self.context)
+            newGroup.title = textField.text!
+            self.groupArray.append(newGroup)
+            self.saveData()
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addTextField { alertTextField in
+            alertTextField.placeholder = "Create New Group"
+            textField = alertTextField
+        }
+        alert.addAction(action)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func editItemAlert(selectedGroup: Group) {
+        let alert = UIAlertController(title: "Edit Item", message: nil, preferredStyle: .alert)
+        
+        var textField = UITextField()
+        
+        let action = UIAlertAction(title: "Save", style: .default) { action in
+            selectedGroup.title = textField.text!
+            self.saveData()
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addTextField { alertTextField in
+            alertTextField.placeholder = "Enter New Group Name"
+            textField = alertTextField
+        }
+        
+        alert.addAction(action)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
 }
 

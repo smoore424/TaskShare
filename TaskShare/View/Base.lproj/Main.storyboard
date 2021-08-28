@@ -50,7 +50,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="OOk-bE-wCz">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="yqQ-Ww-Tgh"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="yqQ-Ww-Tgh">
+                            <connections>
+                                <action selector="editButtonTapped:" destination="Rl6-aQ-e1h" id="bz6-jI-4R8"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="N3H-d0-pFn">
                             <connections>
                                 <action selector="addButtonTapped:" destination="Rl6-aQ-e1h" id="bNt-oV-Zxo"/>

@@ -219,7 +219,6 @@ extension TaskInfoViewController: UIPickerViewDelegate {
         repeatTimeFrame = repeatPickerData[1][selectedTimeFrame]
         repeatLabel.text = "Repeat Every \(repeatNumber) \(repeatTimeFrame)"
     }
-    
 }
 
 //MARK: - PresentationControllerDelegate
