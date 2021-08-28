@@ -77,9 +77,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="1rM-gf-Yqz">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="taskCell" id="cEH-cq-Ph7" customClass="TaskTableViewCell" customModule="TaskShare" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="36.5"/>
+                                <rect key="frame" x="0.0" y="68.5" width="414" height="36.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cEH-cq-Ph7" id="OXI-HF-sc1">
                                     <rect key="frame" x="0.0" y="0.0" width="373.5" height="36.5"/>
@@ -139,6 +144,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="MC7-8l-mxw" id="jXT-La-MM6"/>
+                        <outlet property="searchBar" destination="1rM-gf-Yqz" id="dM4-c5-Ki3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6L7-1b-tfI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

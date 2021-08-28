@@ -18,11 +18,13 @@ class TaskViewController: UITableViewController {
     }
     
     @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
     }
     //MARK: - Segue Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -95,7 +97,12 @@ class TaskViewController: UITableViewController {
     
     func loadData(with request: NSFetchRequest<Task> = Task.fetchRequest(), predicate: NSPredicate? = nil) {
         let groupPredicate = NSPredicate(format: "parentGroup.title MATCHES %@", selectedGroup!.title!)
-        request.predicate = groupPredicate
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [groupPredicate, additionalPredicate])
+        } else {
+            request.predicate = groupPredicate
+        }
+        
         do {
             taskArray = try context.fetch(request)
         } catch {
@@ -104,7 +111,7 @@ class TaskViewController: UITableViewController {
         tableView.reloadData()
     }
 }
-
+//MARK: - TaskInfoViewControllerDelegate
 extension TaskViewController: TaskInfoViewControllerDelegate {
     func taskInfoViewControllerDidCancel(_ taskInfoViewController: TaskInfoViewController) {
         dismiss(animated: true, completion: nil)
@@ -117,9 +124,25 @@ extension TaskViewController: TaskTableViewCellDelegate {
         if let selectedIndexPath = tableView.indexPath(for: sender) {
             taskArray[selectedIndexPath.row].completed.toggle()
             saveData()
-//            tableView.reloadRows(at: [selectedIndexPath], with: .automatic)
         }
     }
+}
+//MARK: - SearchBarDelegate
+extension TaskViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request: NSFetchRequest<Task> = Task.fetchRequest()
+        request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        loadData(with: request)
+        tableView.reloadData()
+    }
     
-    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadData()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
 }
