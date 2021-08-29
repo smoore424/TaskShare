@@ -17,6 +17,8 @@ class TaskViewController: UITableViewController {
         }
     }
     
+    
+    @IBOutlet weak var moreButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -25,6 +27,8 @@ class TaskViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        moreButton.primaryAction = nil
+        moreButton.menu = menuItems()
     }
     //MARK: - Segue Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -46,6 +50,22 @@ class TaskViewController: UITableViewController {
         performSegue(withIdentifier: K.goToTaskInfoSegue, sender: self)
     }
     
+    func menuItems() -> UIMenu {
+        
+        let addMenuItems = UIMenu(title: "", options: .displayInline, children: [
+            UIAction(title: "Edit", image: UIImage(systemName: "rectangle.and.pencil.and.ellipsis"), handler: { action in
+                print("edit")
+            }),
+            UIAction(title: "Sort By", image: UIImage(systemName: "arrow.up.arrow.down"), handler: { action in
+                print("sort")
+            }),
+            UIAction(title: "Show/Hide Complete", image: UIImage(systemName: "eye.slash"), handler: { action in
+                print("show/hide")
+            })
+        
+        ])
+        return addMenuItems
+    }
     @IBAction func unwindToTaskVC(_ unwindSegue: UIStoryboardSegue) {
         let taskInfoVC = unwindSegue.source as! TaskInfoViewController
         if let selectedIndexPath = tableView.indexPathForSelectedRow {

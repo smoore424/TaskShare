@@ -144,6 +144,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="MC7-8l-mxw" id="jXT-La-MM6"/>
+                        <outlet property="moreButton" destination="pSf-wp-hiG" id="M9U-B2-Eq5"/>
                         <outlet property="searchBar" destination="1rM-gf-Yqz" id="dM4-c5-Ki3"/>
                     </connections>
                 </tableViewController>
