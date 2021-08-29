@@ -17,7 +17,6 @@ class TaskViewController: UITableViewController {
         }
     }
     
-    
     @IBOutlet weak var moreButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -30,6 +29,25 @@ class TaskViewController: UITableViewController {
         moreButton.primaryAction = nil
         moreButton.menu = menuItems()
     }
+    
+    //MARK: - Add Item
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: K.goToTaskInfoSegue, sender: self)
+    }
+    
+    //MARK: - Menu Methods
+    func menuItems() -> UIMenu {
+        let addMenuItems = UIMenu(title: "", options: .displayInline, children: [
+            UIAction(title: "Sort By", image: UIImage(systemName: "arrow.up.arrow.down")) { action in
+                print("sort")
+            },
+            UIAction(title: "Show/Hide Complete", image: UIImage(systemName: "eye.slash")) { action in
+                print("show/hide")
+            }
+        ])
+        return addMenuItems
+    }
+    
     //MARK: - Segue Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! TaskInfoViewController
@@ -46,26 +64,6 @@ class TaskViewController: UITableViewController {
         }
     }
     
-    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: K.goToTaskInfoSegue, sender: self)
-    }
-    
-    func menuItems() -> UIMenu {
-        
-        let addMenuItems = UIMenu(title: "", options: .displayInline, children: [
-            UIAction(title: "Edit", image: UIImage(systemName: "rectangle.and.pencil.and.ellipsis"), handler: { action in
-                print("edit")
-            }),
-            UIAction(title: "Sort By", image: UIImage(systemName: "arrow.up.arrow.down"), handler: { action in
-                print("sort")
-            }),
-            UIAction(title: "Show/Hide Complete", image: UIImage(systemName: "eye.slash"), handler: { action in
-                print("show/hide")
-            })
-        
-        ])
-        return addMenuItems
-    }
     @IBAction func unwindToTaskVC(_ unwindSegue: UIStoryboardSegue) {
         let taskInfoVC = unwindSegue.source as! TaskInfoViewController
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
@@ -100,6 +98,17 @@ class TaskViewController: UITableViewController {
         cell.checkmarkButton.isSelected = task.completed
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "") { (contextualAction, view, actionPerformed: (Bool) -> Void) in
+            self.context.delete(self.taskArray[indexPath.row])
+            self.taskArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.saveData()
+        }
+        delete.image = UIImage(systemName: "trash")
+        return UISwipeActionsConfiguration(actions: [delete])
     }
 
     //MARK: - TableView Delegate
@@ -147,6 +156,7 @@ extension TaskViewController: TaskTableViewCellDelegate {
         }
     }
 }
+
 //MARK: - SearchBarDelegate
 extension TaskViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

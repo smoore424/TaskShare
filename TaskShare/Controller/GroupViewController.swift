@@ -74,7 +74,6 @@ class GroupViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.isEditing {
-            
             editItemAlert(selectedGroup: groupArray[indexPath.row])
         } else {
             performSegue(withIdentifier: K.goToTasksSegue, sender: self)
