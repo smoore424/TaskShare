@@ -37,15 +37,34 @@ class TaskViewController: UITableViewController {
     
     //MARK: - Menu Methods
     func menuItems() -> UIMenu {
-        let addMenuItems = UIMenu(title: "", options: .displayInline, children: [
-            UIAction(title: "Sort By", image: UIImage(systemName: "arrow.up.arrow.down")) { action in
-                print("sort")
-            },
-            UIAction(title: "Show/Hide Complete", image: UIImage(systemName: "eye.slash")) { action in
-                print("show/hide")
-            }
-        ])
+        
+        let ascendingSort = UIAction(title: "Ascending", image: UIImage(systemName: "arrow.up")) { action in
+            print("sort ascending")
+        }
+        
+        let descendingSort = UIAction(title: "Descending", image: UIImage(systemName: "arrow.down")) { action in
+            self.sortBy()
+        }
+        
+        let sortBy = UIMenu(title: "Sort By", image: UIImage(systemName: "arrow.up.arrow.down"), children: [ascendingSort, descendingSort])
+        
+        let showOrHideComplete = UIAction(title: "Show/Hide Complete", image: UIImage(systemName: "eye.slash")) { action in
+            self.showOrHideComplete()
+        }
+        
+        let addMenuItems = UIMenu(title: "", options: .displayInline, children: [sortBy, showOrHideComplete])
+        
         return addMenuItems
+    }
+    
+    func showOrHideComplete() {
+        print("show/hide")
+    }
+    
+    func sortBy() {
+        //show secondary menu
+        //user picks ascending sort(by: <) or desending sort(by: >)
+        print("sort")
     }
     
     //MARK: - Segue Methods
