@@ -39,17 +39,17 @@ class TaskViewController: UITableViewController {
     func menuItems() -> UIMenu {
         
         let ascendingSort = UIAction(title: "Ascending", image: UIImage(systemName: "arrow.up")) { action in
-            print("sort ascending")
+            self.sortBy(ascending: true)
         }
         
         let descendingSort = UIAction(title: "Descending", image: UIImage(systemName: "arrow.down")) { action in
-            self.sortBy()
+            self.sortBy(ascending: false)
         }
         
         let sortBy = UIMenu(title: "Sort By", image: UIImage(systemName: "arrow.up.arrow.down"), children: [ascendingSort, descendingSort])
         
         let showOrHideComplete = UIAction(title: "Show/Hide Complete", image: UIImage(systemName: "eye.slash")) { action in
-            self.showOrHideComplete()
+            self.showOrHideComplete(show: true)
         }
         
         let addMenuItems = UIMenu(title: "", options: .displayInline, children: [sortBy, showOrHideComplete])
@@ -57,13 +57,16 @@ class TaskViewController: UITableViewController {
         return addMenuItems
     }
     
-    func showOrHideComplete() {
-        print("show/hide")
+    func showOrHideComplete(show: Bool, request: NSFetchRequest<Task> = Task.fetchRequest()) {
+        let show = NSSortDescriptor(key: "completed", ascending: true)
+        request.sortDescriptors = [show]
+        loadData(with: request)
     }
     
-    func sortBy() {
-        //show secondary menu
-        //user picks ascending sort(by: <) or desending sort(by: >)
+    func sortBy(ascending: Bool, request: NSFetchRequest<Task> = Task.fetchRequest()) {
+        let sort = NSSortDescriptor(key: "name", ascending: ascending, selector: #selector(NSString.localizedStandardCompare))
+        request.sortDescriptors = [sort]
+        loadData(with: request)
         print("sort")
     }
     
@@ -90,7 +93,6 @@ class TaskViewController: UITableViewController {
         } else {
             let newIndexPath = IndexPath(row: taskArray.count, section: 0)
             taskArray.append(taskInfoVC.task!)
-            print("\(taskArray)")
             tableView.insertRows(at: [newIndexPath], with: .bottom)
             tableView.scrollToRow(at: newIndexPath, at: .bottom, animated: true)
         }
@@ -181,10 +183,11 @@ extension TaskViewController: TaskTableViewCellDelegate {
 extension TaskViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let request: NSFetchRequest<Task> = Task.fetchRequest()
-        request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
+        let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        loadData(with: request)
-        tableView.reloadData()
+        
+        loadData(with: request, predicate: predicate)
+
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
