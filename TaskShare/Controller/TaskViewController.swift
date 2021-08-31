@@ -16,6 +16,7 @@ class TaskViewController: UITableViewController {
             loadData()
         }
     }
+    var showComplete: Bool = false
     
     @IBOutlet weak var moreButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
@@ -49,7 +50,9 @@ class TaskViewController: UITableViewController {
         let sortBy = UIMenu(title: "Sort By", image: UIImage(systemName: "arrow.up.arrow.down"), children: [ascendingSort, descendingSort])
         
         let showOrHideComplete = UIAction(title: "Show/Hide Complete", image: UIImage(systemName: "eye.slash")) { action in
-            self.showOrHideComplete(show: true)
+            self.showComplete.toggle()
+            self.showOrHideComplete(show: self.showComplete)
+            self.tableView.reloadData()
         }
         
         let addMenuItems = UIMenu(title: "", options: .displayInline, children: [sortBy, showOrHideComplete])
@@ -58,9 +61,12 @@ class TaskViewController: UITableViewController {
     }
     
     func showOrHideComplete(show: Bool, request: NSFetchRequest<Task> = Task.fetchRequest()) {
-        let show = NSSortDescriptor(key: "completed", ascending: true)
-        request.sortDescriptors = [show]
-        loadData(with: request)
+        if show {
+            let show = NSSortDescriptor(key: "completed", ascending: true)
+            request.sortDescriptors = [show]
+            loadData(with: request)
+        }
+
     }
     
     func sortBy(ascending: Bool, request: NSFetchRequest<Task> = Task.fetchRequest()) {
@@ -133,6 +139,17 @@ class TaskViewController: UITableViewController {
     }
 
     //MARK: - TableView Delegate
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if showComplete {
+            return 50
+        } else {
+            if taskArray[indexPath.row].completed {
+                return 0
+            } else {
+                return 50
+            }
+        }
+    }
     
     //MARK: - CRUD Methods
     //TODO: move Crud methods to their own class?
