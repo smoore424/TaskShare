@@ -36,7 +36,7 @@ class TaskViewController: UITableViewController {
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: K.goToTaskInfoSegue, sender: self)
     }
-    
+    //MARK: - Edit Table
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
         self.isEditing = !self.isEditing
     }
@@ -78,7 +78,6 @@ class TaskViewController: UITableViewController {
         let sort = NSSortDescriptor(key: "name", ascending: ascending, selector: #selector(NSString.localizedStandardCompare))
         request.sortDescriptors = [sort]
         loadData(with: request)
-        print("sort")
     }
     
     //MARK: - Segue Methods
@@ -118,7 +117,7 @@ class TaskViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.taskCell, for: indexPath) as! TaskTableViewCell
         cell.delegate = self
-        
+        //TODO: - move to TaskTableViewCell class
         let image = UIImage(systemName: "info.circle")?.withRenderingMode(.alwaysTemplate)
         let info = UIImageView(frame: CGRect(x: 0, y: 0, width: 17, height: 17))
         info.image = image
@@ -163,6 +162,10 @@ class TaskViewController: UITableViewController {
                 return 50
             }
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     //MARK: - CRUD Methods

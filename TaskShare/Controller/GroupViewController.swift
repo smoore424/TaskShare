@@ -27,6 +27,7 @@ class GroupViewController: UITableViewController {
         addItemAlert()
     }
     
+    //MARK: - Edit Table
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
         self.isEditing = !self.isEditing
     }
@@ -79,6 +80,8 @@ class GroupViewController: UITableViewController {
         } else {
             performSegue(withIdentifier: K.goToTasksSegue, sender: self)
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     //MARK: - CRUD methods
