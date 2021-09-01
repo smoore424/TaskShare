@@ -16,6 +16,7 @@ class GroupViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         loadData()
         tableView.allowsSelectionDuringEditing = true
         title = "My Groups"

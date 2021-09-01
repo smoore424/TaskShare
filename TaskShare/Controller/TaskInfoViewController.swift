@@ -193,9 +193,7 @@ class TaskInfoViewController: UITableViewController {
 }
 
 //MARK: - UIPickerViewDataSource
-
 extension TaskInfoViewController: UIPickerViewDataSource {
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
@@ -206,7 +204,6 @@ extension TaskInfoViewController: UIPickerViewDataSource {
 }
 
 //MARK: - UIPickerViewDelegate
-
 extension TaskInfoViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return repeatPickerData[component][row]
