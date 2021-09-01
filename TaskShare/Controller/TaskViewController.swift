@@ -26,6 +26,7 @@ class TaskViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.leftItemsSupplementBackButton = true
         searchBar.delegate = self
         moreButton.primaryAction = nil
         moreButton.menu = menuItems()
@@ -34,6 +35,10 @@ class TaskViewController: UITableViewController {
     //MARK: - Add Item
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: K.goToTaskInfoSegue, sender: self)
+    }
+    
+    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
+        self.isEditing = !self.isEditing
     }
     
     //MARK: - Menu Methods
@@ -136,6 +141,15 @@ class TaskViewController: UITableViewController {
         }
         delete.image = UIImage(systemName: "trash")
         return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        taskArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        saveData()
     }
 
     //MARK: - TableView Delegate

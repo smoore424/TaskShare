@@ -132,6 +132,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="rN3-hc-TLe">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="Yba-yQ-cjo">
+                            <connections>
+                                <action selector="editButtonTapped:" destination="0Qp-Hc-MkB" id="w9G-R4-RiQ"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="MC7-8l-mxw">
                                 <connections>
