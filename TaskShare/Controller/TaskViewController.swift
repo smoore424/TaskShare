@@ -18,6 +18,7 @@ class TaskViewController: UITableViewController {
     }
     var showComplete: Bool = false
     
+    @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var moreButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!

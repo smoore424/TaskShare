@@ -62,6 +62,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="editButton" destination="yqQ-Ww-Tgh" id="a58-mM-DdL"/>
                         <segue destination="0Qp-Hc-MkB" kind="show" identifier="goToTasks" id="DLl-gO-GEH"/>
                     </connections>
                 </tableViewController>
@@ -149,6 +150,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="MC7-8l-mxw" id="jXT-La-MM6"/>
+                        <outlet property="editButton" destination="Yba-yQ-cjo" id="lCm-lj-Nd4"/>
                         <outlet property="moreButton" destination="pSf-wp-hiG" id="M9U-B2-Eq5"/>
                         <outlet property="searchBar" destination="1rM-gf-Yqz" id="dM4-c5-Ki3"/>
                     </connections>
@@ -390,7 +392,7 @@
         <scene sceneID="FoN-ra-HHw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="scT-3n-Jkt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Groups" selectedImage="note.text" catalog="system" id="oV7-P0-pls"/>
+                    <tabBarItem key="tabBarItem" title="Groups" image="note.text" catalog="system" id="oV7-P0-pls"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bv6-Id-73L">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -409,7 +411,7 @@
         <scene sceneID="DIA-5y-DR9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x5b-aa-XaJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Today" selectedImage="calendar" catalog="system" id="2pT-eb-INs"/>
+                    <tabBarItem key="tabBarItem" title="Today" image="calendar" catalog="system" id="2pT-eb-INs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="42p-fE-lRC">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
