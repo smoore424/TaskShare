@@ -92,7 +92,7 @@ class GroupViewController: UITableViewController {
         var textField = UITextField()
         
         let action = UIAlertAction(title: "Add", style: .default) { action in
-            let newGroup = Group(context: CoreDataHelper.context)
+            let newGroup = CoreDataHelper.newGroup()
             newGroup.title = textField.text!
             self.groupArray.append(newGroup)
             CoreDataHelper.saveData()
