@@ -47,4 +47,23 @@ struct CoreDataHelper {
             return []
         }
     }
+    
+    static func loadTasks(with request: NSFetchRequest<Task> = Task.fetchRequest(), for selectedGroup: Group?, predicate: NSPredicate? = nil) -> [Task] {
+        
+        let groupPredicate = NSPredicate(format: "parentGroup.title MATCHES %@", selectedGroup!.title!)
+        
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [groupPredicate, additionalPredicate])
+        } else {
+            request.predicate = groupPredicate
+        }
+        
+        do {
+            let result = try context.fetch(request)
+            return result
+        } catch {
+            print("Error fetching data from context \(error)")
+            return []
+        }
+    }
 }

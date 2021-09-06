@@ -13,9 +13,10 @@ class TaskViewController: UITableViewController {
     var taskArray = [Task]()
     var selectedGroup: Group? {
         didSet {
-            loadData()
+            taskArray = CoreDataHelper.loadTasks(for: selectedGroup)
         }
     }
+    
     var showComplete: Bool = false
     
     @IBOutlet weak var editButton: UIBarButtonItem!
@@ -70,15 +71,15 @@ class TaskViewController: UITableViewController {
         if show {
             let show = NSSortDescriptor(key: "completed", ascending: true)
             request.sortDescriptors = [show]
-            loadData(with: request)
+            taskArray = CoreDataHelper.loadTasks(with: request, for: selectedGroup)
         }
-
     }
     
     func sortBy(ascending: Bool, request: NSFetchRequest<Task> = Task.fetchRequest()) {
         let sort = NSSortDescriptor(key: "name", ascending: ascending, selector: #selector(NSString.localizedStandardCompare))
         request.sortDescriptors = [sort]
-        loadData(with: request)
+        taskArray = CoreDataHelper.loadTasks(with: request, for: selectedGroup)
+        tableView.reloadData()
     }
     
     //MARK: - Segue Methods
@@ -137,7 +138,7 @@ class TaskViewController: UITableViewController {
             self.context.delete(self.taskArray[indexPath.row])
             self.taskArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.saveData()
+            CoreDataHelper.saveData()
         }
         delete.image = UIImage(systemName: "trash")
         return UISwipeActionsConfiguration(actions: [delete])
@@ -149,7 +150,7 @@ class TaskViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         taskArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
-        saveData()
+        CoreDataHelper.saveData()
     }
 
     //MARK: - TableView Delegate
@@ -163,33 +164,6 @@ class TaskViewController: UITableViewController {
                 return 50
             }
         }
-    }
-    
-    //MARK: - CRUD Methods
-    //TODO: move Crud methods to their own class?
-    func saveData() {
-        do {
-            try context.save()
-        } catch {
-            print("Error saving context \(error)")
-        }
-        tableView.reloadData()
-    }
-    
-    func loadData(with request: NSFetchRequest<Task> = Task.fetchRequest(), predicate: NSPredicate? = nil) {
-        let groupPredicate = NSPredicate(format: "parentGroup.title MATCHES %@", selectedGroup!.title!)
-        if let additionalPredicate = predicate {
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [groupPredicate, additionalPredicate])
-        } else {
-            request.predicate = groupPredicate
-        }
-        
-        do {
-            taskArray = try context.fetch(request)
-        } catch {
-            print("Error fetching data from context \(error)")
-        }
-        tableView.reloadData()
     }
 }
 
@@ -205,7 +179,7 @@ extension TaskViewController: TaskTableViewCellDelegate {
     func checkMarkToggle(sender: TaskTableViewCell) {
         if let selectedIndexPath = tableView.indexPath(for: sender) {
             taskArray[selectedIndexPath.row].completed.toggle()
-            saveData()
+            CoreDataHelper.saveData()
         }
     }
 }
@@ -217,12 +191,14 @@ extension TaskViewController: UISearchBarDelegate {
         let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         
-        loadData(with: request, predicate: predicate)
+        taskArray = CoreDataHelper.loadTasks(with: request, for: selectedGroup, predicate: predicate)
+        tableView.reloadData()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
-            loadData()
+            taskArray = CoreDataHelper.loadTasks(for: selectedGroup)
+            tableView.reloadData()
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
             }
