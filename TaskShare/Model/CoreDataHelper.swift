@@ -50,6 +50,11 @@ struct CoreDataHelper {
     }
     
     //MARK: - Task CoreData Methods
+    static func newTask() -> Task {
+        let task = NSEntityDescription.insertNewObject(forEntityName: "Task", into: context) as! Task
+        return task
+    }
+    
     static func loadTasks(with request: NSFetchRequest<Task> = Task.fetchRequest(), for selectedGroup: Group?, predicate: NSPredicate? = nil) -> [Task] {
         
         let groupPredicate = NSPredicate(format: "parentGroup.title MATCHES %@", selectedGroup!.title!)

@@ -15,8 +15,7 @@ class TaskInfoViewController: UITableViewController {
     
     var task: Task?
     var selectedGroup: Group?
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+
     //MARK: - Delegate
     weak var delegate: TaskInfoViewControllerDelegate?
     
@@ -109,7 +108,7 @@ class TaskInfoViewController: UITableViewController {
             task.repeatPickerComponent1 = repeatNumber
             task.repeatPickerComponent2 = repeatTimeFrame
         } else {
-            let newTask = Task(context: self.context)
+            let newTask = CoreDataHelper.newTask()
             newTask.name = taskNameTextField.text
             newTask.parentGroup = selectedGroup
             newTask.date = datePicker.date
