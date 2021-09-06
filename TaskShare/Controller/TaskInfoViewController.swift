@@ -66,7 +66,7 @@ class TaskInfoViewController: UITableViewController {
         repeatPicker.delegate = self
         taskNameTextField.text = task?.name
         noteTextView.text = task?.note
-        repeatSwitch.isSelected = ((task?.repeatSwtichIsOn) != nil)
+        repeatSwitch.isSelected = ((task?.repeatSwitchIsOn) != nil)
         updateDateLabel()
     }
 
@@ -84,7 +84,6 @@ class TaskInfoViewController: UITableViewController {
         } else {
             dateLabel.text = dateFormatter.string(from: datePicker.date)
         }
-        
     }
     
     @IBAction func repeatSwitchDidChange(_ sender: UISwitch) {
@@ -103,27 +102,25 @@ class TaskInfoViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let task = task {
-            //create uuid with core data helper model to check uuid.  helper used as view model and this is where actions are made 
             task.name = taskNameTextField.text
             task.date = datePicker.date
             task.note = noteTextView.text
-            task.repeatSwtichIsOn = repeatSwitch.isOn
+            task.repeatSwitchIsOn = repeatSwitch.isOn
             task.repeatPickerComponent1 = repeatNumber
             task.repeatPickerComponent2 = repeatTimeFrame
-            saveItem()
         } else {
             let newTask = Task(context: self.context)
             newTask.name = taskNameTextField.text
             newTask.parentGroup = selectedGroup
             newTask.date = datePicker.date
             newTask.note = noteTextView.text
-            newTask.repeatSwtichIsOn = repeatSwitch.isOn
+            newTask.repeatSwitchIsOn = repeatSwitch.isOn
             newTask.repeatPickerComponent1 = repeatNumber
             newTask.repeatPickerComponent2 = repeatTimeFrame
             newTask.completed = false
             task = newTask
-            saveItem()
         }
+        CoreDataHelper.saveData()
     }
     
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
@@ -181,14 +178,6 @@ class TaskInfoViewController: UITableViewController {
             }
         default:
             return 44
-        }
-    }
-    //MARK: - CRUD Methods
-    func saveItem() {
-        do {
-            try context.save()
-        } catch {
-            print("Error saving context \(error)")
         }
     }
 }

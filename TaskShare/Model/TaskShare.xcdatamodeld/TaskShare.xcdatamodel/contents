@@ -11,7 +11,7 @@
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="repeatPickerComponent1" optional="YES" attributeType="String"/>
         <attribute name="repeatPickerComponent2" optional="YES" attributeType="String"/>
-        <attribute name="repeatSwtichIsOn" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="repeatSwitchIsOn" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="parentGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="task" inverseEntity="Group"/>
     </entity>
     <elements>

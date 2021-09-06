@@ -20,11 +20,7 @@ struct CoreDataHelper {
         return context
     }()
     
-    static func newGroup() -> Group {
-        let group = NSEntityDescription.insertNewObject(forEntityName: "Group", into: context) as! Group
-        return group
-    }
-    
+    //MARK: - Shared CoreData Methods
     static func saveData() {
         do {
             try context.save()
@@ -32,12 +28,12 @@ struct CoreDataHelper {
             print("error saving data to context \(error)")
         }
     }
-    
-    static func deleteGroup(group: Group) {
-        context.delete(group)
-        saveData()
+    //MARK: - Group CoreData Methods
+    static func newGroup() -> Group {
+        let group = NSEntityDescription.insertNewObject(forEntityName: "Group", into: context) as! Group
+        return group
     }
-
+    
     static func loadGroup(with request: NSFetchRequest<Group> = Group.fetchRequest()) -> [Group] {
         do {
             let results = try context.fetch(request)
@@ -48,6 +44,12 @@ struct CoreDataHelper {
         }
     }
     
+    static func deleteGroup(group: Group) {
+        context.delete(group)
+        saveData()
+    }
+    
+    //MARK: - Task CoreData Methods
     static func loadTasks(with request: NSFetchRequest<Task> = Task.fetchRequest(), for selectedGroup: Group?, predicate: NSPredicate? = nil) -> [Task] {
         
         let groupPredicate = NSPredicate(format: "parentGroup.title MATCHES %@", selectedGroup!.title!)
@@ -66,4 +68,6 @@ struct CoreDataHelper {
             return []
         }
     }
+    
+    
 }
