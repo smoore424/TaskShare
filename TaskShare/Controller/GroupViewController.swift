@@ -11,14 +11,12 @@ import UIKit
 class GroupViewController: UITableViewController {
     
     var groupArray = [Group]()
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     @IBOutlet weak var editButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-        loadData()
+        groupArray = CoreDataHelper.loadGroup()
         tableView.allowsSelectionDuringEditing = true
         title = "My Groups"
     }
@@ -48,10 +46,11 @@ class GroupViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "") { (contextualAction, view, actionPerformed: (Bool) -> Void) in
-            self.context.delete(self.groupArray[indexPath.row])
+            CoreDataHelper.deleteGroup(group: self.groupArray[indexPath.row])
             self.groupArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.saveData()
+            CoreDataHelper.saveData()
+            tableView.reloadData()
         }
         delete.image = UIImage(systemName: "trash")
         return UISwipeActionsConfiguration(actions: [delete])
@@ -63,7 +62,8 @@ class GroupViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         groupArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
-        saveData()
+        CoreDataHelper.saveData()
+        tableView.reloadData()
     }
 
     //MARK: - TableView Delegate
@@ -85,25 +85,6 @@ class GroupViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    //MARK: - CRUD methods
-    func saveData() {
-        do {
-            try context.save()
-        } catch {
-            print("error saving data to context \(error)")
-        }
-        tableView.reloadData()
-    }
-    
-    func loadData(with request: NSFetchRequest<Group> = Group.fetchRequest()) {
-        do {
-            groupArray = try context.fetch(request)
-        } catch {
-            print("error fetching data from context \(error)")
-        }
-        tableView.reloadData()
-    }
-    
     //MARK: - Alerts
     func addItemAlert() {
         let alert = UIAlertController(title: "Add Group", message: nil, preferredStyle: .alert)
@@ -111,10 +92,11 @@ class GroupViewController: UITableViewController {
         var textField = UITextField()
         
         let action = UIAlertAction(title: "Add", style: .default) { action in
-            let newGroup = Group(context: self.context)
+            let newGroup = Group(context: CoreDataHelper.context)
             newGroup.title = textField.text!
             self.groupArray.append(newGroup)
-            self.saveData()
+            CoreDataHelper.saveData()
+            self.tableView.reloadData()
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -123,8 +105,10 @@ class GroupViewController: UITableViewController {
             alertTextField.placeholder = "Create New Group"
             textField = alertTextField
         }
+        
         alert.addAction(action)
         alert.addAction(cancel)
+        
         present(alert, animated: true, completion: nil)
     }
     
@@ -135,7 +119,8 @@ class GroupViewController: UITableViewController {
         
         let action = UIAlertAction(title: "Save", style: .default) { action in
             selectedGroup.title = textField.text!
-            self.saveData()
+            CoreDataHelper.saveData()
+            self.tableView.reloadData()
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -150,6 +135,3 @@ class GroupViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 }
-
-
-

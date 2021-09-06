@@ -31,7 +31,6 @@ class TaskViewController: UITableViewController {
         searchBar.delegate = self
         moreButton.primaryAction = nil
         moreButton.menu = menuItems()
-        print(tableView.indexPathForSelectedRow ?? "selected index path not found")
     }
     
     //MARK: - Add Item
@@ -102,13 +101,11 @@ class TaskViewController: UITableViewController {
         let taskInfoVC = unwindSegue.source as! TaskInfoViewController
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             taskArray[selectedIndexPath.row] = taskInfoVC.task!
-            print("updating task!")
         } else {
             let newIndexPath = IndexPath(row: taskArray.count, section: 0)
             taskArray.append(taskInfoVC.task!)
             tableView.insertRows(at: [newIndexPath], with: .bottom)
             tableView.scrollToRow(at: newIndexPath, at: .bottom, animated: true)
-            print("add new task")
         }
         tableView.reloadData()
     }

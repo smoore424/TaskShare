@@ -1,0 +1,50 @@
+//
+//  CoreDataHelper.swift
+//  TaskShare
+//
+//  Created by Stacey Moore on 9/6/21.
+//
+
+import CoreData
+import UIKit
+
+struct CoreDataHelper {
+    static let context: NSManagedObjectContext = {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError()
+        }
+
+        let persistentContainer = appDelegate.persistentContainer
+        let context = persistentContainer.viewContext
+
+        return context
+    }()
+    
+    static func newGroup() -> Group {
+        let group = NSEntityDescription.insertNewObject(forEntityName: "Group", into: context) as! Group
+        return group
+    }
+    
+    static func saveData() {
+        do {
+            try context.save()
+        } catch {
+            print("error saving data to context \(error)")
+        }
+    }
+    
+    static func deleteGroup(group: Group) {
+        context.delete(group)
+        saveData()
+    }
+
+    static func loadGroup(with request: NSFetchRequest<Group> = Group.fetchRequest()) -> [Group] {
+        do {
+            let results = try context.fetch(request)
+            return results
+        } catch {
+            print("error fetching data from context: \(error)")
+            return []
+        }
+    }
+}

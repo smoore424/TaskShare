@@ -103,7 +103,6 @@ class TaskInfoViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let task = task {
-            print("updating task on task info screen")
             //create uuid with core data helper model to check uuid.  helper used as view model and this is where actions are made 
             task.name = taskNameTextField.text
             task.date = datePicker.date
@@ -113,7 +112,6 @@ class TaskInfoViewController: UITableViewController {
             task.repeatPickerComponent2 = repeatTimeFrame
             saveItem()
         } else {
-            print("creating new task on task info screen")
             let newTask = Task(context: self.context)
             newTask.name = taskNameTextField.text
             newTask.parentGroup = selectedGroup
