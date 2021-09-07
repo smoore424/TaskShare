@@ -13,6 +13,7 @@ class GroupViewController: UITableViewController {
     var groupArray = [Group]()
 
     @IBOutlet weak var editButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
@@ -22,8 +23,15 @@ class GroupViewController: UITableViewController {
     }
     
     //MARK: - Add Item
+    var textField = UITextField()
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        addItemAlert()
+        addGroupAlert {
+            let newGroup = CoreDataHelper.newGroup()
+            newGroup.title = self.textField.text!
+            self.groupArray.append(newGroup)
+            CoreDataHelper.saveData()
+            self.tableView.reloadData()
+        }
     }
     
     //MARK: - Edit Table
@@ -86,32 +94,6 @@ class GroupViewController: UITableViewController {
     }
     
     //MARK: - Alerts
-    func addItemAlert() {
-        let alert = UIAlertController(title: "Add Group", message: nil, preferredStyle: .alert)
-        
-        var textField = UITextField()
-        
-        let action = UIAlertAction(title: "Add", style: .default) { action in
-            let newGroup = CoreDataHelper.newGroup()
-            newGroup.title = textField.text!
-            self.groupArray.append(newGroup)
-            CoreDataHelper.saveData()
-            self.tableView.reloadData()
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alert.addTextField { alertTextField in
-            alertTextField.placeholder = "Create New Group"
-            textField = alertTextField
-        }
-        
-        alert.addAction(action)
-        alert.addAction(cancel)
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
     func editItemAlert(selectedGroup: Group) {
         let alert = UIAlertController(title: "Edit Item", message: nil, preferredStyle: .alert)
         

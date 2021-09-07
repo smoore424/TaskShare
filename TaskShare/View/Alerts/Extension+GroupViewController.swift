@@ -1,0 +1,39 @@
+//
+//  Extension+UIViewController.swift
+//  TaskShare
+//
+//  Created by Stacey Moore on 9/6/21.
+//
+
+import UIKit
+
+extension GroupViewController {
+    private func showAlert(title: String, message: String, alertStyle: UIAlertController.Style, actions: [CustomAction], textField: Bool, placeHolder: String? = nil, completionHandler: @escaping ((_ action: CustomAction)->())) {
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: alertStyle)
+        
+        for action in actions {
+            let alertAction = UIAlertAction(title: action.title, style: action.style) { (_) in
+                completionHandler(action)
+            }
+            alertController.addAction(alertAction)
+        }
+        
+        if textField {
+            alertController.addTextField { alertTextField in
+                alertTextField.placeholder = placeHolder
+                self.textField = alertTextField
+            }
+        }
+        self.present(alertController, animated: true)
+    }
+    
+    func addGroupAlert(completion: (() -> ())? = nil) {
+        showAlert(title: "Add Group", message: "", alertStyle: .alert, actions: [.saveAction, .cancelAction], textField: true, placeHolder: "Create New Group") { (action) in
+            if action.title == CustomAction.saveAction.title {
+                completion!()
+            }
+        }
+    }
+}
+

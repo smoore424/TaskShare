@@ -17,7 +17,8 @@
 		01640DAD26CA92C1000CC565 /* TaskShare.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01640DAB26CA92C1000CC565 /* TaskShare.xcdatamodeld */; };
 		01640DAF26CA92C4000CC565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01640DAE26CA92C4000CC565 /* Assets.xcassets */; };
 		01640DB226CA92C4000CC565 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01640DB026CA92C4000CC565 /* LaunchScreen.storyboard */; };
-		01E2A77D26E5126300BE5956 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E2A77C26E5126300BE5956 /* Alert.swift */; };
+		01ACC71126E6DC360030650C /* CustomAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71026E6DC360030650C /* CustomAction.swift */; };
+		01ACC71326E6DD2C0030650C /* Extension+GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71226E6DD2C0030650C /* Extension+GroupViewController.swift */; };
 		01E2A77F26E65A4200BE5956 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E2A77E26E65A4200BE5956 /* CoreDataHelper.swift */; };
 		01F88DAF26D5319D00C0A76B /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -35,7 +36,8 @@
 		01640DAE26CA92C4000CC565 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01640DB126CA92C4000CC565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01640DB326CA92C4000CC565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		01E2A77C26E5126300BE5956 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		01ACC71026E6DC360030650C /* CustomAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAction.swift; sourceTree = "<group>"; };
+		01ACC71226E6DD2C0030650C /* Extension+GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+GroupViewController.swift"; sourceTree = "<group>"; };
 		01E2A77E26E65A4200BE5956 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,7 +95,7 @@
 		01640DBA26CA964A000CC565 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				01E2A77C26E5126300BE5956 /* Alert.swift */,
+				01ACC70F26E6DC1E0030650C /* Alerts */,
 				01640DA826CA92C1000CC565 /* Main.storyboard */,
 				01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */,
 			);
@@ -118,6 +120,15 @@
 				0102F4D926CB44F400000945 /* Constants.swift */,
 			);
 			path = Supporting;
+			sourceTree = "<group>";
+		};
+		01ACC70F26E6DC1E0030650C /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				01ACC71026E6DC360030650C /* CustomAction.swift */,
+				01ACC71226E6DD2C0030650C /* Extension+GroupViewController.swift */,
+			);
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,13 +202,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				01E2A77F26E65A4200BE5956 /* CoreDataHelper.swift in Sources */,
-				01E2A77D26E5126300BE5956 /* Alert.swift in Sources */,
 				01F88DAF26D5319D00C0A76B /* TaskTableViewCell.swift in Sources */,
 				0102F4DE26CC02F900000945 /* TaskViewController.swift in Sources */,
 				0135C2A826CC6A3400732596 /* TaskInfoViewController.swift in Sources */,
+				01ACC71126E6DC360030650C /* CustomAction.swift in Sources */,
 				0102F4DA26CB44F400000945 /* Constants.swift in Sources */,
 				01640DAD26CA92C1000CC565 /* TaskShare.xcdatamodeld in Sources */,
 				01640DA726CA92C1000CC565 /* GroupViewController.swift in Sources */,
+				01ACC71326E6DD2C0030650C /* Extension+GroupViewController.swift in Sources */,
 				01640DA326CA92C1000CC565 /* AppDelegate.swift in Sources */,
 				01640DA526CA92C1000CC565 /* SceneDelegate.swift in Sources */,
 			);
