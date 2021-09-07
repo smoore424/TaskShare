@@ -49,6 +49,7 @@ class TaskInfoViewController: UITableViewController {
             repeatPicker.isHidden = !isRepeatPickerShown
         }
     }
+    var repeatIsOn = false
 
     let repeatPickerData = [["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"], ["Day(s)", "Week(s)", "Month(s)", "Year(s)"]]
     
@@ -60,12 +61,11 @@ class TaskInfoViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         repeatPicker.dataSource = self
         repeatPicker.delegate = self
         taskNameTextField.text = task?.name
         noteTextView.text = task?.note
-        repeatSwitch.isSelected = ((task?.repeatSwitchIsOn) != nil)
+        setRepeatSwitchValue()
         updateDateLabel()
     }
 
@@ -87,9 +87,11 @@ class TaskInfoViewController: UITableViewController {
     
     @IBAction func repeatSwitchDidChange(_ sender: UISwitch) {
         if sender.isOn {
+            repeatIsOn = true
             isRepeatPickerShown = true
             repeatLabel.text = "Repeat Every \(repeatNumber) \(repeatTimeFrame)"
         } else {
+            repeatIsOn = false
             isRepeatPickerShown = false
             repeatLabel.text = "Repeat"
             repeatNumber = ""
@@ -99,12 +101,19 @@ class TaskInfoViewController: UITableViewController {
         tableView.endUpdates()
     }
     
+    func setRepeatSwitchValue() {
+        if let task = task {
+            repeatIsOn = (task.repeatSwitchIsOn)
+            repeatSwitch.setOn(repeatIsOn, animated: true)
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let task = task {
             task.name = taskNameTextField.text
             task.date = datePicker.date
             task.note = noteTextView.text
-            task.repeatSwitchIsOn = repeatSwitch.isOn
+            task.repeatSwitchIsOn = repeatIsOn
             task.repeatPickerComponent1 = repeatNumber
             task.repeatPickerComponent2 = repeatTimeFrame
         } else {
@@ -113,7 +122,7 @@ class TaskInfoViewController: UITableViewController {
             newTask.parentGroup = selectedGroup
             newTask.date = datePicker.date
             newTask.note = noteTextView.text
-            newTask.repeatSwitchIsOn = repeatSwitch.isOn
+            newTask.repeatSwitchIsOn = repeatIsOn
             newTask.repeatPickerComponent1 = repeatNumber
             newTask.repeatPickerComponent2 = repeatTimeFrame
             newTask.completed = false
