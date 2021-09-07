@@ -7,7 +7,10 @@
 
 import UIKit
 
-extension GroupViewController {
+extension UIViewController {
+    
+    static var textField = UITextField()
+    
     private func showAlert(title: String, message: String, alertStyle: UIAlertController.Style, actions: [CustomAction], textField: Bool, placeHolder: String? = nil, completionHandler: @escaping ((_ action: CustomAction)->())) {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: alertStyle)
@@ -22,7 +25,7 @@ extension GroupViewController {
         if textField {
             alertController.addTextField { alertTextField in
                 alertTextField.placeholder = placeHolder
-                self.textField = alertTextField
+                UIViewController.textField = alertTextField
             }
         }
         self.present(alertController, animated: true)
@@ -30,6 +33,14 @@ extension GroupViewController {
     
     func addGroupAlert(completion: (() -> ())? = nil) {
         showAlert(title: "Add Group", message: "", alertStyle: .alert, actions: [.saveAction, .cancelAction], textField: true, placeHolder: "Create New Group") { (action) in
+            if action.title == CustomAction.saveAction.title {
+                completion!()
+            }
+        }
+    }
+    
+    func editGroupAlert(completion: (() -> ())? = nil) {
+        showAlert(title: "Edit Group Name", message: "", alertStyle: .alert, actions: [.saveAction, .cancelAction], textField: true, placeHolder: "Enter New Group Name") { (action) in
             if action.title == CustomAction.saveAction.title {
                 completion!()
             }

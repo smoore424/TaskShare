@@ -23,11 +23,10 @@ class GroupViewController: UITableViewController {
     }
     
     //MARK: - Add Item
-    var textField = UITextField()
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         addGroupAlert {
             let newGroup = CoreDataHelper.newGroup()
-            newGroup.title = self.textField.text!
+            newGroup.title = UIViewController.textField.text!
             self.groupArray.append(newGroup)
             CoreDataHelper.saveData()
             self.tableView.reloadData()
@@ -37,6 +36,15 @@ class GroupViewController: UITableViewController {
     //MARK: - Edit Table
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
         self.isEditing = !self.isEditing
+    }
+    
+    //MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! TaskViewController
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedGroup = groupArray[indexPath.row]
+            destinationVC.title = groupArray[indexPath.row].title
+        }
     }
     
     //MARK: - TableView DataSource
@@ -75,45 +83,17 @@ class GroupViewController: UITableViewController {
     }
 
     //MARK: - TableView Delegate
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! TaskViewController
-        if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.selectedGroup = groupArray[indexPath.row]
-            destinationVC.title = groupArray[indexPath.row].title
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.isEditing {
-            editItemAlert(selectedGroup: groupArray[indexPath.row])
+            let selectedGroup = groupArray[indexPath.row]
+            editGroupAlert() {
+                selectedGroup.title = UIViewController.textField.text!
+                CoreDataHelper.saveData()
+                self.tableView.reloadData()
+            }
         } else {
             performSegue(withIdentifier: K.goToTasksSegue, sender: self)
         }
-        
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    //MARK: - Alerts
-    func editItemAlert(selectedGroup: Group) {
-        let alert = UIAlertController(title: "Edit Item", message: nil, preferredStyle: .alert)
-        
-        var textField = UITextField()
-        
-        let action = UIAlertAction(title: "Save", style: .default) { action in
-            selectedGroup.title = textField.text!
-            CoreDataHelper.saveData()
-            self.tableView.reloadData()
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alert.addTextField { alertTextField in
-            alertTextField.placeholder = "Enter New Group Name"
-            textField = alertTextField
-        }
-        
-        alert.addAction(action)
-        alert.addAction(cancel)
-        present(alert, animated: true, completion: nil)
     }
 }
