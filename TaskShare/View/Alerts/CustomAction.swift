@@ -13,4 +13,5 @@ struct CustomAction {
     
     static let saveAction = CustomAction(title: "Save", style: .default)
     static let cancelAction = CustomAction(title: "Cancel", style: .cancel)
+    static let discardChangeAction = CustomAction(title: "Discard Changes", style: .destructive)
 }

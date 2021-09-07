@@ -123,25 +123,12 @@ class TaskInfoViewController: UITableViewController {
     }
     
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
-        cancel()
-    }
-    
-    func cancel() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let discard = UIAlertAction(title: "Discard Changes", style: .destructive) { discard in
+        dismissModalAlert {
             self.delegate?.taskInfoViewControllerDidCancel(self)
         }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alert.addAction(discard)
-        alert.addAction(cancel)
-        present(alert, animated: true, completion: nil)
     }
     
     //MARK: - TableViewDelegate Methods
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -210,6 +197,8 @@ extension TaskInfoViewController: UIPickerViewDelegate {
 //MARK: - PresentationControllerDelegate
 extension TaskInfoViewController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
-        cancel()
+        dismissModalAlert {
+            self.delegate?.taskInfoViewControllerDidCancel(self)
+        }
     }
 }

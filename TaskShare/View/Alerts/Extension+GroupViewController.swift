@@ -11,7 +11,7 @@ extension UIViewController {
     
     static var textField = UITextField()
     
-    private func showAlert(title: String, message: String, alertStyle: UIAlertController.Style, actions: [CustomAction], textField: Bool, placeHolder: String? = nil, completionHandler: @escaping ((_ action: CustomAction)->())) {
+    private func showAlert(title: String?, message: String?, alertStyle: UIAlertController.Style, actions: [CustomAction], textField: Bool, placeHolder: String? = nil, completionHandler: @escaping ((_ action: CustomAction)->())) {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: alertStyle)
         
@@ -44,6 +44,15 @@ extension UIViewController {
             if action.title == CustomAction.saveAction.title {
                 completion!()
             }
+        }
+    }
+    
+    func dismissModalAlert(completion: (() -> ())? = nil) {
+        showAlert(title: nil, message: nil, alertStyle: .actionSheet, actions: [.discardChangeAction, .cancelAction], textField: false) { (action) in
+            if action.title == CustomAction.discardChangeAction.title {
+                completion!()
+            }
+            
         }
     }
 }
