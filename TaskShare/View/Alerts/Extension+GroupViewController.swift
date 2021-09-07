@@ -52,8 +52,8 @@ extension UIViewController {
             if action.title == CustomAction.discardChangeAction.title {
                 completion!()
             }
-            
         }
     }
+    
 }
 

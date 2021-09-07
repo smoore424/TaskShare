@@ -19,6 +19,7 @@
 		01640DB226CA92C4000CC565 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01640DB026CA92C4000CC565 /* LaunchScreen.storyboard */; };
 		01ACC71126E6DC360030650C /* CustomAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71026E6DC360030650C /* CustomAction.swift */; };
 		01ACC71326E6DD2C0030650C /* Extension+GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71226E6DD2C0030650C /* Extension+GroupViewController.swift */; };
+		01ACC71626E7A61C0030650C /* Menu+Extension+TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71526E7A61C0030650C /* Menu+Extension+TaskViewController.swift */; };
 		01E2A77F26E65A4200BE5956 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E2A77E26E65A4200BE5956 /* CoreDataHelper.swift */; };
 		01F88DAF26D5319D00C0A76B /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		01640DB326CA92C4000CC565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01ACC71026E6DC360030650C /* CustomAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAction.swift; sourceTree = "<group>"; };
 		01ACC71226E6DD2C0030650C /* Extension+GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+GroupViewController.swift"; sourceTree = "<group>"; };
+		01ACC71526E7A61C0030650C /* Menu+Extension+TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Menu+Extension+TaskViewController.swift"; sourceTree = "<group>"; };
 		01E2A77E26E65A4200BE5956 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +97,7 @@
 		01640DBA26CA964A000CC565 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				01ACC71426E7A6010030650C /* Menu */,
 				01ACC70F26E6DC1E0030650C /* Alerts */,
 				01640DA826CA92C1000CC565 /* Main.storyboard */,
 				01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */,
@@ -129,6 +132,14 @@
 				01ACC71226E6DD2C0030650C /* Extension+GroupViewController.swift */,
 			);
 			path = Alerts;
+			sourceTree = "<group>";
+		};
+		01ACC71426E7A6010030650C /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				01ACC71526E7A61C0030650C /* Menu+Extension+TaskViewController.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +217,7 @@
 				0102F4DE26CC02F900000945 /* TaskViewController.swift in Sources */,
 				0135C2A826CC6A3400732596 /* TaskInfoViewController.swift in Sources */,
 				01ACC71126E6DC360030650C /* CustomAction.swift in Sources */,
+				01ACC71626E7A61C0030650C /* Menu+Extension+TaskViewController.swift in Sources */,
 				0102F4DA26CB44F400000945 /* Constants.swift in Sources */,
 				01640DAD26CA92C1000CC565 /* TaskShare.xcdatamodeld in Sources */,
 				01640DA726CA92C1000CC565 /* GroupViewController.swift in Sources */,
