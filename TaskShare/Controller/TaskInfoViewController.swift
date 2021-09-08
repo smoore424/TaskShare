@@ -147,11 +147,7 @@ class TaskInfoViewController: UITableViewController {
         
         switch (indexPath.row, indexPath.section) {
         case ((datePickerCellIndexPath.row - 1), datePickerCellIndexPath.section):
-            if isDatePickerShown {
-                isDatePickerShown = false
-            } else {
-                isDatePickerShown = true
-            }
+            isDatePickerShown ? (isDatePickerShown = false) : (isDatePickerShown = true)
         default:
             break
         }
@@ -164,17 +160,9 @@ class TaskInfoViewController: UITableViewController {
         case (noteTextViewCellIndexPath.row, noteTextViewCellIndexPath.section):
             return 88
         case (datePickerCellIndexPath.row, datePickerCellIndexPath.section):
-            if isDatePickerShown {
-                return 216
-            } else {
-                return 0
-            }
+            return isDatePickerShown ? 216 : 0
         case (repeatPickerCellIndexPath.row, repeatPickerCellIndexPath.section):
-            if isRepeatPickerShown {
-                return 216
-            } else {
-                return 0
-            }
+            return isRepeatPickerShown ? 216 : 0
         default:
             return 44
         }
@@ -199,7 +187,6 @@ extension TaskInfoViewController: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("picker changed")
         selectedNumber = pickerView.selectedRow(inComponent: 0)
         selectedTimeFrame = pickerView.selectedRow(inComponent: 1)
         repeatLabel.text = "Repeat Every \(repeatPickerData[0][selectedNumber]) \(repeatPickerData[1][selectedTimeFrame])"
