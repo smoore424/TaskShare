@@ -38,8 +38,6 @@ class TaskInfoViewController: UITableViewController {
     }
     
     //Repeat Section
-    var repeatNumber = "1"
-    var repeatTimeFrame = "Day(s)"
     @IBOutlet weak var repeatSwitch: UISwitch!
     @IBOutlet weak var repeatLabel: UILabel!
     @IBOutlet weak var repeatPicker: UIPickerView!
@@ -50,7 +48,9 @@ class TaskInfoViewController: UITableViewController {
         }
     }
     var repeatIsOn = false
-
+    var selectedNumber = 0
+    var selectedTimeFrame = 0
+    
     let repeatPickerData = [["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"], ["Day(s)", "Week(s)", "Month(s)", "Year(s)"]]
     
     override func viewWillLayoutSubviews() {
@@ -65,7 +65,7 @@ class TaskInfoViewController: UITableViewController {
         repeatPicker.delegate = self
         taskNameTextField.text = task?.name
         noteTextView.text = task?.note
-        setRepeatSwitchValue()
+        setRepeatUI()
         updateDateLabel()
     }
 
@@ -89,23 +89,27 @@ class TaskInfoViewController: UITableViewController {
         if sender.isOn {
             repeatIsOn = true
             isRepeatPickerShown = true
-            repeatLabel.text = "Repeat Every \(repeatNumber) \(repeatTimeFrame)"
+            repeatLabel.text = "Repeat Every \(repeatPickerData[0][selectedNumber]) \(repeatPickerData[1][selectedTimeFrame])"
         } else {
             repeatIsOn = false
             isRepeatPickerShown = false
             repeatLabel.text = "Repeat"
-            repeatNumber = ""
-            repeatTimeFrame = ""
         }
         tableView.beginUpdates()
         tableView.endUpdates()
     }
     
-    func setRepeatSwitchValue() {
+    func setRepeatUI() {
         if let task = task {
             repeatIsOn = (task.repeatSwitchIsOn)
             repeatSwitch.setOn(repeatIsOn, animated: true)
+            repeatSwitchDidChange(repeatSwitch)
+            selectedNumber = Int(task.selectedNumber)
+            selectedTimeFrame = Int(task.selectedTimeFrame)
         }
+        repeatPicker.selectRow(Int(selectedNumber), inComponent: 0, animated: true)
+        repeatPicker.selectRow(Int(selectedTimeFrame), inComponent: 1, animated: true)
+        repeatLabel.text = "Repeat Every \(repeatPickerData[0][selectedNumber]) \(repeatPickerData[1][selectedTimeFrame])"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -114,8 +118,8 @@ class TaskInfoViewController: UITableViewController {
             task.date = datePicker.date
             task.note = noteTextView.text
             task.repeatSwitchIsOn = repeatIsOn
-            task.repeatPickerComponent1 = repeatNumber
-            task.repeatPickerComponent2 = repeatTimeFrame
+            task.selectedNumber = Int16(selectedNumber)
+            task.selectedTimeFrame = Int16(selectedTimeFrame)
         } else {
             let newTask = CoreDataHelper.newTask()
             newTask.name = taskNameTextField.text
@@ -123,8 +127,8 @@ class TaskInfoViewController: UITableViewController {
             newTask.date = datePicker.date
             newTask.note = noteTextView.text
             newTask.repeatSwitchIsOn = repeatIsOn
-            newTask.repeatPickerComponent1 = repeatNumber
-            newTask.repeatPickerComponent2 = repeatTimeFrame
+            newTask.selectedNumber = Int16(selectedNumber)
+            newTask.selectedTimeFrame = Int16(selectedTimeFrame)
             newTask.completed = false
             task = newTask
         }
@@ -195,11 +199,10 @@ extension TaskInfoViewController: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedNumber = pickerView.selectedRow(inComponent: 0)
-        let selectedTimeFrame = pickerView.selectedRow(inComponent: 1)
-        repeatNumber = repeatPickerData[0][selectedNumber]
-        repeatTimeFrame = repeatPickerData[1][selectedTimeFrame]
-        repeatLabel.text = "Repeat Every \(repeatNumber) \(repeatTimeFrame)"
+        print("picker changed")
+        selectedNumber = pickerView.selectedRow(inComponent: 0)
+        selectedTimeFrame = pickerView.selectedRow(inComponent: 1)
+        repeatLabel.text = "Repeat Every \(repeatPickerData[0][selectedNumber]) \(repeatPickerData[1][selectedTimeFrame])"
     }
 }
 
