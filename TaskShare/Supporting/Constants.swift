@@ -11,6 +11,7 @@ struct K {
     //cell identifiers
     static let groupCell = "groupCell"
     static let taskCell = "taskCell"
+    static let todayCell = "todayCell"
     
     //segue identifiers
     static let goToTasksSegue = "goToTasks"
