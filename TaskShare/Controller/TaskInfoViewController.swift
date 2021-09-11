@@ -74,14 +74,14 @@ class TaskInfoViewController: UITableViewController {
     }
     
     func updateDateLabel() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        
         if let selectedDate = task?.date {
-            dateLabel.text = dateFormatter.string(from: selectedDate)
-            datePicker.date = selectedDate
+            dateLabel.text = selectedDate
+            print(selectedDate)
+            //TODO: convert the string back to a date
+//            datePicker.date = selectedDate
+            datePicker.date = convertStringToDate(string: selectedDate)!
         } else {
-            dateLabel.text = dateFormatter.string(from: datePicker.date)
+            dateLabel.text = convertDateToString(date: datePicker.date)
         }
     }
     
@@ -115,7 +115,7 @@ class TaskInfoViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let task = task {
             task.name = taskNameTextField.text
-            task.date = datePicker.date
+            task.date = convertDateToString(date: datePicker.date)
             task.note = noteTextView.text
             task.repeatSwitchIsOn = repeatIsOn
             task.selectedNumber = Int16(selectedNumber)
@@ -124,7 +124,7 @@ class TaskInfoViewController: UITableViewController {
             let newTask = CoreDataHelper.newTask()
             newTask.name = taskNameTextField.text
             newTask.parentGroup = selectedGroup
-            newTask.date = datePicker.date
+            newTask.date = convertDateToString(date: datePicker.date)
             newTask.note = noteTextView.text
             newTask.repeatSwitchIsOn = repeatIsOn
             newTask.selectedNumber = Int16(selectedNumber)

@@ -10,7 +10,9 @@ import UIKit
 class TodayViewController: UIViewController {
     
     var groupArray = [Group]()
+    var dateArray = [Group]()
 
+    
     @IBOutlet weak var calendarView: UIView!
     
     @IBOutlet weak var todayTableView: UITableView!
@@ -21,6 +23,9 @@ class TodayViewController: UIViewController {
         title = "Today" //change to date selected on calendar
         todayTableView.delegate = self
         todayTableView.dataSource = self
+        //TODO: Create var that gets date formated as a string
+        let selectedDate = convertDateToString(date: Date())
+        groupArray = CoreDataHelper.loadGroupByDate(for: selectedDate)
     }
 
     //MARK: - Segue Methods
@@ -29,16 +34,20 @@ class TodayViewController: UIViewController {
     }
 }
 
+
 //MARK: - TableView DataSource
 extension TodayViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return groupArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = todayTableView.dequeueReusableCell(withIdentifier: K.todayCell, for: indexPath)
         //configure the cell
-        cell.textLabel?.text = "Hello World"
+        let group = groupArray[indexPath.row]
+        cell.textLabel?.text = group.title
+        //current gets all the tasks for that group, need to only pull out the ones with the correct date
+        cell.detailTextLabel?.text = String(group.task!.count)
         return cell
     }
 }

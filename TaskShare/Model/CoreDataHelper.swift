@@ -28,6 +28,7 @@ struct CoreDataHelper {
             print("error saving data to context \(error)")
         }
     }
+    
     //MARK: - Group CoreData Methods
     static func newGroup() -> Group {
         let group = NSEntityDescription.insertNewObject(forEntityName: "Group", into: context) as! Group
@@ -74,5 +75,17 @@ struct CoreDataHelper {
         }
     }
     
-    
+    static func loadGroupByDate(with request: NSFetchRequest<Group> = Group.fetchRequest(), for selectedDate: String) -> [Group] {
+        let selectedDatePredicate = NSPredicate(format: "ANY task.date MATCHES %@", selectedDate)
+
+        request.predicate = selectedDatePredicate
+        
+        do {
+            let result = try context.fetch(request)
+            return result
+        } catch {
+            print("Error fetching data from context \(error)")
+            return []
+        }
+    }
 }
