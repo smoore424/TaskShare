@@ -130,6 +130,7 @@ class TaskViewController: UITableViewController {
 extension TaskViewController: TaskInfoViewControllerDelegate {
     func taskInfoViewControllerDidCancel(_ taskInfoViewController: TaskInfoViewController) {
         dismiss(animated: true, completion: nil)
+        tableView.reloadData()
     }
 }
 

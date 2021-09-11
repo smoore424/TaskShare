@@ -120,6 +120,7 @@ class TaskInfoViewController: UITableViewController {
             task.repeatSwitchIsOn = repeatIsOn
             task.selectedNumber = Int16(selectedNumber)
             task.selectedTimeFrame = Int16(selectedTimeFrame)
+            CoreDataHelper.saveData()
         } else {
             let newTask = CoreDataHelper.newTask()
             newTask.name = taskNameTextField.text
@@ -131,8 +132,10 @@ class TaskInfoViewController: UITableViewController {
             newTask.selectedTimeFrame = Int16(selectedTimeFrame)
             newTask.completed = false
             task = newTask
+            CoreDataHelper.saveData()
         }
-        CoreDataHelper.saveData()
+        
+        
     }
     
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
