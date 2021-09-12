@@ -11,12 +11,11 @@ import UIKit
 class GroupViewController: UITableViewController {
     
     var groupArray = [Group]()
-
-    @IBOutlet weak var editButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
         groupArray = CoreDataHelper.loadGroup()
         tableView.allowsSelectionDuringEditing = true
         title = "Groups"
@@ -31,11 +30,6 @@ class GroupViewController: UITableViewController {
             CoreDataHelper.saveData()
             self.tableView.reloadData()
         }
-    }
-    
-    //MARK: - Edit Table
-    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
-        self.isEditing = !self.isEditing
     }
     
     //MARK: - Segue

@@ -51,11 +51,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="OOk-bE-wCz">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="yqQ-Ww-Tgh">
-                            <connections>
-                                <action selector="editButtonTapped:" destination="Rl6-aQ-e1h" id="bz6-jI-4R8"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="N3H-d0-pFn">
                             <connections>
                                 <action selector="addButtonTapped:" destination="Rl6-aQ-e1h" id="bNt-oV-Zxo"/>
@@ -63,7 +58,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="editButton" destination="yqQ-Ww-Tgh" id="a58-mM-DdL"/>
                         <segue destination="0Qp-Hc-MkB" kind="show" identifier="goToTasks" id="DLl-gO-GEH"/>
                     </connections>
                 </tableViewController>
@@ -473,7 +467,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Xt2-rU-DiV"/>
-        <segue reference="iVA-f1-0SQ"/>
+        <segue reference="DLl-gO-GEH"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>

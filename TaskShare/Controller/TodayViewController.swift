@@ -18,6 +18,7 @@ class TodayViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         title = "Today" //change to date selected on calendar
         todayTableView.delegate = self
         todayTableView.dataSource = self

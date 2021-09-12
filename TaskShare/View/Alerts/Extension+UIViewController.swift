@@ -32,7 +32,7 @@ extension UIViewController {
     }
     
     func addGroupAlert(completion: (() -> ())? = nil) {
-        showAlert(title: "Add Group", message: "", alertStyle: .alert, actions: [.saveAction, .cancelAction], textField: true, placeHolder: "Create New Group") { (action) in
+        showAlert(title: "Add Group", message: nil, alertStyle: .alert, actions: [.saveAction, .cancelAction], textField: true, placeHolder: "Create New Group") { (action) in
             if action.title == CustomAction.saveAction.title {
                 completion!()
             }
@@ -40,7 +40,7 @@ extension UIViewController {
     }
     
     func editGroupAlert(completion: (() -> ())? = nil) {
-        showAlert(title: "Edit Group Name", message: "", alertStyle: .alert, actions: [.saveAction, .cancelAction], textField: true, placeHolder: "Enter New Group Name") { (action) in
+        showAlert(title: "Edit Group Name", message: nil, alertStyle: .alert, actions: [.saveAction, .cancelAction], textField: true, placeHolder: "Enter New Group Name") { (action) in
             if action.title == CustomAction.saveAction.title {
                 completion!()
             }
