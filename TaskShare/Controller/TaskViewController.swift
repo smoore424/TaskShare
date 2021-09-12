@@ -139,6 +139,7 @@ extension TaskViewController: TaskTableViewCellDelegate {
         if let selectedIndexPath = tableView.indexPath(for: sender) {
             taskArray[selectedIndexPath.row].completed.toggle()
             CoreDataHelper.saveData()
+            tableView.reloadData()
         }
     }
 }
