@@ -17,4 +17,5 @@ struct K {
     static let goToTasksSegue = "goToTasks"
     static let goToTaskInfoSegue = "goToTaskInfo"
     static let goToTaskEditSegue = "goToTaskEdit"
+    static let goToTodayTasksSegue = "goToTodayTasks"
 }

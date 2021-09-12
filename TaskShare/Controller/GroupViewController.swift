@@ -44,6 +44,7 @@ class GroupViewController: UITableViewController {
         if let indexPath = tableView.indexPathForSelectedRow {
             destinationVC.selectedGroup = groupArray[indexPath.row]
             destinationVC.title = groupArray[indexPath.row].title
+            destinationVC.taskArray = CoreDataHelper.loadTasks(for: groupArray[indexPath.row])
         }
     }
     

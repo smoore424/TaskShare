@@ -4,6 +4,7 @@
 //
 //  Created by Stacey Moore on 8/17/21.
 //
+
 import CoreData
 import UIKit
 
@@ -77,8 +78,6 @@ class TaskInfoViewController: UITableViewController {
         if let selectedDate = task?.date {
             dateLabel.text = selectedDate
             print(selectedDate)
-            //TODO: convert the string back to a date
-//            datePicker.date = selectedDate
             datePicker.date = convertStringToDate(string: selectedDate)!
         } else {
             dateLabel.text = convertDateToString(date: datePicker.date)
@@ -134,8 +133,6 @@ class TaskInfoViewController: UITableViewController {
             task = newTask
             CoreDataHelper.saveData()
         }
-        
-        
     }
     
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {

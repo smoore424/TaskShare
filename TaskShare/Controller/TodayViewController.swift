@@ -5,32 +5,44 @@
 //  Created by Stacey Moore on 9/8/21.
 //
 
+import CoreData
 import UIKit
 
 class TodayViewController: UIViewController {
     
     var groupArray = [Group]()
-    var dateArray = [Group]()
 
-    
     @IBOutlet weak var calendarView: UIView!
     
     @IBOutlet weak var todayTableView: UITableView!
+    
+    //this value will be set by the calendar
+    var date = Date()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //set groupArray through CoreDataHelper with predicate that looks for tasks in the group with today's date
         title = "Today" //change to date selected on calendar
         todayTableView.delegate = self
         todayTableView.dataSource = self
-        //TODO: Create var that gets date formated as a string
+        getTableViewData()
+    }
+    
+    fileprivate func getTableViewData() {
         let selectedDate = convertDateToString(date: Date())
         groupArray = CoreDataHelper.loadGroupByDate(for: selectedDate)
     }
 
     //MARK: - Segue Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //segue to taskInfoVC showing only selected dates tasks
+        let destinationVC = segue.destination as! TaskViewController
+        if let indexPath = todayTableView.indexPathForSelectedRow {
+            let today = convertDateToString(date: Date())
+            print(today)
+            destinationVC.title = groupArray[indexPath.row].title
+            destinationVC.selectedGroup = groupArray[indexPath.row]
+            destinationVC.selectedDate = today
+            destinationVC.taskArray = CoreDataHelper.loadTaskByDate(selectedGroup: groupArray[indexPath.row], selectedDate: today)
+        }
     }
 }
 
@@ -46,8 +58,7 @@ extension TodayViewController: UITableViewDataSource {
         //configure the cell
         let group = groupArray[indexPath.row]
         cell.textLabel?.text = group.title
-        //current gets all the tasks for that group, need to only pull out the ones with the correct date
-        cell.detailTextLabel?.text = String(group.task!.count)
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
 }
@@ -55,7 +66,8 @@ extension TodayViewController: UITableViewDataSource {
 //MARK: - TableView Delegate
 extension TodayViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "", sender: self)
+        performSegue(withIdentifier: K.goToTodayTasksSegue, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

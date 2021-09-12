@@ -45,6 +45,20 @@ struct CoreDataHelper {
         }
     }
     
+    static func loadGroupByDate(with request: NSFetchRequest<Group> = Group.fetchRequest(), for selectedDate: String) -> [Group] {
+        let selectedDatePredicate = NSPredicate(format: "ANY task.date MATCHES %@", selectedDate)
+
+        request.predicate = selectedDatePredicate
+        
+        do {
+            let result = try context.fetch(request)
+            return result
+        } catch {
+            print("Error fetching data from context \(error)")
+            return []
+        }
+    }
+    
     static func deleteGroup(group: Group) {
         context.delete(group)
         saveData()
@@ -75,10 +89,13 @@ struct CoreDataHelper {
         }
     }
     
-    static func loadGroupByDate(with request: NSFetchRequest<Group> = Group.fetchRequest(), for selectedDate: String) -> [Group] {
-        let selectedDatePredicate = NSPredicate(format: "ANY task.date MATCHES %@", selectedDate)
+    static func loadTaskByDate(with request: NSFetchRequest<Task> = Task.fetchRequest(), selectedGroup: Group?, selectedDate: String) -> [Task] {
+        
+        let groupPredicate = NSPredicate(format: "parentGroup.title MATCHES %@", selectedGroup!.title!)
+        
+        let selectedDatePredicate = NSPredicate(format: "date MATCHES %@", selectedDate)
 
-        request.predicate = selectedDatePredicate
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [groupPredicate, selectedDatePredicate])
         
         do {
             let result = try context.fetch(request)
@@ -88,4 +105,5 @@ struct CoreDataHelper {
             return []
         }
     }
+    
 }

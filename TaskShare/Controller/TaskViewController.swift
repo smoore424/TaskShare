@@ -11,11 +11,9 @@ import UIKit
 class TaskViewController: UITableViewController {
 
     var taskArray = [Task]()
-    var selectedGroup: Group? {
-        didSet {
-            taskArray = CoreDataHelper.loadTasks(for: selectedGroup)
-        }
-    }
+    var filterDate = false
+    var selectedDate = String()
+    var selectedGroup: Group?
     
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var moreButton: UIBarButtonItem!
@@ -36,6 +34,7 @@ class TaskViewController: UITableViewController {
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: K.goToTaskInfoSegue, sender: self)
     }
+    
     //MARK: - Edit Table
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
         self.isEditing = !self.isEditing
@@ -49,7 +48,7 @@ class TaskViewController: UITableViewController {
         
         switch segue.identifier {
         case K.goToTaskInfoSegue:
-            destinationVC.selectedGroup = selectedGroup!
+            destinationVC.selectedGroup = selectedGroup
         case K.goToTaskEditSegue:
             destinationVC.task = taskArray[tableView.indexPathForSelectedRow!.row]
         default:
