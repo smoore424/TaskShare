@@ -19,7 +19,7 @@ class GroupViewController: UITableViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         groupArray = CoreDataHelper.loadGroup()
         tableView.allowsSelectionDuringEditing = true
-        title = "My Groups"
+        title = "Groups"
     }
     
     //MARK: - Add Item

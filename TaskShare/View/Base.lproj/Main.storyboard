@@ -406,9 +406,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="0Qp-Hc-MkB" kind="show" identifier="goToTodayTasks" id="hAB-Kh-YdK"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -429,6 +426,7 @@
                     <connections>
                         <outlet property="calendarView" destination="JKZ-08-0Xg" id="t4v-ed-xWb"/>
                         <outlet property="todayTableView" destination="zkc-Sb-dz2" id="8tQ-Gc-bcI"/>
+                        <segue destination="0Qp-Hc-MkB" kind="show" identifier="goToTodayTasks" id="iVA-f1-0SQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ozo-eg-6AW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -476,7 +474,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Xt2-rU-DiV"/>
-        <segue reference="hAB-Kh-YdK"/>
+        <segue reference="iVA-f1-0SQ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>

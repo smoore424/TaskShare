@@ -38,8 +38,6 @@ class TodayViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! TaskViewController
         if let indexPath = todayTableView.indexPathForSelectedRow {
-            let today = convertDateToString(date: Date())
-            print(today)
             destinationVC.title = groupArray[indexPath.row].title
             destinationVC.selectedGroup = groupArray[indexPath.row]
             destinationVC.selectedDate = selectedDate
