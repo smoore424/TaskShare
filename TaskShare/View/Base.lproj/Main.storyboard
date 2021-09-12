@@ -220,7 +220,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="88"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KSL-1i-bRC">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KSL-1i-bRC">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="88"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="textColor" systemColor="labelColor"/>
@@ -369,23 +369,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNU-E3-BzG">
-                                <rect key="frame" x="0.0" y="88" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="352"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Calendar View Placeholder" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZb-zX-Voe">
-                                        <rect key="frame" x="8" y="95" width="398" height="111"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="44"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="JKZ-08-0Xg">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="352"/>
+                                        <connections>
+                                            <action selector="dateSelected:" destination="Jvz-rW-ZH7" eventType="valueChanged" id="yuF-85-Yxp"/>
+                                        </connections>
+                                    </datePicker>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="NIc-K2-UqE"/>
+                                    <constraint firstItem="JKZ-08-0Xg" firstAttribute="leading" secondItem="gNU-E3-BzG" secondAttribute="leading" id="4I8-8A-f8Y"/>
+                                    <constraint firstAttribute="bottom" secondItem="JKZ-08-0Xg" secondAttribute="bottom" id="6e8-H6-wjr"/>
+                                    <constraint firstAttribute="trailing" secondItem="JKZ-08-0Xg" secondAttribute="trailing" id="Bl8-cO-Jxs"/>
+                                    <constraint firstItem="JKZ-08-0Xg" firstAttribute="top" secondItem="gNU-E3-BzG" secondAttribute="top" id="C31-Vd-fpf"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zkc-Sb-dz2">
-                                <rect key="frame" x="0.0" y="388" width="414" height="425"/>
+                                <rect key="frame" x="0.0" y="440" width="414" height="373"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="todayCell" textLabel="JmB-7r-2fe" style="IBUITableViewCellStyleDefault" id="E0Z-il-2DS">
@@ -425,7 +427,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ogI-ow-Fk8"/>
                     <connections>
-                        <outlet property="calendarView" destination="gNU-E3-BzG" id="xUa-IE-3bm"/>
+                        <outlet property="calendarView" destination="JKZ-08-0Xg" id="t4v-ed-xWb"/>
                         <outlet property="todayTableView" destination="zkc-Sb-dz2" id="8tQ-Gc-bcI"/>
                     </connections>
                 </viewController>

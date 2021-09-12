@@ -11,13 +11,10 @@ import UIKit
 class TodayViewController: UIViewController {
     
     var groupArray = [Group]()
+    var selectedDate = String()
 
-    @IBOutlet weak var calendarView: UIView!
-    
+    @IBOutlet weak var calendarView: UIDatePicker!
     @IBOutlet weak var todayTableView: UITableView!
-    
-    //this value will be set by the calendar
-    var date = Date()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +24,16 @@ class TodayViewController: UIViewController {
         getTableViewData()
     }
     
-    fileprivate func getTableViewData() {
-        let selectedDate = convertDateToString(date: Date())
+    func getTableViewData() {
+        selectedDate = convertDateToString(date: calendarView.date)
         groupArray = CoreDataHelper.loadGroupByDate(for: selectedDate)
+        todayTableView.reloadData()
     }
 
+    @IBAction func dateSelected(_ sender: UIDatePicker) {
+        getTableViewData()
+    }
+    
     //MARK: - Segue Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! TaskViewController
@@ -40,12 +42,11 @@ class TodayViewController: UIViewController {
             print(today)
             destinationVC.title = groupArray[indexPath.row].title
             destinationVC.selectedGroup = groupArray[indexPath.row]
-            destinationVC.selectedDate = today
-            destinationVC.taskArray = CoreDataHelper.loadTaskByDate(selectedGroup: groupArray[indexPath.row], selectedDate: today)
+            destinationVC.selectedDate = selectedDate
+            destinationVC.taskArray = CoreDataHelper.loadTaskByDate(selectedGroup: groupArray[indexPath.row], selectedDate: selectedDate)
         }
     }
 }
-
 
 //MARK: - TableView DataSource
 extension TodayViewController: UITableViewDataSource {
