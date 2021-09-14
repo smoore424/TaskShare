@@ -49,7 +49,13 @@ extension TaskViewController {
     func sortBy(ascending: Bool, request: NSFetchRequest<Task> = Task.fetchRequest()) {
         let sort = NSSortDescriptor(key: "name", ascending: ascending, selector: #selector(NSString.localizedStandardCompare))
         request.sortDescriptors = [sort]
-        taskArray = CoreDataHelper.loadTasks(with: request, for: selectedGroup)
+        
+        if filterDate {
+            taskArray = CoreDataHelper.loadTaskByDate(with: request, selectedGroup: selectedGroup, selectedDate: selectedDate)
+        } else {
+            taskArray = CoreDataHelper.loadTasks(with: request, for: selectedGroup)
+        }
+
         tableView.reloadData()
     }
 }
