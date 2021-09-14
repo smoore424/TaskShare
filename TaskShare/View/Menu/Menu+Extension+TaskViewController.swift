@@ -38,7 +38,11 @@ extension TaskViewController {
         if show {
             let show = NSSortDescriptor(key: "completed", ascending: true)
             request.sortDescriptors = [show]
-            taskArray = CoreDataHelper.loadTasks(with: request, for: selectedGroup)
+            if filterDate {
+                taskArray = CoreDataHelper.loadTaskByDate(with: request, selectedGroup: selectedGroup, selectedDate: selectedDate)
+            } else {
+                taskArray = CoreDataHelper.loadTasks(with: request, for: selectedGroup)
+            }
         }
     }
     
