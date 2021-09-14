@@ -20,7 +20,7 @@ struct CoreDataHelper {
         return context
     }()
     
-    //MARK: - Shared CoreData Methods
+    //MARK: - Saving CoreData Methods
     static func saveData() {
         do {
             try context.save()

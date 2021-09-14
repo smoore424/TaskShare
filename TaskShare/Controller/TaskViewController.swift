@@ -57,6 +57,7 @@ class TaskViewController: UITableViewController {
     }
     
     @IBAction func unwindToTaskVC(_ unwindSegue: UIStoryboardSegue) {
+        print("gotcha!")
         let taskInfoVC = unwindSegue.source as! TaskInfoViewController
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             taskArray[selectedIndexPath.row] = taskInfoVC.task!
@@ -123,6 +124,7 @@ class TaskViewController: UITableViewController {
             }
         }
     }
+    
 }
 
 //MARK: - TaskInfoViewControllerDelegate
@@ -131,6 +133,7 @@ extension TaskViewController: TaskInfoViewControllerDelegate {
         dismiss(animated: true, completion: nil)
         tableView.reloadData()
     }
+    
 }
 
 //MARK: - TaskTableViewCellDelegate
@@ -142,6 +145,7 @@ extension TaskViewController: TaskTableViewCellDelegate {
             tableView.reloadData()
         }
     }
+    
 }
 
 //MARK: - SearchBarDelegate
@@ -157,11 +161,17 @@ extension TaskViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
-            taskArray = CoreDataHelper.loadTasks(for: selectedGroup)
+            
+            if filterDate {
+                taskArray = CoreDataHelper.loadTaskByDate(selectedGroup: selectedGroup, selectedDate: selectedDate)
+            } else {
+                taskArray = CoreDataHelper.loadTasks(for: selectedGroup)
+            }
             tableView.reloadData()
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
             }
         }
     }
+    
 }

@@ -39,12 +39,14 @@ class TodayViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! TaskViewController
         if let indexPath = todayTableView.indexPathForSelectedRow {
+            destinationVC.filterDate = true
             destinationVC.title = groupArray[indexPath.row].title
             destinationVC.selectedGroup = groupArray[indexPath.row]
             destinationVC.selectedDate = selectedDate
             destinationVC.taskArray = CoreDataHelper.loadTaskByDate(selectedGroup: groupArray[indexPath.row], selectedDate: selectedDate)
         }
     }
+    
 }
 
 //MARK: - TableView DataSource
@@ -61,6 +63,7 @@ extension TodayViewController: UITableViewDataSource {
         cell.accessoryType = .disclosureIndicator
         return cell
     }
+    
 }
 
 //MARK: - TableView Delegate
@@ -69,5 +72,6 @@ extension TodayViewController: UITableViewDelegate {
         performSegue(withIdentifier: K.goToTodayTasksSegue, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
 }
 
