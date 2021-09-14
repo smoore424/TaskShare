@@ -71,7 +71,7 @@ class TaskInfoViewController: UITableViewController {
     }
 
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
-        updateDateLabel()
+        dateLabel.text = convertDateToString(date: datePicker.date)
     }
     
     func updateDateLabel() {
