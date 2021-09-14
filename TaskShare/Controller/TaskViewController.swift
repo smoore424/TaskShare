@@ -59,13 +59,16 @@ class TaskViewController: UITableViewController {
     @IBAction func unwindToTaskVC(_ unwindSegue: UIStoryboardSegue) {
         print("gotcha!")
         let taskInfoVC = unwindSegue.source as! TaskInfoViewController
+        
+        //check to see if we are updating an existing task or adding a new task
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             taskArray[selectedIndexPath.row] = taskInfoVC.task!
         } else {
-            let newIndexPath = IndexPath(row: taskArray.count, section: 0)
-            taskArray.append(taskInfoVC.task!)
-            tableView.insertRows(at: [newIndexPath], with: .bottom)
-            tableView.scrollToRow(at: newIndexPath, at: .bottom, animated: true)
+            if filterDate {
+                taskArray = CoreDataHelper.loadTaskByDate(selectedGroup: selectedGroup, selectedDate: selectedDate)
+            } else {
+                taskArray = CoreDataHelper.loadTasks(for: selectedGroup)
+            }
         }
         tableView.reloadData()
     }
