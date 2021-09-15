@@ -164,7 +164,6 @@ extension TaskViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
-            
             if filterDate {
                 taskArray = CoreDataHelper.loadTaskByDate(selectedGroup: selectedGroup, selectedDate: selectedDate)
             } else {
