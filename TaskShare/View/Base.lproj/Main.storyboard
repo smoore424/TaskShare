@@ -36,11 +36,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCell" id="oRZ-2p-2lU">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCell" rowHeight="44" id="oRZ-2p-2lU">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oRZ-2p-2lU" id="Xbh-ve-xkn">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -79,16 +79,17 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="taskCell" id="cEH-cq-Ph7" customClass="TaskTableViewCell" customModule="TaskShare" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="68.5" width="414" height="36.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="44" id="cEH-cq-Ph7" customClass="TaskTableViewCell" customModule="TaskShare" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="68.5" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cEH-cq-Ph7" id="OXI-HF-sc1">
-                                    <rect key="frame" x="0.0" y="0.0" width="373.5" height="36.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="373.5" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbC-d3-a1E">
-                                            <rect key="frame" x="20" y="7" width="46" height="22.5"/>
+                                            <rect key="frame" x="5" y="0.0" width="46" height="44"/>
                                             <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="ClG-Lp-Sbo"/>
                                                 <constraint firstAttribute="width" constant="46" id="N64-bg-nDm"/>
                                             </constraints>
                                             <color key="tintColor" systemColor="labelColor"/>
@@ -98,21 +99,21 @@
                                                 <action selector="checkmarkToggle:" destination="cEH-cq-Ph7" eventType="touchUpInside" id="Tu7-lm-B8l"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tfq-eE-HKY">
-                                            <rect key="frame" x="74" y="7" width="300" height="22.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tfq-eE-HKY">
+                                            <rect key="frame" x="56" y="0.0" width="317.5" height="44"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="bbC-d3-a1E" firstAttribute="top" secondItem="Tfq-eE-HKY" secondAttribute="top" id="LWW-PT-71f"/>
-                                        <constraint firstItem="Tfq-eE-HKY" firstAttribute="leading" secondItem="bbC-d3-a1E" secondAttribute="trailing" constant="8" symbolic="YES" id="Xrs-xV-BJm"/>
-                                        <constraint firstItem="bbC-d3-a1E" firstAttribute="bottom" secondItem="Tfq-eE-HKY" secondAttribute="bottom" id="aeI-sH-i6G"/>
-                                        <constraint firstItem="bbC-d3-a1E" firstAttribute="centerY" secondItem="OXI-HF-sc1" secondAttribute="centerY" id="bEq-Cr-8Bb"/>
-                                        <constraint firstItem="bbC-d3-a1E" firstAttribute="top" secondItem="OXI-HF-sc1" secondAttribute="topMargin" constant="-4" id="p5p-od-gDD"/>
-                                        <constraint firstItem="bbC-d3-a1E" firstAttribute="leading" secondItem="OXI-HF-sc1" secondAttribute="leadingMargin" id="pas-Ci-2Fu"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Tfq-eE-HKY" secondAttribute="trailing" constant="-8.5" id="whc-s7-saa"/>
+                                        <constraint firstItem="Tfq-eE-HKY" firstAttribute="top" secondItem="OXI-HF-sc1" secondAttribute="top" id="6LR-SG-i4N"/>
+                                        <constraint firstAttribute="bottom" secondItem="Tfq-eE-HKY" secondAttribute="bottom" id="CFC-D0-CkW"/>
+                                        <constraint firstItem="bbC-d3-a1E" firstAttribute="leading" secondItem="OXI-HF-sc1" secondAttribute="leading" constant="5" id="Oav-Wu-6Pf"/>
+                                        <constraint firstAttribute="trailing" secondItem="Tfq-eE-HKY" secondAttribute="trailing" id="YDg-ZG-ZGh"/>
+                                        <constraint firstItem="Tfq-eE-HKY" firstAttribute="leading" secondItem="bbC-d3-a1E" secondAttribute="trailing" constant="5" id="l4B-84-fg0"/>
+                                        <constraint firstAttribute="bottom" secondItem="bbC-d3-a1E" secondAttribute="bottom" id="pTa-n3-zaw"/>
+                                        <constraint firstItem="bbC-d3-a1E" firstAttribute="top" secondItem="OXI-HF-sc1" secondAttribute="top" id="wWF-Ad-Zex"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -371,7 +372,7 @@
                                         </connections>
                                     </datePicker>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <color key="backgroundColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="0.30455525716145826" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="JKZ-08-0Xg" firstAttribute="leading" secondItem="gNU-E3-BzG" secondAttribute="leading" id="4I8-8A-f8Y"/>
                                     <constraint firstAttribute="bottom" secondItem="JKZ-08-0Xg" secondAttribute="bottom" id="6e8-H6-wjr"/>
@@ -383,21 +384,12 @@
                                 <rect key="frame" x="0.0" y="440" width="414" height="373"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="todayCell" textLabel="JmB-7r-2fe" style="IBUITableViewCellStyleDefault" id="E0Z-il-2DS">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="todayCell" rowHeight="44" id="E0Z-il-2DS">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E0Z-il-2DS" id="q63-by-O3J">
-                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JmB-7r-2fe">
-                                                    <rect key="frame" x="20" y="0.0" width="356.5" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -467,7 +459,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Xt2-rU-DiV"/>
-        <segue reference="DLl-gO-GEH"/>
+        <segue reference="iVA-f1-0SQ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
@@ -480,9 +472,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

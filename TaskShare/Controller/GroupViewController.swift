@@ -52,6 +52,7 @@ class GroupViewController: UITableViewController {
         let group = groupArray[indexPath.row]
         cell.textLabel?.text = group.title
         cell.accessoryType = .disclosureIndicator
+        
         return cell
     }
     
