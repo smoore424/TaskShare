@@ -14,6 +14,7 @@ class GroupViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         groupArray = CoreDataHelper.loadGroup()

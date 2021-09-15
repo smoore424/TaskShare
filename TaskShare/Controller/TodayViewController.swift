@@ -18,6 +18,7 @@ class TodayViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         title = "Today" //change to date selected on calendar
         todayTableView.delegate = self
@@ -28,6 +29,7 @@ class TodayViewController: UIViewController {
     func getTableViewData() {
         selectedDate = convertDateToString(date: calendarView.date)
         groupArray = CoreDataHelper.loadGroupByDate(for: selectedDate)
+        title = selectedDate
         todayTableView.reloadData()
     }
 
