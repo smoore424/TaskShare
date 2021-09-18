@@ -66,6 +66,7 @@ class TaskInfoViewController: UITableViewController {
         repeatPicker.delegate = self
         taskNameTextField.delegate = self
         taskNameTextField.text = task?.name
+        taskNameTextField.becomeFirstResponder()
         noteTextView.text = task?.note
         setRepeatUI()
         updateDateLabel()
@@ -83,7 +84,6 @@ class TaskInfoViewController: UITableViewController {
     func updateDateLabel() {
         if let selectedDate = task?.date {
             dateLabel.text = selectedDate
-            print(selectedDate)
             datePicker.date = convertStringToDate(string: selectedDate)!
         } else {
             dateLabel.text = convertDateToString(date: datePicker.date)

@@ -57,7 +57,6 @@ class TaskViewController: UITableViewController {
     }
     
     @IBAction func unwindToTaskVC(_ unwindSegue: UIStoryboardSegue) {
-        print("gotcha!")
         let taskInfoVC = unwindSegue.source as! TaskInfoViewController
         
         //check to see if we are updating an existing task or adding a new task
