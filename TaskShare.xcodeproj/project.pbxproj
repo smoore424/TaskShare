@@ -80,7 +80,6 @@
 		01640DA126CA92C1000CC565 /* TaskShare */ = {
 			isa = PBXGroup;
 			children = (
-				0165F8B726EC462300F79788 /* Date */,
 				01640DBB26CA965C000CC565 /* Controller */,
 				01640DB926CA9642000CC565 /* Model */,
 				01640DBA26CA964A000CC565 /* View */,
@@ -127,6 +126,7 @@
 		01640DBC26CA9666000CC565 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				0165F8B726EC462300F79788 /* Date */,
 				01640DB026CA92C4000CC565 /* LaunchScreen.storyboard */,
 				01640DAE26CA92C4000CC565 /* Assets.xcassets */,
 				0102F4D926CB44F400000945 /* Constants.swift */,
