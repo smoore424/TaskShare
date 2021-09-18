@@ -64,12 +64,18 @@ class TaskInfoViewController: UITableViewController {
         super.viewDidLoad()
         repeatPicker.dataSource = self
         repeatPicker.delegate = self
+        taskNameTextField.delegate = self
         taskNameTextField.text = task?.name
         noteTextView.text = task?.note
         setRepeatUI()
         updateDateLabel()
+        self.noteTextView.addDoneButton(target: self, selector: #selector(doneTapped(sender:)))
     }
 
+    @objc func doneTapped(sender: Any) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         dateLabel.text = convertDateToString(date: datePicker.date)
     }
@@ -169,6 +175,16 @@ class TaskInfoViewController: UITableViewController {
     }
 }
 
+//MARK: - UITextField Delegate Methods
+extension TaskInfoViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        taskNameTextField.resignFirstResponder()
+        return true
+    }
+    
+}
+
 //MARK: - UIPickerViewDataSource
 extension TaskInfoViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -178,6 +194,7 @@ extension TaskInfoViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return repeatPickerData[component].count
     }
+    
 }
 
 //MARK: - UIPickerViewDelegate
@@ -191,6 +208,7 @@ extension TaskInfoViewController: UIPickerViewDelegate {
         selectedTimeFrame = pickerView.selectedRow(inComponent: 1)
         repeatLabel.text = "Repeat Every \(repeatPickerData[0][selectedNumber]) \(repeatPickerData[1][selectedTimeFrame])"
     }
+    
 }
 
 //MARK: - PresentationControllerDelegate
@@ -200,4 +218,5 @@ extension TaskInfoViewController: UIAdaptivePresentationControllerDelegate {
             self.delegate?.taskInfoViewControllerDidCancel(self)
         }
     }
+    
 }

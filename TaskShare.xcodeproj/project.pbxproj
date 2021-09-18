@@ -19,6 +19,7 @@
 		01640DB226CA92C4000CC565 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01640DB026CA92C4000CC565 /* LaunchScreen.storyboard */; };
 		0165F8B626E974B700F79788 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0165F8B526E974B700F79788 /* TodayViewController.swift */; };
 		0165F8B926EC463D00F79788 /* extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0165F8B826EC463D00F79788 /* extension+UIViewController.swift */; };
+		016BDFF626F6464800727DC6 /* Extension+UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016BDFF526F6464800727DC6 /* Extension+UITextView.swift */; };
 		01ACC71126E6DC360030650C /* CustomAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71026E6DC360030650C /* CustomAction.swift */; };
 		01ACC71326E6DD2C0030650C /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71226E6DD2C0030650C /* Extension+UIViewController.swift */; };
 		01ACC71626E7A61C0030650C /* Menu+Extension+TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71526E7A61C0030650C /* Menu+Extension+TaskViewController.swift */; };
@@ -41,6 +42,7 @@
 		01640DB326CA92C4000CC565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0165F8B526E974B700F79788 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		0165F8B826EC463D00F79788 /* extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+UIViewController.swift"; sourceTree = "<group>"; };
+		016BDFF526F6464800727DC6 /* Extension+UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextView.swift"; sourceTree = "<group>"; };
 		01ACC71026E6DC360030650C /* CustomAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAction.swift; sourceTree = "<group>"; };
 		01ACC71226E6DD2C0030650C /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		01ACC71526E7A61C0030650C /* Menu+Extension+TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Menu+Extension+TaskViewController.swift"; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 		01640DBA26CA964A000CC565 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				016BDFF726F6466300727DC6 /* UITextView */,
 				01ACC71426E7A6010030650C /* Menu */,
 				01ACC70F26E6DC1E0030650C /* Alerts */,
 				01640DA826CA92C1000CC565 /* Main.storyboard */,
@@ -137,6 +140,14 @@
 				0165F8B826EC463D00F79788 /* extension+UIViewController.swift */,
 			);
 			path = Date;
+			sourceTree = "<group>";
+		};
+		016BDFF726F6466300727DC6 /* UITextView */ = {
+			isa = PBXGroup;
+			children = (
+				016BDFF526F6464800727DC6 /* Extension+UITextView.swift */,
+			);
+			path = UITextView;
 			sourceTree = "<group>";
 		};
 		01ACC70F26E6DC1E0030650C /* Alerts */ = {
@@ -233,6 +244,7 @@
 				01ACC71126E6DC360030650C /* CustomAction.swift in Sources */,
 				01ACC71626E7A61C0030650C /* Menu+Extension+TaskViewController.swift in Sources */,
 				0102F4DA26CB44F400000945 /* Constants.swift in Sources */,
+				016BDFF626F6464800727DC6 /* Extension+UITextView.swift in Sources */,
 				0165F8B626E974B700F79788 /* TodayViewController.swift in Sources */,
 				0165F8B926EC463D00F79788 /* extension+UIViewController.swift in Sources */,
 				01640DAD26CA92C1000CC565 /* TaskShare.xcdatamodeld in Sources */,

@@ -159,7 +159,12 @@ extension TaskViewController: UISearchBarDelegate {
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         
         taskArray = CoreDataHelper.loadTasks(with: request, for: selectedGroup, predicate: predicate)
+        //TODO: check if filterdate and add appropriate predicate
+        
         tableView.reloadData()
+        DispatchQueue.main.async {
+            searchBar.resignFirstResponder()
+        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
