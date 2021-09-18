@@ -93,7 +93,6 @@
                                                 <constraint firstAttribute="width" constant="46" id="N64-bg-nDm"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <color key="tintColor" systemColor="labelColor"/>
                                             <state key="normal" image="circle" catalog="system"/>
                                             <state key="selected" image="checkmark.circle.fill" catalog="system"/>
                                             <connections>
@@ -460,7 +459,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Xt2-rU-DiV"/>
-        <segue reference="iVA-f1-0SQ"/>
+        <segue reference="DLl-gO-GEH"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>

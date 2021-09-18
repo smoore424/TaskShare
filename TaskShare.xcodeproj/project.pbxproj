@@ -104,9 +104,9 @@
 		01640DBA26CA964A000CC565 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				016BDFF726F6466300727DC6 /* UITextView */,
-				01ACC71426E7A6010030650C /* Menu */,
 				01ACC70F26E6DC1E0030650C /* Alerts */,
+				01ACC71426E7A6010030650C /* Menu */,
+				016BDFF726F6466300727DC6 /* UITextView */,
 				01640DA826CA92C1000CC565 /* Main.storyboard */,
 				01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */,
 			);
