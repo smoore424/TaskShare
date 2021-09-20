@@ -29,7 +29,12 @@ extension TaskViewController {
             self.tableView.reloadData()
         }
         
-        let addMenuItems = UIMenu(title: "", options: .displayInline, children: [sortBy, showOrHideComplete])
+        let shareGroup = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
+            //code to share via cloudkit goes here
+            print("SHARE SELECTED")
+        }
+        
+        let addMenuItems = UIMenu(title: "", options: .displayInline, children: [sortBy, showOrHideComplete, shareGroup])
         
         return addMenuItems
     }

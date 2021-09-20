@@ -20,6 +20,7 @@
 		0165F8B626E974B700F79788 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0165F8B526E974B700F79788 /* TodayViewController.swift */; };
 		0165F8B926EC463D00F79788 /* extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0165F8B826EC463D00F79788 /* extension+UIViewController.swift */; };
 		016BDFF626F6464800727DC6 /* Extension+UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016BDFF526F6464800727DC6 /* Extension+UITextView.swift */; };
+		016BDFFB26F6966D00727DC6 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016BDFFA26F6966D00727DC6 /* CloudKit.framework */; };
 		01ACC71126E6DC360030650C /* CustomAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71026E6DC360030650C /* CustomAction.swift */; };
 		01ACC71326E6DD2C0030650C /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71226E6DD2C0030650C /* Extension+UIViewController.swift */; };
 		01ACC71626E7A61C0030650C /* Menu+Extension+TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71526E7A61C0030650C /* Menu+Extension+TaskViewController.swift */; };
@@ -43,6 +44,8 @@
 		0165F8B526E974B700F79788 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		0165F8B826EC463D00F79788 /* extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+UIViewController.swift"; sourceTree = "<group>"; };
 		016BDFF526F6464800727DC6 /* Extension+UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextView.swift"; sourceTree = "<group>"; };
+		016BDFF826F6962400727DC6 /* TaskShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskShare.entitlements; sourceTree = "<group>"; };
+		016BDFFA26F6966D00727DC6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		01ACC71026E6DC360030650C /* CustomAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAction.swift; sourceTree = "<group>"; };
 		01ACC71226E6DD2C0030650C /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		01ACC71526E7A61C0030650C /* Menu+Extension+TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Menu+Extension+TaskViewController.swift"; sourceTree = "<group>"; };
@@ -55,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				016BDFFB26F6966D00727DC6 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +70,7 @@
 			children = (
 				01640DA126CA92C1000CC565 /* TaskShare */,
 				01640DA026CA92C1000CC565 /* Products */,
+				016BDFF926F6966D00727DC6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,6 +85,7 @@
 		01640DA126CA92C1000CC565 /* TaskShare */ = {
 			isa = PBXGroup;
 			children = (
+				016BDFF826F6962400727DC6 /* TaskShare.entitlements */,
 				01640DBB26CA965C000CC565 /* Controller */,
 				01640DB926CA9642000CC565 /* Model */,
 				01640DBA26CA964A000CC565 /* View */,
@@ -148,6 +154,14 @@
 				016BDFF526F6464800727DC6 /* Extension+UITextView.swift */,
 			);
 			path = UITextView;
+			sourceTree = "<group>";
+		};
+		016BDFF926F6966D00727DC6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				016BDFFA26F6966D00727DC6 /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		01ACC70F26E6DC1E0030650C /* Alerts */ = {
@@ -398,6 +412,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TaskShare/TaskShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V88BNY2LA6;
 				INFOPLIST_FILE = TaskShare/Info.plist;
@@ -417,6 +432,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TaskShare/TaskShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V88BNY2LA6;
 				INFOPLIST_FILE = TaskShare/Info.plist;
