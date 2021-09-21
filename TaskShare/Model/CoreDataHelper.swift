@@ -16,7 +16,7 @@ struct CoreDataHelper {
 
         let persistentContainer = appDelegate.persistentContainer
         let context = persistentContainer.viewContext
-
+        context.automaticallyMergesChangesFromParent = true
         return context
     }()
     
