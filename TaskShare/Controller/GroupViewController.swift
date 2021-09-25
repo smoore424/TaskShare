@@ -10,6 +10,13 @@ import UIKit
 
 class GroupViewController: UITableViewController {
     
+    lazy var refreshController: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .systemRed
+        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        return refreshControl
+    }()
+    
     var groupArray = [Group]()
     
     override func viewDidLoad() {
@@ -20,6 +27,21 @@ class GroupViewController: UITableViewController {
         groupArray = CoreDataHelper.loadGroup()
         tableView.allowsSelectionDuringEditing = true
         title = "Groups"
+        tableView.refreshControl = refreshController
+    }
+    
+    @objc func pullToRefresh() {
+        refreshController.beginRefreshing()
+        groupArray = CoreDataHelper.loadGroup()
+        
+
+        //put in completion block of func used to call data
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            
+            self.tableView.reloadData()
+            self.refreshController.endRefreshing()
+        }
+        
     }
     
     //MARK: - Add Item

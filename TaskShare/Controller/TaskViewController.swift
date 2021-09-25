@@ -9,6 +9,13 @@ import CoreData
 import UIKit
 
 class TaskViewController: UITableViewController {
+    
+    lazy var refreshController: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .systemRed
+        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        return refreshControl
+    }()
 
     var taskArray = [Task]()
     var filterDate = false
@@ -28,6 +35,21 @@ class TaskViewController: UITableViewController {
         searchBar.delegate = self
         moreButton.primaryAction = nil
         moreButton.menu = menuItems()
+        tableView.refreshControl = refreshController
+    }
+    
+    @objc func pullToRefresh() {
+        refreshController.beginRefreshing()
+        taskArray = CoreDataHelper.loadTasks(for: selectedGroup)
+        
+
+        //put in completion block of func used to call data
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            
+            self.tableView.reloadData()
+            self.refreshController.endRefreshing()
+        }
+        
     }
     
     //MARK: - Add Item

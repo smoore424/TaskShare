@@ -5,6 +5,8 @@
 //  Created by Stacey Moore on 9/6/21.
 //
 
+
+import ClockKit
 import CoreData
 import UIKit
 
@@ -16,7 +18,7 @@ struct CoreDataHelper {
 
         let persistentContainer = appDelegate.persistentContainer
         let context = persistentContainer.viewContext
-        context.automaticallyMergesChangesFromParent = true
+//        print("context called")
         return context
     }()
     

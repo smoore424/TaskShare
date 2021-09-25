@@ -22,7 +22,7 @@
 		016BDFF626F6464800727DC6 /* Extension+UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016BDFF526F6464800727DC6 /* Extension+UITextView.swift */; };
 		016BDFFB26F6966D00727DC6 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016BDFFA26F6966D00727DC6 /* CloudKit.framework */; };
 		01ACC71126E6DC360030650C /* CustomAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71026E6DC360030650C /* CustomAction.swift */; };
-		01ACC71326E6DD2C0030650C /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71226E6DD2C0030650C /* Extension+UIViewController.swift */; };
+		01ACC71326E6DD2C0030650C /* Extension+GroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71226E6DD2C0030650C /* Extension+GroupController.swift */; };
 		01ACC71626E7A61C0030650C /* Menu+Extension+TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71526E7A61C0030650C /* Menu+Extension+TaskViewController.swift */; };
 		01E2A77F26E65A4200BE5956 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E2A77E26E65A4200BE5956 /* CoreDataHelper.swift */; };
 		01F88DAF26D5319D00C0A76B /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */; };
@@ -47,7 +47,7 @@
 		016BDFF826F6962400727DC6 /* TaskShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskShare.entitlements; sourceTree = "<group>"; };
 		016BDFFA26F6966D00727DC6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		01ACC71026E6DC360030650C /* CustomAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAction.swift; sourceTree = "<group>"; };
-		01ACC71226E6DD2C0030650C /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
+		01ACC71226E6DD2C0030650C /* Extension+GroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+GroupController.swift"; sourceTree = "<group>"; };
 		01ACC71526E7A61C0030650C /* Menu+Extension+TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Menu+Extension+TaskViewController.swift"; sourceTree = "<group>"; };
 		01E2A77E26E65A4200BE5956 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				01ACC71026E6DC360030650C /* CustomAction.swift */,
-				01ACC71226E6DD2C0030650C /* Extension+UIViewController.swift */,
+				01ACC71226E6DD2C0030650C /* Extension+GroupController.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -263,7 +263,7 @@
 				0165F8B926EC463D00F79788 /* extension+UIViewController.swift in Sources */,
 				01640DAD26CA92C1000CC565 /* TaskShare.xcdatamodeld in Sources */,
 				01640DA726CA92C1000CC565 /* GroupViewController.swift in Sources */,
-				01ACC71326E6DD2C0030650C /* Extension+UIViewController.swift in Sources */,
+				01ACC71326E6DD2C0030650C /* Extension+GroupController.swift in Sources */,
 				01640DA326CA92C1000CC565 /* AppDelegate.swift in Sources */,
 				01640DA526CA92C1000CC565 /* SceneDelegate.swift in Sources */,
 			);

@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension GroupViewController {
+extension UIViewController {
     
     static var textField = UITextField()
     
@@ -24,9 +24,8 @@ extension GroupViewController {
         
         if textField {
             alertController.addTextField { alertTextField in
-                alertTextField.delegate = self
                 alertTextField.placeholder = placeHolder
-                GroupViewController.textField = alertTextField   
+                UIViewController.textField = alertTextField
             }
         }
         self.present(alertController, animated: true)
@@ -56,21 +55,5 @@ extension GroupViewController {
         }
     }
     
-
-    
 }
-
-extension GroupViewController: UITextFieldDelegate {
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            let userEnteredString = textField.text
-            let newString = (userEnteredString! as NSString).replacingCharacters(in: range, with: string) as NSString
-            if  newString != ""{
-//                alertAction.isEnabled = true
-            } else {
-//                alertAction.isEnabled = false
-            }
-            return true
-        }
-}
-
 

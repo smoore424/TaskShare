@@ -10,6 +10,13 @@ import UIKit
 
 class TodayViewController: UIViewController {
     
+    lazy var refreshController: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .systemRed
+        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        return refreshControl
+    }()
+    
     var groupArray = [Group]()
     var selectedDate = String()
 
@@ -31,6 +38,20 @@ class TodayViewController: UIViewController {
         groupArray = CoreDataHelper.loadGroupByDate(for: selectedDate)
         title = selectedDate
         todayTableView.reloadData()
+    }
+    
+    @objc func pullToRefresh() {
+        refreshController.beginRefreshing()
+        getTableViewData()
+        
+
+        //put in completion block of func used to call data
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            
+            self.todayTableView.reloadData()
+            self.refreshController.endRefreshing()
+        }
+        
     }
 
     @IBAction func dateSelected(_ sender: UIDatePicker) {
