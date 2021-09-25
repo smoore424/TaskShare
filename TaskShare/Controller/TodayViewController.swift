@@ -31,6 +31,7 @@ class TodayViewController: UIViewController {
         todayTableView.delegate = self
         todayTableView.dataSource = self
         getTableViewData()
+        todayTableView.refreshControl = refreshController
     }
     
     func getTableViewData() {
