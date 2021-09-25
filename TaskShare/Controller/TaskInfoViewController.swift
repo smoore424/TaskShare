@@ -38,22 +38,6 @@ class TaskInfoViewController: UITableViewController {
         }
     }
     
-    //Repeat Section
-    @IBOutlet weak var repeatSwitch: UISwitch!
-    @IBOutlet weak var repeatLabel: UILabel!
-    @IBOutlet weak var repeatPicker: UIPickerView!
-    let repeatPickerCellIndexPath = IndexPath(row: 1, section: 3)
-    var isRepeatPickerShown: Bool = false {
-        didSet {
-            repeatPicker.isHidden = !isRepeatPickerShown
-        }
-    }
-    var repeatIsOn = false
-    var selectedNumber = 0
-    var selectedTimeFrame = 0
-    
-    let repeatPickerData = [["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"], ["Day(s)", "Week(s)", "Month(s)", "Year(s)"]]
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         //TODO: - write a method/model to detect if there are changes and dynamically set this with that method
@@ -62,13 +46,10 @@ class TaskInfoViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        repeatPicker.dataSource = self
-        repeatPicker.delegate = self
         taskNameTextField.delegate = self
         taskNameTextField.text = task?.name
         taskNameTextField.becomeFirstResponder()
         noteTextView.text = task?.note
-        setRepeatUI()
         updateDateLabel()
         self.noteTextView.addDoneButton(target: self, selector: #selector(doneTapped(sender:)))
     }
@@ -90,41 +71,11 @@ class TaskInfoViewController: UITableViewController {
         }
     }
     
-    @IBAction func repeatSwitchDidChange(_ sender: UISwitch) {
-        if sender.isOn {
-            repeatIsOn = true
-            isRepeatPickerShown = true
-            repeatLabel.text = "Repeat Every \(repeatPickerData[0][selectedNumber]) \(repeatPickerData[1][selectedTimeFrame])"
-        } else {
-            repeatIsOn = false
-            isRepeatPickerShown = false
-            repeatLabel.text = "Repeat"
-        }
-        tableView.beginUpdates()
-        tableView.endUpdates()
-    }
-    
-    func setRepeatUI() {
-        if let task = task {
-            repeatIsOn = (task.repeatSwitchIsOn)
-            repeatSwitch.setOn(repeatIsOn, animated: true)
-            repeatSwitchDidChange(repeatSwitch)
-            selectedNumber = Int(task.selectedNumber)
-            selectedTimeFrame = Int(task.selectedTimeFrame)
-        }
-        repeatPicker.selectRow(Int(selectedNumber), inComponent: 0, animated: true)
-        repeatPicker.selectRow(Int(selectedTimeFrame), inComponent: 1, animated: true)
-        repeatLabel.text = "Repeat Every \(repeatPickerData[0][selectedNumber]) \(repeatPickerData[1][selectedTimeFrame])"
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let task = task {
             task.name = taskNameTextField.text
             task.date = convertDateToString(date: datePicker.date)
             task.note = noteTextView.text
-            task.repeatSwitchIsOn = repeatIsOn
-            task.selectedNumber = Int16(selectedNumber)
-            task.selectedTimeFrame = Int16(selectedTimeFrame)
             CoreDataHelper.saveData()
         } else {
             let newTask = CoreDataHelper.newTask()
@@ -132,9 +83,6 @@ class TaskInfoViewController: UITableViewController {
             newTask.parentGroup = selectedGroup
             newTask.date = convertDateToString(date: datePicker.date)
             newTask.note = noteTextView.text
-            newTask.repeatSwitchIsOn = repeatIsOn
-            newTask.selectedNumber = Int16(selectedNumber)
-            newTask.selectedTimeFrame = Int16(selectedTimeFrame)
             newTask.completed = false
             task = newTask
             CoreDataHelper.saveData()
@@ -167,8 +115,6 @@ class TaskInfoViewController: UITableViewController {
             return 88
         case (datePickerCellIndexPath.row, datePickerCellIndexPath.section):
             return isDatePickerShown ? 216 : 0
-        case (repeatPickerCellIndexPath.row, repeatPickerCellIndexPath.section):
-            return isRepeatPickerShown ? 216 : 0
         default:
             return 44
         }
@@ -181,32 +127,6 @@ extension TaskInfoViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         taskNameTextField.resignFirstResponder()
         return true
-    }
-    
-}
-
-//MARK: - UIPickerViewDataSource
-extension TaskInfoViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return repeatPickerData[component].count
-    }
-    
-}
-
-//MARK: - UIPickerViewDelegate
-extension TaskInfoViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return repeatPickerData[component][row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedNumber = pickerView.selectedRow(inComponent: 0)
-        selectedTimeFrame = pickerView.selectedRow(inComponent: 1)
-        repeatLabel.text = "Repeat Every \(repeatPickerData[0][selectedNumber]) \(repeatPickerData[1][selectedTimeFrame])"
     }
     
 }
