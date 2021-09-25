@@ -33,8 +33,6 @@ class GroupViewController: UITableViewController {
     @objc func pullToRefresh() {
         refreshController.beginRefreshing()
         groupArray = CoreDataHelper.loadGroup()
-        
-
         //put in completion block of func used to call data
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             

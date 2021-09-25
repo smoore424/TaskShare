@@ -32,6 +32,7 @@ class TaskViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftItemsSupplementBackButton = true
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
         searchBar.delegate = self
         moreButton.primaryAction = nil
         moreButton.menu = menuItems()
@@ -55,11 +56,6 @@ class TaskViewController: UITableViewController {
     //MARK: - Add Item
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: K.goToTaskInfoSegue, sender: self)
-    }
-    
-    //MARK: - Edit Table
-    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
-        self.isEditing = !self.isEditing
     }
     
     //MARK: - Segue Methods
