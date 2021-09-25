@@ -25,6 +25,7 @@ extension UIViewController {
         if textField {
             alertController.addTextField { alertTextField in
                 alertTextField.placeholder = placeHolder
+                alertTextField.autocapitalizationType = .words
                 UIViewController.textField = alertTextField
             }
         }
