@@ -102,11 +102,14 @@ class TaskInfoViewController: UITableViewController {
         switch (indexPath.row, indexPath.section) {
         case ((datePickerCellIndexPath.row - 1), datePickerCellIndexPath.section):
             isDatePickerShown ? (isDatePickerShown = false) : (isDatePickerShown = true)
+            print("date cell selected - isDatePickerShown changed, now = \(isDatePickerShown)")
         default:
             break
         }
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        //TODO: Find a better solution to datepicker not showing/hiding correctly
+        //        tableView.beginUpdates()
+        //        tableView.endUpdates()
+        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -114,11 +117,13 @@ class TaskInfoViewController: UITableViewController {
         case (noteTextViewCellIndexPath.row, noteTextViewCellIndexPath.section):
             return 88
         case (datePickerCellIndexPath.row, datePickerCellIndexPath.section):
+            print("adjusting cell height for: isDatePickerShown? \(isDatePickerShown)")
             return isDatePickerShown ? 216 : 0
         default:
             return 44
         }
     }
+    
 }
 
 //MARK: - UITextField Delegate Methods
