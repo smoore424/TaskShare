@@ -10,6 +10,7 @@
 		0102F4DA26CB44F400000945 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0102F4D926CB44F400000945 /* Constants.swift */; };
 		0102F4DE26CC02F900000945 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0102F4DD26CC02F900000945 /* TaskViewController.swift */; };
 		0135C2A826CC6A3400732596 /* TaskInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0135C2A726CC6A3400732596 /* TaskInfoViewController.swift */; };
+		01595F01270526B200A5A3C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01595F00270526B200A5A3C8 /* Colors.swift */; };
 		01640DA326CA92C1000CC565 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01640DA226CA92C1000CC565 /* AppDelegate.swift */; };
 		01640DA526CA92C1000CC565 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01640DA426CA92C1000CC565 /* SceneDelegate.swift */; };
 		01640DA726CA92C1000CC565 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01640DA626CA92C1000CC565 /* GroupViewController.swift */; };
@@ -32,6 +33,7 @@
 		0102F4D926CB44F400000945 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0102F4DD26CC02F900000945 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		0135C2A726CC6A3400732596 /* TaskInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInfoViewController.swift; sourceTree = "<group>"; };
+		01595F00270526B200A5A3C8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		01640D9F26CA92C1000CC565 /* TaskShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01640DA226CA92C1000CC565 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01640DA426CA92C1000CC565 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				01640DB026CA92C4000CC565 /* LaunchScreen.storyboard */,
 				01640DAE26CA92C4000CC565 /* Assets.xcassets */,
 				0102F4D926CB44F400000945 /* Constants.swift */,
+				01595F00270526B200A5A3C8 /* Colors.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				0102F4DA26CB44F400000945 /* Constants.swift in Sources */,
 				016BDFF626F6464800727DC6 /* Extension+UITextView.swift in Sources */,
 				0165F8B626E974B700F79788 /* TodayViewController.swift in Sources */,
+				01595F01270526B200A5A3C8 /* Colors.swift in Sources */,
 				0165F8B926EC463D00F79788 /* extension+UIViewController.swift in Sources */,
 				01640DAD26CA92C1000CC565 /* TaskShare.xcdatamodeld in Sources */,
 				01640DA726CA92C1000CC565 /* GroupViewController.swift in Sources */,

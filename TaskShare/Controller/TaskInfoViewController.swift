@@ -102,7 +102,6 @@ class TaskInfoViewController: UITableViewController {
         switch (indexPath.row, indexPath.section) {
         case ((datePickerCellIndexPath.row - 1), datePickerCellIndexPath.section):
             isDatePickerShown ? (isDatePickerShown = false) : (isDatePickerShown = true)
-            print("date cell selected - isDatePickerShown changed, now = \(isDatePickerShown)")
         default:
             break
         }
@@ -117,7 +116,6 @@ class TaskInfoViewController: UITableViewController {
         case (noteTextViewCellIndexPath.row, noteTextViewCellIndexPath.section):
             return 88
         case (datePickerCellIndexPath.row, datePickerCellIndexPath.section):
-            print("adjusting cell height for: isDatePickerShown? \(isDatePickerShown)")
             return isDatePickerShown ? 216 : 0
         default:
             return 44

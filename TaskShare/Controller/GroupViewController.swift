@@ -12,22 +12,27 @@ class GroupViewController: UITableViewController {
     
     lazy var refreshController: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.tintColor = .systemRed
         refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         return refreshControl
     }()
     
     var groupArray = [Group]()
+    let colors = Colors()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        //TODO: move to viewWillAppear
+        setNavControllerAppearance()
         groupArray = CoreDataHelper.loadGroup()
         tableView.allowsSelectionDuringEditing = true
         title = "Groups"
         tableView.refreshControl = refreshController
+    }
+    
+    func setNavControllerAppearance() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
     
     @objc func pullToRefresh() {
@@ -71,8 +76,9 @@ class GroupViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.groupCell, for: indexPath)
         let group = groupArray[indexPath.row]
+        
+        cell.backgroundColor = colors.setCellColors(cellLocation: indexPath.row, arrayCount: groupArray.count)
         cell.textLabel?.text = group.title
-        cell.accessoryType = .disclosureIndicator
         
         return cell
     }

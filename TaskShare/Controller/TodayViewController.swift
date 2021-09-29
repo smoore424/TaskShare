@@ -12,13 +12,14 @@ class TodayViewController: UIViewController {
     
     lazy var refreshController: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.tintColor = .systemRed
         refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         return refreshControl
     }()
     
     var groupArray = [Group]()
     var selectedDate = String()
+    
+    let colors = Colors()
 
     @IBOutlet weak var calendarView: UIDatePicker!
     @IBOutlet weak var todayTableView: UITableView!
@@ -84,6 +85,8 @@ extension TodayViewController: UITableViewDataSource {
         //configure the cell
         let group = groupArray[indexPath.row]
         cell.textLabel?.text = group.title
+
+        cell.backgroundColor = colors.setCellColors(cellLocation: indexPath.row, arrayCount: groupArray.count)
         cell.accessoryType = .disclosureIndicator
         return cell
     }

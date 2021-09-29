@@ -22,6 +22,8 @@ class TaskViewController: UITableViewController {
     var selectedDate = String()
     var selectedGroup: Group?
     
+    let colors = Colors()
+    
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var moreButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
@@ -36,7 +38,7 @@ class TaskViewController: UITableViewController {
         searchBar.delegate = self
         moreButton.primaryAction = nil
         moreButton.menu = menuItems()
-        tableView.refreshControl = refreshController
+        tableView.refreshControl = refreshController        
     }
     
     @objc func pullToRefresh() {
@@ -99,11 +101,9 @@ class TaskViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.taskCell, for: indexPath) as! TaskTableViewCell
         cell.delegate = self
         //TODO: - move to TaskTableViewCell class
-        let image = UIImage(systemName: "info.circle")?.withRenderingMode(.alwaysTemplate)
-        let info = UIImageView(frame: CGRect(x: 0, y: 0, width: 17, height: 17))
-        info.image = image
-        cell.accessoryView = info
-        cell.tintColor = .systemGray4
+        cell.tintColor = .systemGray
+        
+        cell.backgroundColor = colors.setCellColors(cellLocation: indexPath.row, arrayCount: taskArray.count)
         
         let task = taskArray[indexPath.row]
         cell.taskLabel.text = task.name
