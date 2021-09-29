@@ -12,7 +12,6 @@ class TaskViewController: UITableViewController {
     
     lazy var refreshController: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.tintColor = .systemRed
         refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         return refreshControl
     }()
