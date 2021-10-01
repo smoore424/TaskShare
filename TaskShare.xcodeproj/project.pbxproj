@@ -13,6 +13,7 @@
 		013E918B2706C639008DC590 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013E918A2706C639008DC590 /* SettingsViewController.swift */; };
 		013E918E2706C7B9008DC590 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013E918C2706C7B9008DC590 /* MyCell.swift */; };
 		013E918F2706C7B9008DC590 /* MyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 013E918D2706C7B9008DC590 /* MyCell.xib */; };
+		013E91922707758B008DC590 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013E91912707758B008DC590 /* TabBarController.swift */; };
 		01595F01270526B200A5A3C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01595F00270526B200A5A3C8 /* Colors.swift */; };
 		01640DA326CA92C1000CC565 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01640DA226CA92C1000CC565 /* AppDelegate.swift */; };
 		01640DA526CA92C1000CC565 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01640DA426CA92C1000CC565 /* SceneDelegate.swift */; };
@@ -39,6 +40,7 @@
 		013E918A2706C639008DC590 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = TaskShare/Controller/SettingsViewController.swift; sourceTree = SOURCE_ROOT; };
 		013E918C2706C7B9008DC590 /* MyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
 		013E918D2706C7B9008DC590 /* MyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCell.xib; sourceTree = "<group>"; };
+		013E91912707758B008DC590 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		01595F00270526B200A5A3C8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		01640D9F26CA92C1000CC565 /* TaskShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01640DA226CA92C1000CC565 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				016BDFF726F6466300727DC6 /* UITextView */,
 				01640DA826CA92C1000CC565 /* Main.storyboard */,
 				01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */,
+				013E91912707758B008DC590 /* TabBarController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				016BDFF626F6464800727DC6 /* Extension+UITextView.swift in Sources */,
 				0165F8B626E974B700F79788 /* TodayViewController.swift in Sources */,
 				01595F01270526B200A5A3C8 /* Colors.swift in Sources */,
+				013E91922707758B008DC590 /* TabBarController.swift in Sources */,
 				0165F8B926EC463D00F79788 /* extension+UIViewController.swift in Sources */,
 				01640DAD26CA92C1000CC565 /* TaskShare.xcdatamodeld in Sources */,
 				013E918B2706C639008DC590 /* SettingsViewController.swift in Sources */,
