@@ -21,7 +21,7 @@ class TaskViewController: UITableViewController {
     var selectedDate = String()
     var selectedGroup: Group?
     
-    let colors = Colors()
+    var colors = Colors()
     
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var moreButton: UIBarButtonItem!
@@ -32,8 +32,7 @@ class TaskViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftItemsSupplementBackButton = true
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        setNavControllerAppearence()
         searchBar.delegate = self
         moreButton.primaryAction = nil
         moreButton.menu = menuItems()
@@ -43,7 +42,6 @@ class TaskViewController: UITableViewController {
     @objc func pullToRefresh() {
         refreshController.beginRefreshing()
         taskArray = CoreDataHelper.loadTasks(for: selectedGroup)
-        
 
         //put in completion block of func used to call data
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -51,7 +49,14 @@ class TaskViewController: UITableViewController {
             self.tableView.reloadData()
             self.refreshController.endRefreshing()
         }
-        
+    }
+    
+    func setNavControllerAppearence() {
+        colors.setSelectedColor()
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
+        navigationController?.navigationBar.tintColor = colors.getCurrentColor()
+        self.navigationItem.leftItemsSupplementBackButton = true
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
     
     //MARK: - Add Item

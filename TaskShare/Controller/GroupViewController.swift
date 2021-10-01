@@ -17,7 +17,7 @@ class GroupViewController: UITableViewController {
     }()
     
     var groupArray = [Group]()
-    let colors = Colors()
+    var colors = Colors()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +30,13 @@ class GroupViewController: UITableViewController {
     }
     
     func setNavControllerAppearance() {
+        colors.setSelectedColor()
+        navigationController?.navigationBar.tintColor = colors.getCurrentColor()
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+    
     }
     
     @objc func pullToRefresh() {

@@ -19,20 +19,28 @@ class TodayViewController: UIViewController {
     var groupArray = [Group]()
     var selectedDate = String()
     
-    let colors = Colors()
+    var colors = Colors()
 
     @IBOutlet weak var calendarView: UIDatePicker!
     @IBOutlet weak var todayTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-        title = "Today" //change to date selected on calendar
+        setNavControllerAppearance()
         todayTableView.delegate = self
         todayTableView.dataSource = self
         getTableViewData()
         todayTableView.refreshControl = refreshController
+        calendarView.tintColor = colors.getCurrentColor()
+    }
+    
+    func setNavControllerAppearance() {
+        colors.setSelectedColor()
+        navigationController?.navigationBar.tintColor = colors.getCurrentColor()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+        title = "Today"
     }
     
     func getTableViewData() {
@@ -46,14 +54,12 @@ class TodayViewController: UIViewController {
         refreshController.beginRefreshing()
         getTableViewData()
         
-
         //put in completion block of func used to call data
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             
             self.todayTableView.reloadData()
             self.refreshController.endRefreshing()
         }
-        
     }
 
     @IBAction func dateSelected(_ sender: UIDatePicker) {
@@ -90,7 +96,6 @@ extension TodayViewController: UITableViewDataSource {
         cell.accessoryType = .disclosureIndicator
         return cell
     }
-    
 }
 
 //MARK: - TableView Delegate
@@ -99,6 +104,5 @@ extension TodayViewController: UITableViewDelegate {
         performSegue(withIdentifier: K.goToTodayTasksSegue, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
 }
 

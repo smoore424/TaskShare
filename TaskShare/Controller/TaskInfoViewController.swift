@@ -14,6 +14,8 @@ protocol TaskInfoViewControllerDelegate: AnyObject {
 
 class TaskInfoViewController: UITableViewController {
     
+    var colors = Colors()
+    
     var task: Task?
     var selectedGroup: Group?
 
@@ -21,6 +23,10 @@ class TaskInfoViewController: UITableViewController {
     weak var delegate: TaskInfoViewControllerDelegate?
     
     //MARK: - View
+    
+    //navBar
+    @IBOutlet weak var taskInfoNavBar: UINavigationBar!
+    
     //Task Section
     @IBOutlet weak var taskNameTextField: UITextField!
     
@@ -46,6 +52,7 @@ class TaskInfoViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavControllerAppeareance()
         taskNameTextField.delegate = self
         taskNameTextField.text = task?.name
         taskNameTextField.becomeFirstResponder()
@@ -54,6 +61,11 @@ class TaskInfoViewController: UITableViewController {
         self.noteTextView.addDoneButton(target: self, selector: #selector(doneTapped(sender:)))
     }
 
+    func setNavControllerAppeareance() {
+        colors.setSelectedColor()
+        taskInfoNavBar.tintColor = colors.getCurrentColor()
+    }
+    
     @objc func doneTapped(sender: Any) {
         self.view.endEditing(true)
     }
