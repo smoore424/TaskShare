@@ -134,7 +134,6 @@
 				016BDFF726F6466300727DC6 /* UITextView */,
 				01640DA826CA92C1000CC565 /* Main.storyboard */,
 				01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */,
-				013E91912707758B008DC590 /* TabBarController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -147,6 +146,7 @@
 				0102F4DD26CC02F900000945 /* TaskViewController.swift */,
 				0135C2A726CC6A3400732596 /* TaskInfoViewController.swift */,
 				0165F8B526E974B700F79788 /* TodayViewController.swift */,
+				013E91912707758B008DC590 /* TabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

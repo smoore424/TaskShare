@@ -19,13 +19,17 @@ class GroupViewController: UITableViewController {
     var groupArray = [Group]()
     var colors = Colors()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //TODO: move to viewWillAppear
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setNavControllerAppearance()
         groupArray = CoreDataHelper.loadGroup()
-        tableView.allowsSelectionDuringEditing = true
         title = "Groups"
+        tableView.reloadData()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.allowsSelectionDuringEditing = true
         tableView.refreshControl = refreshController
     }
     

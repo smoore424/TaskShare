@@ -30,9 +30,14 @@ class TaskViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavControllerAppearence()
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavControllerAppearence()
         searchBar.delegate = self
         moreButton.primaryAction = nil
         moreButton.menu = menuItems()

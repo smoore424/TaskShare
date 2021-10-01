@@ -25,6 +25,8 @@ class SettingsViewController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         defaults.set(colors.selectedColorIndex, forKey: "color")
+        colors.setSelectedColor()
+        self.tabBarController?.tabBar.tintColor = colors.getCurrentColor()
     }
     
     func setColors() {
@@ -37,7 +39,6 @@ class SettingsViewController: UIViewController {
 //MARK: - Setting the View
 extension SettingsViewController {
 
-    
     func setCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 44, height: 44)

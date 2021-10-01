@@ -11,12 +11,10 @@ class TabBarController: UITabBarController {
 
     var colors = Colors()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         colors.setSelectedColor()
         tabBar.tintColor = colors.getCurrentColor()
     }
-    
 
 }

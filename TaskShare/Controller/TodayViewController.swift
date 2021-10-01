@@ -23,15 +23,20 @@ class TodayViewController: UIViewController {
 
     @IBOutlet weak var calendarView: UIDatePicker!
     @IBOutlet weak var todayTableView: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavControllerAppearance()
+        calendarView.tintColor = colors.getCurrentColor()
+        todayTableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavControllerAppearance()
         todayTableView.delegate = self
         todayTableView.dataSource = self
         getTableViewData()
         todayTableView.refreshControl = refreshController
-        calendarView.tintColor = colors.getCurrentColor()
     }
     
     func setNavControllerAppearance() {
