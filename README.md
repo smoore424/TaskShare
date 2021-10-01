@@ -13,7 +13,7 @@
 
 * Choose your color - choose your theme!
 
-###- COMING SOON - 
+### - COMING SOON - 
 *Share groups with others - and get it done...together!
 
 ## Technology Used

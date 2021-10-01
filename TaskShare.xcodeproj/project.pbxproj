@@ -88,6 +88,7 @@
 		01640D9626CA92C1000CC565 = {
 			isa = PBXGroup;
 			children = (
+				013E91942707B587008DC590 /* README.md */,
 				01640DA126CA92C1000CC565 /* TaskShare */,
 				01640DA026CA92C1000CC565 /* Products */,
 				016BDFF926F6966D00727DC6 /* Frameworks */,
@@ -105,7 +106,6 @@
 		01640DA126CA92C1000CC565 /* TaskShare */ = {
 			isa = PBXGroup;
 			children = (
-				013E91942707B587008DC590 /* README.md */,
 				016BDFF826F6962400727DC6 /* TaskShare.entitlements */,
 				01640DBB26CA965C000CC565 /* Controller */,
 				01640DB926CA9642000CC565 /* Model */,
