@@ -141,11 +141,11 @@
 		01640DBB26CA965C000CC565 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				013E918A2706C639008DC590 /* SettingsViewController.swift */,
 				01640DA626CA92C1000CC565 /* GroupViewController.swift */,
 				0102F4DD26CC02F900000945 /* TaskViewController.swift */,
 				0135C2A726CC6A3400732596 /* TaskInfoViewController.swift */,
 				0165F8B526E974B700F79788 /* TodayViewController.swift */,
+				013E918A2706C639008DC590 /* SettingsViewController.swift */,
 				013E91912707758B008DC590 /* TabBarController.swift */,
 			);
 			path = Controller;

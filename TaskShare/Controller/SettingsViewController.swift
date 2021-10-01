@@ -10,12 +10,11 @@ import UIKit
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var saveButton: UIButton!
     
-    let defaults = UserDefaults.standard
     var colors = Colors()
-    
+    let defaults = UserDefaults.standard
+
     override func viewDidLoad() {
         super.viewDidLoad()
         colors.setSelectedColor()
@@ -23,22 +22,16 @@ class SettingsViewController: UIViewController {
         setCollectionView()
     }
     
+    //MARK: - Save Button
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         defaults.set(colors.selectedColorIndex, forKey: "color")
         colors.setSelectedColor()
         self.tabBarController?.tabBar.tintColor = colors.getCurrentColor()
     }
-    
-    func setColors() {
-        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
-        saveButton.backgroundColor = colors.getCurrentColor()
-        saveButton.tintColor = .white
-    }
 }
 
 //MARK: - Setting the View
 extension SettingsViewController {
-
     func setCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 44, height: 44)
@@ -47,6 +40,12 @@ extension SettingsViewController {
         collectionView.delegate = self
         collectionView.register(MyCell.nib(), forCellWithReuseIdentifier: MyCell.identifier)
         collectionView.selectItem(at: IndexPath(item: colors.selectedColorIndex, section: 0), animated: true, scrollPosition: .bottom)
+    }
+    
+    func setColors() {
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
+        saveButton.backgroundColor = colors.getCurrentColor()
+        saveButton.tintColor = .white
     }
 }
 

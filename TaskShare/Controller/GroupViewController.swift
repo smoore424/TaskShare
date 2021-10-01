@@ -10,49 +10,39 @@ import UIKit
 
 class GroupViewController: UITableViewController {
     
+    var colors = Colors()
+    
+    var groupArray = [Group]()
+    
     lazy var refreshController: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         return refreshControl
     }()
     
-    var groupArray = [Group]()
-    var colors = Colors()
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         setNavControllerAppearance()
         groupArray = CoreDataHelper.loadGroup()
-        title = "Groups"
-        tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.allowsSelectionDuringEditing = true
         tableView.refreshControl = refreshController
     }
     
-    func setNavControllerAppearance() {
-        colors.setSelectedColor()
-        navigationController?.navigationBar.tintColor = colors.getCurrentColor()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
-    
-    }
-    
+    //MARK: - Pull to Refresh
     @objc func pullToRefresh() {
         refreshController.beginRefreshing()
         groupArray = CoreDataHelper.loadGroup()
         //put in completion block of func used to call data
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            
             self.tableView.reloadData()
             self.refreshController.endRefreshing()
         }
-        
     }
     
     //MARK: - Add Item
@@ -75,8 +65,24 @@ class GroupViewController: UITableViewController {
             destinationVC.taskArray = CoreDataHelper.loadTasks(for: groupArray[indexPath.row])
         }
     }
-    
-    //MARK: - TableView DataSource
+}
+
+//MARK: - Setting the View
+extension GroupViewController {
+    func setNavControllerAppearance() {
+        colors.setSelectedColor()
+        navigationController?.navigationBar.tintColor = colors.getCurrentColor()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        title = "Groups"
+        tableView.reloadData()
+    }
+}
+
+//MARK: - TableView DataSource
+extension GroupViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupArray.count
     }
@@ -112,8 +118,10 @@ class GroupViewController: UITableViewController {
         CoreDataHelper.saveData()
         tableView.reloadData()
     }
+}
 
-    //MARK: - TableView Delegate
+//MARK: - TableView Delegate
+extension GroupViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.isEditing {
             let selectedGroup = groupArray[indexPath.row]

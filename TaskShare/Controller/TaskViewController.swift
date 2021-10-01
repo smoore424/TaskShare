@@ -10,25 +10,25 @@ import UIKit
 
 class TaskViewController: UITableViewController {
     
-    lazy var refreshController: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
-        return refreshControl
-    }()
-
-    var taskArray = [Task]()
-    var filterDate = false
-    var selectedDate = String()
-    var selectedGroup: Group?
-    
-    var colors = Colors()
-    
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var moreButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    var colors = Colors()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var taskArray = [Task]()
+    
+    var filterDate = false
+    var selectedDate = String()
+    var selectedGroup: Group?
+    
+    lazy var refreshController: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        return refreshControl
+    }()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,27 +41,18 @@ class TaskViewController: UITableViewController {
         searchBar.delegate = self
         moreButton.primaryAction = nil
         moreButton.menu = menuItems()
-        tableView.refreshControl = refreshController        
+        tableView.refreshControl = refreshController
     }
     
+    //MARK: - Pull to Refresh
     @objc func pullToRefresh() {
         refreshController.beginRefreshing()
         taskArray = CoreDataHelper.loadTasks(for: selectedGroup)
-
         //put in completion block of func used to call data
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            
             self.tableView.reloadData()
             self.refreshController.endRefreshing()
         }
-    }
-    
-    func setNavControllerAppearence() {
-        colors.setSelectedColor()
-        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
-        navigationController?.navigationBar.tintColor = colors.getCurrentColor()
-        self.navigationItem.leftItemsSupplementBackButton = true
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
     
     //MARK: - Add Item
@@ -99,9 +90,22 @@ class TaskViewController: UITableViewController {
             }
         }
         tableView.reloadData()
+    }    
+}
+
+//MARK: - Set the View
+extension TaskViewController {
+    func setNavControllerAppearence() {
+        colors.setSelectedColor()
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
+        navigationController?.navigationBar.tintColor = colors.getCurrentColor()
+        self.navigationItem.leftItemsSupplementBackButton = true
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
-    
-    // MARK: - TableView DataSource
+}
+
+// MARK: - TableView DataSource
+extension TaskViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
     }
@@ -111,7 +115,6 @@ class TaskViewController: UITableViewController {
         cell.delegate = self
         //TODO: - move to TaskTableViewCell class
         cell.tintColor = .systemGray
-        
         cell.backgroundColor = colors.setCellColors(cellLocation: indexPath.row, arrayCount: taskArray.count)
         
         let task = taskArray[indexPath.row]
@@ -140,8 +143,10 @@ class TaskViewController: UITableViewController {
         taskArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
         CoreDataHelper.saveData()
     }
+}
 
-    //MARK: - TableView Delegate
+//MARK: - TableView Delegate
+extension TaskViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if TaskViewController.showComplete {
             return 50
@@ -153,28 +158,6 @@ class TaskViewController: UITableViewController {
             }
         }
     }
-    
-}
-
-//MARK: - TaskInfoViewControllerDelegate
-extension TaskViewController: TaskInfoViewControllerDelegate {
-    func taskInfoViewControllerDidCancel(_ taskInfoViewController: TaskInfoViewController) {
-        dismiss(animated: true, completion: nil)
-        tableView.reloadData()
-    }
-    
-}
-
-//MARK: - TaskTableViewCellDelegate
-extension TaskViewController: TaskTableViewCellDelegate {
-    func checkMarkToggle(sender: TaskTableViewCell) {
-        if let selectedIndexPath = tableView.indexPath(for: sender) {
-            taskArray[selectedIndexPath.row].completed.toggle()
-            CoreDataHelper.saveData()
-            tableView.reloadData()
-        }
-    }
-    
 }
 
 //MARK: - SearchBarDelegate
@@ -206,5 +189,23 @@ extension TaskViewController: UISearchBarDelegate {
             }
         }
     }
-    
+}
+
+//MARK: - TaskInfoViewController Delegate
+extension TaskViewController: TaskInfoViewControllerDelegate {
+    func taskInfoViewControllerDidCancel(_ taskInfoViewController: TaskInfoViewController) {
+        dismiss(animated: true, completion: nil)
+        tableView.reloadData()
+    }
+}
+
+//MARK: - TaskTableViewCellDelegate
+extension TaskViewController: TaskTableViewCellDelegate {
+    func checkMarkToggle(sender: TaskTableViewCell) {
+        if let selectedIndexPath = tableView.indexPath(for: sender) {
+            taskArray[selectedIndexPath.row].completed.toggle()
+            CoreDataHelper.saveData()
+            tableView.reloadData()
+        }
+    }
 }

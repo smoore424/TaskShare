@@ -10,19 +10,20 @@ import UIKit
 
 class TodayViewController: UIViewController {
     
+    
+    @IBOutlet weak var calendarView: UIDatePicker!
+    @IBOutlet weak var todayTableView: UITableView!
+    
+    var colors = Colors()
+    
+    var groupArray = [Group]()
+    var selectedDate = String()
+    
     lazy var refreshController: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         return refreshControl
     }()
-    
-    var groupArray = [Group]()
-    var selectedDate = String()
-    
-    var colors = Colors()
-
-    @IBOutlet weak var calendarView: UIDatePicker!
-    @IBOutlet weak var todayTableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -30,7 +31,7 @@ class TodayViewController: UIViewController {
         calendarView.tintColor = colors.getCurrentColor()
         todayTableView.reloadData()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         todayTableView.delegate = self
@@ -39,34 +40,18 @@ class TodayViewController: UIViewController {
         todayTableView.refreshControl = refreshController
     }
     
-    func setNavControllerAppearance() {
-        colors.setSelectedColor()
-        navigationController?.navigationBar.tintColor = colors.getCurrentColor()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-        title = "Today"
-    }
-    
-    func getTableViewData() {
-        selectedDate = convertDateToString(date: calendarView.date)
-        groupArray = CoreDataHelper.loadGroupByDate(for: selectedDate)
-        title = selectedDate
-        todayTableView.reloadData()
-    }
-    
+    //MARK: - Pull to Refresh
     @objc func pullToRefresh() {
         refreshController.beginRefreshing()
         getTableViewData()
-        
         //put in completion block of func used to call data
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            
             self.todayTableView.reloadData()
             self.refreshController.endRefreshing()
         }
     }
-
+    
+    //MARK: - Date Selection
     @IBAction func dateSelected(_ sender: UIDatePicker) {
         getTableViewData()
     }
@@ -82,7 +67,25 @@ class TodayViewController: UIViewController {
             destinationVC.taskArray = CoreDataHelper.loadTaskByDate(selectedGroup: groupArray[indexPath.row], selectedDate: selectedDate)
         }
     }
+}
+
+//MARK: - Set the View
+extension TodayViewController {
+    func setNavControllerAppearance() {
+        colors.setSelectedColor()
+        navigationController?.navigationBar.tintColor = colors.getCurrentColor()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+        title = "Today"
+    }
     
+    func getTableViewData() {
+        selectedDate = convertDateToString(date: calendarView.date)
+        groupArray = CoreDataHelper.loadGroupByDate(for: selectedDate)
+        title = selectedDate
+        todayTableView.reloadData()
+    }
 }
 
 //MARK: - TableView DataSource
@@ -96,7 +99,7 @@ extension TodayViewController: UITableViewDataSource {
         //configure the cell
         let group = groupArray[indexPath.row]
         cell.textLabel?.text = group.title
-
+        
         cell.backgroundColor = colors.setCellColors(cellLocation: indexPath.row, arrayCount: groupArray.count)
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -110,4 +113,3 @@ extension TodayViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-

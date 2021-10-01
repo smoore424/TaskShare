@@ -16,9 +16,9 @@ class TaskInfoViewController: UITableViewController {
     
     var colors = Colors()
     
-    var task: Task?
     var selectedGroup: Group?
-
+    var task: Task?
+    
     //MARK: - Delegate
     weak var delegate: TaskInfoViewControllerDelegate?
     
@@ -50,37 +50,36 @@ class TaskInfoViewController: UITableViewController {
         isModalInPresentation = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setNavControllerAppeareance()
+        updateDateLabel()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavControllerAppeareance()
+        
         taskNameTextField.delegate = self
         taskNameTextField.text = task?.name
         taskNameTextField.becomeFirstResponder()
+        
         noteTextView.text = task?.note
-        updateDateLabel()
         self.noteTextView.addDoneButton(target: self, selector: #selector(doneTapped(sender:)))
-    }
-
-    func setNavControllerAppeareance() {
-        colors.setSelectedColor()
-        taskInfoNavBar.tintColor = colors.getCurrentColor()
     }
     
     @objc func doneTapped(sender: Any) {
         self.view.endEditing(true)
     }
     
-    @IBAction func datePickerChanged(_ sender: UIDatePicker) {
-        dateLabel.text = convertDateToString(date: datePicker.date)
+    @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
+        dismissModalAlert {
+            self.delegate?.taskInfoViewControllerDidCancel(self)
+        }
     }
     
-    func updateDateLabel() {
-        if let selectedDate = task?.date {
-            dateLabel.text = selectedDate
-            datePicker.date = convertStringToDate(string: selectedDate)!
-        } else {
-            dateLabel.text = convertDateToString(date: datePicker.date)
-        }
+    @IBAction func datePickerChanged(_ sender: UIDatePicker) {
+        dateLabel.text = convertDateToString(date: datePicker.date)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -100,14 +99,27 @@ class TaskInfoViewController: UITableViewController {
             CoreDataHelper.saveData()
         }
     }
-    
-    @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
-        dismissModalAlert {
-            self.delegate?.taskInfoViewControllerDidCancel(self)
-        }
+}
+
+//MARK: - Set the View
+extension TaskInfoViewController {
+    func setNavControllerAppeareance() {
+        colors.setSelectedColor()
+        taskInfoNavBar.tintColor = colors.getCurrentColor()
     }
     
-    //MARK: - TableViewDelegate Methods
+    func updateDateLabel() {
+        if let selectedDate = task?.date {
+            dateLabel.text = selectedDate
+            datePicker.date = convertStringToDate(string: selectedDate)!
+        } else {
+            dateLabel.text = convertDateToString(date: datePicker.date)
+        }
+    }
+}
+
+//MARK: - TableView Delegate
+extension TaskInfoViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -133,17 +145,6 @@ class TaskInfoViewController: UITableViewController {
             return 44
         }
     }
-    
-}
-
-//MARK: - UITextField Delegate Methods
-extension TaskInfoViewController: UITextFieldDelegate {
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        taskNameTextField.resignFirstResponder()
-        return true
-    }
-    
 }
 
 //MARK: - PresentationControllerDelegate
@@ -153,5 +154,12 @@ extension TaskInfoViewController: UIAdaptivePresentationControllerDelegate {
             self.delegate?.taskInfoViewControllerDidCancel(self)
         }
     }
-    
+}
+
+//MARK: - TextField Delegate Methods
+extension TaskInfoViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        taskNameTextField.resignFirstResponder()
+        return true
+    }
 }

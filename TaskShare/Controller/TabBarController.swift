@@ -16,5 +16,4 @@ class TabBarController: UITabBarController {
         colors.setSelectedColor()
         tabBar.tintColor = colors.getCurrentColor()
     }
-
 }
