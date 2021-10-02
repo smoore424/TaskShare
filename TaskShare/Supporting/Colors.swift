@@ -28,6 +28,7 @@ struct Colors {
         
         let cellOpacity = (CGFloat(cellLocation) / CGFloat(arrayCount)) + 0.05
         let color = colorOptions[selectedColorIndex].withAlphaComponent(cellOpacity)
+        
         return color
     }
 }

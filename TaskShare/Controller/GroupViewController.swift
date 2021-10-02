@@ -5,6 +5,7 @@
 //  Created by Stacey Moore on 8/16/21.
 //
 
+import ChameleonFramework
 import CoreData
 import UIKit
 
@@ -90,9 +91,11 @@ extension GroupViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.groupCell, for: indexPath)
         let group = groupArray[indexPath.row]
-        
-        cell.backgroundColor = colors.setCellColors(cellLocation: indexPath.row, arrayCount: groupArray.count)
         cell.textLabel?.text = group.title
+        
+        let color = colors.setCellColors(cellLocation: indexPath.row, arrayCount: groupArray.count)
+        cell.backgroundColor = color
+        cell.textLabel?.textColor = color.cgColor.alpha > 0.56 ? .white : .black
         
         return cell
     }

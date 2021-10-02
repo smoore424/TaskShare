@@ -115,11 +115,15 @@ extension TaskViewController {
         cell.delegate = self
         //TODO: - move to TaskTableViewCell class
         cell.tintColor = .systemGray
-        cell.backgroundColor = colors.setCellColors(cellLocation: indexPath.row, arrayCount: taskArray.count)
+
         
         let task = taskArray[indexPath.row]
         cell.taskLabel.text = task.name
         cell.checkmarkButton.isSelected = task.completed
+        
+        let color = colors.setCellColors(cellLocation: indexPath.row, arrayCount: taskArray.count)
+        cell.backgroundColor = color
+        cell.taskLabel?.textColor = color.cgColor.alpha > 0.56 ? .white : .black
         
         return cell
     }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -92,6 +92,7 @@
 				01640DA126CA92C1000CC565 /* TaskShare */,
 				01640DA026CA92C1000CC565 /* Products */,
 				016BDFF926F6966D00727DC6 /* Frameworks */,
+				07F7743711A940B5F3AD736B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,8 +160,8 @@
 				0165F8B726EC462300F79788 /* Date */,
 				01640DB026CA92C4000CC565 /* LaunchScreen.storyboard */,
 				01640DAE26CA92C4000CC565 /* Assets.xcassets */,
-				0102F4D926CB44F400000945 /* Constants.swift */,
 				01595F00270526B200A5A3C8 /* Colors.swift */,
+				0102F4D926CB44F400000945 /* Constants.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -204,6 +205,13 @@
 				01ACC71526E7A61C0030650C /* Menu+Extension+TaskViewController.swift */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		07F7743711A940B5F3AD736B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

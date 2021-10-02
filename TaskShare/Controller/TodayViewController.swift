@@ -100,7 +100,10 @@ extension TodayViewController: UITableViewDataSource {
         let group = groupArray[indexPath.row]
         cell.textLabel?.text = group.title
         
-        cell.backgroundColor = colors.setCellColors(cellLocation: indexPath.row, arrayCount: groupArray.count)
+        let color = colors.setCellColors(cellLocation: indexPath.row, arrayCount: groupArray.count)
+        cell.backgroundColor = color
+        cell.textLabel?.textColor = color.cgColor.alpha > 0.56 ? .white : .black
+        
         cell.accessoryType = .disclosureIndicator
         return cell
     }
