@@ -12,7 +12,7 @@
         <relationship name="parentGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="task" inverseEntity="Group"/>
     </entity>
     <elements>
-        <element name="Group" positionX="-61.7904052734375" positionY="-54.28775024414062" width="128" height="73"/>
+        <element name="Group" positionX="-61.7904052734375" positionY="-54.28775024414062" width="128" height="59"/>
         <element name="Task" positionX="264.076416015625" positionY="57.8060302734375" width="128" height="104"/>
     </elements>
 </model>

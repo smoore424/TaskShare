@@ -102,7 +102,7 @@ extension TodayViewController: UITableViewDataSource {
         
         let color = colors.setCellColors(cellLocation: indexPath.row, arrayCount: groupArray.count)
         cell.backgroundColor = color
-        cell.textLabel?.textColor = color.cgColor.alpha > 0.56 ? .white : .black
+        cell.textLabel?.textColor = cell.backgroundColor!.isLight ? .black : .white
         
         cell.accessoryType = .disclosureIndicator
         return cell
