@@ -10,8 +10,11 @@ import CloudKit
 import CoreData
 import UIKit
 
-struct CoreDataHelper {
-    static let context: NSManagedObjectContext = {
+class CoreDataHelper {
+    
+    static let coreDataHelper = CoreDataHelper()
+    
+    let context: NSManagedObjectContext = {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             fatalError()
         }
@@ -22,7 +25,7 @@ struct CoreDataHelper {
     }()
     
     //MARK: - Saving CoreData Methods
-    static func saveData() {
+    func saveData() {
         do {
             try context.save()
         } catch {
@@ -31,12 +34,12 @@ struct CoreDataHelper {
     }
     
     //MARK: - Group CoreData Methods
-    static func newGroup() -> Group {
+    func newGroup() -> Group {
         let group = NSEntityDescription.insertNewObject(forEntityName: "Group", into: context) as! Group
         return group
     }
     
-    static func loadGroup(with request: NSFetchRequest<Group> = Group.fetchRequest()) -> [Group] {
+    func loadGroup(with request: NSFetchRequest<Group> = Group.fetchRequest()) -> [Group] {
         do {
             let results = try context.fetch(request)
             return results
@@ -46,7 +49,7 @@ struct CoreDataHelper {
         }
     }
     
-    static func loadGroupByDate(with request: NSFetchRequest<Group> = Group.fetchRequest(), for selectedDate: String) -> [Group] {
+    func loadGroupByDate(with request: NSFetchRequest<Group> = Group.fetchRequest(), for selectedDate: String) -> [Group] {
         let selectedDatePredicate = NSPredicate(format: "ANY task.date MATCHES %@", selectedDate)
 
         request.predicate = selectedDatePredicate
@@ -60,18 +63,18 @@ struct CoreDataHelper {
         }
     }
     
-    static func deleteGroup(group: Group) {
+    func deleteGroup(group: Group) {
         context.delete(group)
         saveData()
     }
     
     //MARK: - Task CoreData Methods
-    static func newTask() -> Task {
+    func newTask() -> Task {
         let task = NSEntityDescription.insertNewObject(forEntityName: "Task", into: context) as! Task
         return task
     }
     
-    static func loadTasks(with request: NSFetchRequest<Task> = Task.fetchRequest(), for selectedGroup: Group?, predicate: NSPredicate? = nil) -> [Task] {
+    func loadTasks(with request: NSFetchRequest<Task> = Task.fetchRequest(), for selectedGroup: Group?, predicate: NSPredicate? = nil) -> [Task] {
         
         let groupPredicate = NSPredicate(format: "parentGroup.title MATCHES %@", selectedGroup!.title!)
         
@@ -90,7 +93,7 @@ struct CoreDataHelper {
         }
     }
     
-    static func loadTaskByDate(with request: NSFetchRequest<Task> = Task.fetchRequest(), selectedGroup: Group?, selectedDate: String) -> [Task] {
+    func loadTaskByDate(with request: NSFetchRequest<Task> = Task.fetchRequest(), selectedGroup: Group?, selectedDate: String) -> [Task] {
         
         let groupPredicate = NSPredicate(format: "parentGroup.title MATCHES %@", selectedGroup!.title!)
         

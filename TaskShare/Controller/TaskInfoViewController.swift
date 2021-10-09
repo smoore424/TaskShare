@@ -14,6 +14,7 @@ protocol TaskInfoViewControllerDelegate: AnyObject {
 
 class TaskInfoViewController: UITableViewController {
     
+    let coreDataHelper = CoreDataHelper.coreDataHelper
     var colors = Colors()
     
     var selectedGroup: Group?
@@ -87,16 +88,16 @@ class TaskInfoViewController: UITableViewController {
             task.name = taskNameTextField.text
             task.date = convertDateToString(date: datePicker.date)
             task.note = noteTextView.text
-            CoreDataHelper.saveData()
+            coreDataHelper.saveData()
         } else {
-            let newTask = CoreDataHelper.newTask()
+            let newTask = coreDataHelper.newTask()
             newTask.name = taskNameTextField.text
             newTask.parentGroup = selectedGroup
             newTask.date = convertDateToString(date: datePicker.date)
             newTask.note = noteTextView.text
             newTask.completed = false
             task = newTask
-            CoreDataHelper.saveData()
+            coreDataHelper.saveData()
         }
     }
 }

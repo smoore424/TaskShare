@@ -14,6 +14,7 @@ class TodayViewController: UIViewController {
     @IBOutlet weak var calendarView: UIDatePicker!
     @IBOutlet weak var todayTableView: UITableView!
     
+    let coreDataHelper = CoreDataHelper.coreDataHelper
     var colors = Colors()
     
     var groupArray = [Group]()
@@ -64,7 +65,7 @@ class TodayViewController: UIViewController {
             destinationVC.title = groupArray[indexPath.row].title
             destinationVC.selectedGroup = groupArray[indexPath.row]
             destinationVC.selectedDate = selectedDate
-            destinationVC.taskArray = CoreDataHelper.loadTaskByDate(selectedGroup: groupArray[indexPath.row], selectedDate: selectedDate)
+            destinationVC.taskArray = coreDataHelper.loadTaskByDate(selectedGroup: groupArray[indexPath.row], selectedDate: selectedDate)
         }
     }
 }
@@ -82,7 +83,7 @@ extension TodayViewController {
     
     func getTableViewData() {
         selectedDate = convertDateToString(date: calendarView.date)
-        groupArray = CoreDataHelper.loadGroupByDate(for: selectedDate)
+        groupArray = coreDataHelper.loadGroupByDate(for: selectedDate)
         title = selectedDate
         todayTableView.reloadData()
     }

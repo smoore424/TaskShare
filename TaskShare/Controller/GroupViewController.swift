@@ -10,6 +10,8 @@ import UIKit
 
 class GroupViewController: UITableViewController {
     
+    let coreDataHelper = CoreDataHelper.coreDataHelper
+    
     var colors = Colors()
     
     var groupArray = [Group]()
@@ -24,7 +26,7 @@ class GroupViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         setNavControllerAppearance()
-        groupArray = CoreDataHelper.loadGroup()
+        groupArray = coreDataHelper.loadGroup()
     }
     
     override func viewDidLoad() {
@@ -37,7 +39,7 @@ class GroupViewController: UITableViewController {
     //MARK: - Pull to Refresh
     @objc func pullToRefresh() {
         refreshController.beginRefreshing()
-        groupArray = CoreDataHelper.loadGroup()
+        groupArray = coreDataHelper.loadGroup()
         //put in completion block of func used to call data
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.tableView.reloadData()
@@ -48,10 +50,10 @@ class GroupViewController: UITableViewController {
     //MARK: - Add Item
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         addGroupAlert {
-            let newGroup = CoreDataHelper.newGroup()
+            let newGroup = self.coreDataHelper.newGroup()
             newGroup.title = UIViewController.textField.text!
             self.groupArray.append(newGroup)
-            CoreDataHelper.saveData()
+            self.coreDataHelper.saveData()
             self.tableView.reloadData()
         }
     }
@@ -62,7 +64,7 @@ class GroupViewController: UITableViewController {
         if let indexPath = tableView.indexPathForSelectedRow {
             destinationVC.selectedGroup = groupArray[indexPath.row]
             destinationVC.title = groupArray[indexPath.row].title
-            destinationVC.taskArray = CoreDataHelper.loadTasks(for: groupArray[indexPath.row])
+            destinationVC.taskArray = coreDataHelper.loadTasks(for: groupArray[indexPath.row])
         }
     }
 }
@@ -102,7 +104,7 @@ extension GroupViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "") { (contextualAction, view, actionPerformed: (Bool) -> Void) in
             //while we still have the index of the object delete from context
-            CoreDataHelper.deleteGroup(group: self.groupArray[indexPath.row])
+            self.coreDataHelper.deleteGroup(group: self.groupArray[indexPath.row])
             //remove the item from the group array
             self.groupArray.remove(at: indexPath.row)
             //delete the row for tableview
@@ -120,7 +122,7 @@ extension GroupViewController {
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         groupArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
-        CoreDataHelper.saveData()
+        self.coreDataHelper.saveData()
         tableView.reloadData()
     }
 }
@@ -132,7 +134,7 @@ extension GroupViewController {
             let selectedGroup = groupArray[indexPath.row]
             editGroupAlert() {
                 selectedGroup.title = UIViewController.textField.text!
-                CoreDataHelper.saveData()
+                self.coreDataHelper.saveData()
                 self.tableView.reloadData()
             }
         } else {

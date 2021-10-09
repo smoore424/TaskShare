@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0102F4DA26CB44F400000945 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0102F4D926CB44F400000945 /* Constants.swift */; };
 		0102F4DE26CC02F900000945 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0102F4DD26CC02F900000945 /* TaskViewController.swift */; };
-		01207B7F270A10FD00E363F3 /* StorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01207B7E270A10FD00E363F3 /* StorageProvider.swift */; };
 		0135C2A826CC6A3400732596 /* TaskInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0135C2A726CC6A3400732596 /* TaskInfoViewController.swift */; };
 		013E918B2706C639008DC590 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013E918A2706C639008DC590 /* SettingsViewController.swift */; };
 		013E918E2706C7B9008DC590 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013E918C2706C7B9008DC590 /* MyCell.swift */; };
@@ -38,7 +37,6 @@
 /* Begin PBXFileReference section */
 		0102F4D926CB44F400000945 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0102F4DD26CC02F900000945 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
-		01207B7E270A10FD00E363F3 /* StorageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageProvider.swift; sourceTree = "<group>"; };
 		0135C2A726CC6A3400732596 /* TaskInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInfoViewController.swift; sourceTree = "<group>"; };
 		013E918A2706C639008DC590 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = TaskShare/Controller/SettingsViewController.swift; sourceTree = SOURCE_ROOT; };
 		013E918C2706C7B9008DC590 /* MyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 			children = (
 				01640DAB26CA92C1000CC565 /* TaskShare.xcdatamodeld */,
 				01E2A77E26E65A4200BE5956 /* CoreDataHelper.swift */,
-				01207B7E270A10FD00E363F3 /* StorageProvider.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -296,7 +293,6 @@
 				01F88DAF26D5319D00C0A76B /* TaskTableViewCell.swift in Sources */,
 				0102F4DE26CC02F900000945 /* TaskViewController.swift in Sources */,
 				0135C2A826CC6A3400732596 /* TaskInfoViewController.swift in Sources */,
-				01207B7F270A10FD00E363F3 /* StorageProvider.swift in Sources */,
 				01ACC71126E6DC360030650C /* CustomAction.swift in Sources */,
 				01ACC71626E7A61C0030650C /* Menu+Extension+TaskViewController.swift in Sources */,
 				0102F4DA26CB44F400000945 /* Constants.swift in Sources */,

@@ -15,6 +15,7 @@ class TaskViewController: UITableViewController {
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    let coreDataHelper = CoreDataHelper.coreDataHelper
     var colors = Colors()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -47,7 +48,7 @@ class TaskViewController: UITableViewController {
     //MARK: - Pull to Refresh
     @objc func pullToRefresh() {
         refreshController.beginRefreshing()
-        taskArray = CoreDataHelper.loadTasks(for: selectedGroup)
+        taskArray = coreDataHelper.loadTasks(for: selectedGroup)
         //put in completion block of func used to call data
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.tableView.reloadData()
@@ -84,9 +85,9 @@ class TaskViewController: UITableViewController {
             taskArray[selectedIndexPath.row] = taskInfoVC.task!
         } else {
             if filterDate {
-                taskArray = CoreDataHelper.loadTaskByDate(selectedGroup: selectedGroup, selectedDate: selectedDate)
+                taskArray = coreDataHelper.loadTaskByDate(selectedGroup: selectedGroup, selectedDate: selectedDate)
             } else {
-                taskArray = CoreDataHelper.loadTasks(for: selectedGroup)
+                taskArray = coreDataHelper.loadTasks(for: selectedGroup)
             }
         }
         tableView.reloadData()
@@ -132,7 +133,7 @@ extension TaskViewController {
             self.context.delete(self.taskArray[indexPath.row])
             self.taskArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            CoreDataHelper.saveData()
+            self.coreDataHelper.saveData()
         }
         delete.image = UIImage(systemName: "trash")
         return UISwipeActionsConfiguration(actions: [delete])
@@ -144,7 +145,7 @@ extension TaskViewController {
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         taskArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
-        CoreDataHelper.saveData()
+        coreDataHelper.saveData()
     }
 }
 
@@ -170,7 +171,7 @@ extension TaskViewController: UISearchBarDelegate {
         let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         
-        taskArray = CoreDataHelper.loadTasks(with: request, for: selectedGroup, predicate: predicate)
+        taskArray = coreDataHelper.loadTasks(with: request, for: selectedGroup, predicate: predicate)
         //TODO: check if filterdate and add appropriate predicate
         
         tableView.reloadData()
@@ -182,9 +183,9 @@ extension TaskViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
             if filterDate {
-                taskArray = CoreDataHelper.loadTaskByDate(selectedGroup: selectedGroup, selectedDate: selectedDate)
+                taskArray = coreDataHelper.loadTaskByDate(selectedGroup: selectedGroup, selectedDate: selectedDate)
             } else {
-                taskArray = CoreDataHelper.loadTasks(for: selectedGroup)
+                taskArray = coreDataHelper.loadTasks(for: selectedGroup)
             }
             tableView.reloadData()
             DispatchQueue.main.async {
@@ -207,7 +208,7 @@ extension TaskViewController: TaskTableViewCellDelegate {
     func checkMarkToggle(sender: TaskTableViewCell) {
         if let selectedIndexPath = tableView.indexPath(for: sender) {
             taskArray[selectedIndexPath.row].completed.toggle()
-            CoreDataHelper.saveData()
+            coreDataHelper.saveData()
             tableView.reloadData()
         }
     }
