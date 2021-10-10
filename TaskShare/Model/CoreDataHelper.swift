@@ -14,15 +14,21 @@ class CoreDataHelper {
     
     static let coreDataHelper = CoreDataHelper()
     
-    let context: NSManagedObjectContext = {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            fatalError()
+    let persistentContainer: NSPersistentCloudKitContainer
+    
+    init() {
+        persistentContainer = NSPersistentCloudKitContainer(name: "TaskShare")
+        
+        persistentContainer.loadPersistentStores { description, error in
+            if let error = error as NSError? {
+                fatalError("Core Data store failed to load with error: \(error.localizedDescription)")
+            }
         }
-
-        let persistentContainer = appDelegate.persistentContainer
-        let context = persistentContainer.viewContext
-        return context
-    }()
+    }
+    
+    var context: NSManagedObjectContext {
+        persistentContainer.viewContext
+    }
     
     //MARK: - Saving CoreData Methods
     func saveData() {
@@ -110,4 +116,19 @@ class CoreDataHelper {
         }
     }
     
+}
+
+extension CoreDataHelper {
+    func createGroup(named title: String) {
+        let group = Group(context: persistentContainer.viewContext)
+        group.title = title
+
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            // failed to save, discard anything already on context
+            persistentContainer.viewContext.rollback()
+            print("Failed to create group: \(error)")
+        }
+    }
 }

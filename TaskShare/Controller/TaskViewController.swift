@@ -17,8 +17,7 @@ class TaskViewController: UITableViewController {
     
     let coreDataHelper = CoreDataHelper.coreDataHelper
     var colors = Colors()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+   
     var taskArray = [Task]()
     
     var filterDate = false
@@ -130,7 +129,8 @@ extension TaskViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "") { (contextualAction, view, actionPerformed: (Bool) -> Void) in
-            self.context.delete(self.taskArray[indexPath.row])
+            let context = self.coreDataHelper.context
+            context.delete(self.taskArray[indexPath.row])
             self.taskArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             self.coreDataHelper.saveData()

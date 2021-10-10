@@ -50,10 +50,8 @@ class GroupViewController: UITableViewController {
     //MARK: - Add Item
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         addGroupAlert {
-            let newGroup = self.coreDataHelper.newGroup()
-            newGroup.title = UIViewController.textField.text!
-            self.groupArray.append(newGroup)
-            self.coreDataHelper.saveData()
+            self.coreDataHelper.createGroup(named: UIViewController.textField.text!)
+            self.groupArray = self.coreDataHelper.loadGroup()
             self.tableView.reloadData()
         }
     }
