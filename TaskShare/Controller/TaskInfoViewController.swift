@@ -15,7 +15,7 @@ protocol TaskInfoViewControllerDelegate: AnyObject {
 class TaskInfoViewController: UITableViewController {
     
     let coreDataHelper = CoreDataHelper.coreDataHelper
-    var colors = Colors()
+    let colors = Colors.colors
     
     var selectedGroup: Group?
     var task: Task?

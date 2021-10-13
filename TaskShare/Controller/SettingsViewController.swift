@@ -12,7 +12,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var saveButton: UIButton!
     
-    var colors = Colors()
+    let colors = Colors.colors
+    
     let defaults = UserDefaults.standard
 
     override func viewDidLoad() {

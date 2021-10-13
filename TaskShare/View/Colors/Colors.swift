@@ -7,7 +7,9 @@
 
 import UIKit
 
-struct Colors {
+class Colors {
+    
+    static let colors = Colors()
     
     let defaults = UserDefaults.standard
     
@@ -15,15 +17,17 @@ struct Colors {
     
     var selectedColorIndex = 8
     
-    mutating func setSelectedColor() {
+    private init () {}
+    
+    func setSelectedColor() {
         selectedColorIndex = defaults.object(forKey: "color") as? Int ?? 8
     }
     
-    mutating func getCurrentColor() -> UIColor {
+    func getCurrentColor() -> UIColor {
         return colorOptions[selectedColorIndex]
     }
     
-    mutating func setCellColors(cellLocation: Int, arrayCount: Int) -> UIColor {
+    func setCellColors(cellLocation: Int, arrayCount: Int) -> UIColor {
         setSelectedColor()
         
         let cellOpacity = (CGFloat(cellLocation) / CGFloat(arrayCount)) + 0.05

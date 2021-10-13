@@ -12,7 +12,7 @@ class GroupViewController: UITableViewController {
     
     let coreDataHelper = CoreDataHelper.coreDataHelper
     
-    var colors = Colors()
+    let colors = Colors.colors
     
     var groupArray = [Group]()
     
@@ -30,7 +30,6 @@ class GroupViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.allowsSelectionDuringEditing = true
         tableView.refreshControl = refreshController
     }
@@ -108,13 +107,12 @@ extension GroupViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "") { (contextualAction, view, actionPerformed: (Bool) -> Void) in
             //while we still have the index of the object delete from context
-//            self.coreDataHelper.deleteGroup(group: self.groupArray[indexPath.row])
             self.coreDataHelper.deleteGroup(self.groupArray[indexPath.row])
             //remove the item from the group array
             self.groupArray.remove(at: indexPath.row)
             //delete the row for tableview
             tableView.deleteRows(at: [indexPath], with: .automatic)
-//            CoreDataHelper.saveData()
+            self.coreDataHelper.saveData()
             tableView.reloadData()
         }
         delete.image = UIImage(systemName: "trash")
