@@ -47,7 +47,7 @@ class TaskViewController: UITableViewController {
     //MARK: - Pull to Refresh
     @objc func pullToRefresh() {
         refreshController.beginRefreshing()
-        taskArray = coreDataHelper.loadTasks(for: selectedGroup)
+        taskArray = coreDataHelper.loadTasks(for: selectedGroup!)
         //put in completion block of func used to call data
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.tableView.reloadData()
@@ -86,7 +86,7 @@ class TaskViewController: UITableViewController {
             if filterDate {
                 taskArray = coreDataHelper.loadTaskByDate(selectedGroup: selectedGroup, selectedDate: selectedDate)
             } else {
-                taskArray = coreDataHelper.loadTasks(for: selectedGroup)
+                taskArray = coreDataHelper.loadTasks(for: selectedGroup!)
             }
         }
         tableView.reloadData()
@@ -167,11 +167,7 @@ extension TaskViewController {
 //MARK: - SearchBarDelegate
 extension TaskViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let request: NSFetchRequest<Task> = Task.fetchRequest()
-        let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        
-        taskArray = coreDataHelper.loadTasks(with: request, for: selectedGroup, predicate: predicate)
+        taskArray = coreDataHelper.searchTasks(for: selectedGroup!, with: searchBar.text!)
         //TODO: check if filterdate and add appropriate predicate
         
         tableView.reloadData()
@@ -185,7 +181,7 @@ extension TaskViewController: UISearchBarDelegate {
             if filterDate {
                 taskArray = coreDataHelper.loadTaskByDate(selectedGroup: selectedGroup, selectedDate: selectedDate)
             } else {
-                taskArray = coreDataHelper.loadTasks(for: selectedGroup)
+                taskArray = coreDataHelper.loadTasks(for: selectedGroup!)
             }
             tableView.reloadData()
             DispatchQueue.main.async {

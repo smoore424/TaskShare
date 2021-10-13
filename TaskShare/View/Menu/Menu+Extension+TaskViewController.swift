@@ -45,7 +45,7 @@ extension TaskViewController {
             if filterDate {
                 taskArray = coreDataHelper.loadTaskByDate(with: request, selectedGroup: selectedGroup, selectedDate: selectedDate)
             } else {
-                taskArray = coreDataHelper.loadTasks(with: request, for: selectedGroup)
+                taskArray = coreDataHelper.loadTasks(for: selectedGroup!)
             }
         }
     }
@@ -57,7 +57,7 @@ extension TaskViewController {
         if filterDate {
             taskArray = coreDataHelper.loadTaskByDate(with: request, selectedGroup: selectedGroup, selectedDate: selectedDate)
         } else {
-            taskArray = coreDataHelper.loadTasks(with: request, for: selectedGroup)
+            taskArray = coreDataHelper.loadTasks(for: selectedGroup!)
         }
 
         tableView.reloadData()

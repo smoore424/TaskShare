@@ -24,9 +24,8 @@ class GroupViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         setNavControllerAppearance()
-        groupArray = coreDataHelper.loadGroup()
+        configureTableView()
     }
     
     override func viewDidLoad() {
@@ -36,10 +35,17 @@ class GroupViewController: UITableViewController {
         tableView.refreshControl = refreshController
     }
     
+    func configureTableView() {
+        groupArray = coreDataHelper.loadGroups()
+        if groupArray.isEmpty {
+            DispatchQueue.main.async { self.showEmptyStateView(with: "Click the + button above to add a group", in: self.view) }
+        }
+    }
+    
     //MARK: - Pull to Refresh
     @objc func pullToRefresh() {
         refreshController.beginRefreshing()
-        groupArray = coreDataHelper.loadGroup()
+        configureTableView()
         //put in completion block of func used to call data
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.tableView.reloadData()
@@ -51,7 +57,7 @@ class GroupViewController: UITableViewController {
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         addGroupAlert {
             self.coreDataHelper.createGroup(named: UIViewController.textField.text!)
-            self.groupArray = self.coreDataHelper.loadGroup()
+            self.configureTableView()
             self.tableView.reloadData()
         }
     }
@@ -102,7 +108,8 @@ extension GroupViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "") { (contextualAction, view, actionPerformed: (Bool) -> Void) in
             //while we still have the index of the object delete from context
-            self.coreDataHelper.deleteGroup(group: self.groupArray[indexPath.row])
+//            self.coreDataHelper.deleteGroup(group: self.groupArray[indexPath.row])
+            self.coreDataHelper.deleteGroup(self.groupArray[indexPath.row])
             //remove the item from the group array
             self.groupArray.remove(at: indexPath.row)
             //delete the row for tableview
@@ -120,7 +127,7 @@ extension GroupViewController {
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         groupArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
-        self.coreDataHelper.saveData()
+        self.coreDataHelper.updateGroup()
         tableView.reloadData()
     }
 }

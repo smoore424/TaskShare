@@ -80,24 +80,25 @@ class TaskInfoViewController: UITableViewController {
     }
     
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
+       
         dateLabel.text = convertDateToString(date: datePicker.date)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let task = task {
             task.name = taskNameTextField.text
+            
             task.date = convertDateToString(date: datePicker.date)
             task.note = noteTextView.text
             coreDataHelper.saveData()
         } else {
-            let newTask = coreDataHelper.newTask()
-            newTask.name = taskNameTextField.text
-            newTask.parentGroup = selectedGroup
-            newTask.date = convertDateToString(date: datePicker.date)
-            newTask.note = noteTextView.text
-            newTask.completed = false
-            task = newTask
-            coreDataHelper.saveData()
+        
+            coreDataHelper.createTask(
+                parentGroup: selectedGroup!,
+                name: taskNameTextField.text ?? "",
+                note: noteTextView.text ?? "",
+                date: convertDateToString(date: datePicker.date),
+                completed: false)
         }
     }
 }
@@ -110,6 +111,7 @@ extension TaskInfoViewController {
     }
     
     func updateDateLabel() {
+     
         if let selectedDate = task?.date {
             dateLabel.text = selectedDate
             datePicker.date = convertStringToDate(string: selectedDate)!
