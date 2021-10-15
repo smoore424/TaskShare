@@ -25,7 +25,7 @@ class GroupViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavControllerAppearance()
-        configureTableView()
+        groupArray = coreDataHelper.loadGroups()
     }
     
     override func viewDidLoad() {
@@ -34,17 +34,10 @@ class GroupViewController: UITableViewController {
         tableView.refreshControl = refreshController
     }
     
-    func configureTableView() {
-        groupArray = coreDataHelper.loadGroups()
-        if groupArray.isEmpty {
-            DispatchQueue.main.async { self.showEmptyStateView(with: "Click the + button above to add a group", in: self.view) }
-        }
-    }
-    
     //MARK: - Pull to Refresh
     @objc func pullToRefresh() {
         refreshController.beginRefreshing()
-        configureTableView()
+        groupArray = coreDataHelper.loadGroups()
         //put in completion block of func used to call data
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.tableView.reloadData()
@@ -56,7 +49,7 @@ class GroupViewController: UITableViewController {
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         addGroupAlert {
             self.coreDataHelper.createGroup(named: UIViewController.textField.text!)
-            self.configureTableView()
+            self.groupArray = self.coreDataHelper.loadGroups()
             self.tableView.reloadData()
         }
     }
