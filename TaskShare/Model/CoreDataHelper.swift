@@ -14,16 +14,70 @@ class CoreDataHelper {
     
     static let shared = CoreDataHelper()
     
-    let persistentContainer: NSPersistentCloudKitContainer
+    init() {}
     
-    init() {
-        persistentContainer = NSPersistentCloudKitContainer(name: "TaskShare")
+    lazy var persistentContainer: NSPersistentCloudKitContainer = {
+        let container = NSPersistentCloudKitContainer(name: "TaskShare")
         
-        persistentContainer.loadPersistentStores { description, error in
-            if let error = error as NSError? {
-                fatalError("Core Data store failed to load with error: \(error.localizedDescription)")
+        let privateStoreDescription = container.persistentStoreDescriptions.first!
+        let storesURL = privateStoreDescription.url!.deletingLastPathComponent()
+        privateStoreDescription.url = storesURL.appendingPathComponent("private.sqlite")
+        privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+        
+        let sharedStoreURL = storesURL.appendingPathComponent("shared.sqlite")
+        guard let sharedStoreDescription = privateStoreDescription.copy() as? NSPersistentStoreDescription else {
+            fatalError("Copying the private store description returned an unexpected value.")
+        }
+        sharedStoreDescription.url = sharedStoreURL
+        
+        let containerIdentifier = privateStoreDescription.cloudKitContainerOptions!.containerIdentifier
+        let sharedStoreOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: containerIdentifier)
+        sharedStoreOptions.databaseScope = .shared
+        sharedStoreDescription.cloudKitContainerOptions = sharedStoreOptions
+        
+        container.persistentStoreDescriptions.append(sharedStoreDescription)
+        
+        container.loadPersistentStores { loadedStoreDescription, error in
+            
+            if let loadError = error as NSError? {
+                fatalError("failed to load store \(String(describing: error?.localizedDescription))")
+            } else if let cloudKitcontainerOptions = loadedStoreDescription.cloudKitContainerOptions {
+                
+                if .private == cloudKitcontainerOptions.databaseScope {
+                    self._privatePersistentStore = container.persistentStoreCoordinator.persistentStore(for: loadedStoreDescription.url!)
+                } else if .shared == cloudKitcontainerOptions.databaseScope {
+                    self._sharedPersistentStore = container.persistentStoreCoordinator.persistentStore(for: loadedStoreDescription.url!)
+                }
             }
         }
+        
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        
+        do {
+            try container.viewContext.setQueryGenerationFrom(.current)
+        } catch {
+            fatalError("Fail to pin viewContext to the current generation:\(error)")
+        }
+        
+        return container
+    }()
+    
+    let ckContainerID = "iCloud.dev.staceymoore.taskshare"
+    
+    var ckContainer: CKContainer {
+        CKContainer(identifier: ckContainerID)
+    }
+    
+    private var _privatePersistentStore: NSPersistentStore?
+    var privatePersistentStore: NSPersistentStore {
+        return _privatePersistentStore!
+    }
+    
+    private var _sharedPersistentStore: NSPersistentStore?
+    var sharedPersistentStore: NSPersistentStore {
+        return _sharedPersistentStore!
     }
     
     var context: NSManagedObjectContext {
@@ -38,11 +92,11 @@ class CoreDataHelper {
             print("error saving data to context \(error)")
         }
     }
-   
+    
     //MARK: - Group CoreData Method
     func loadGroupByDate(with request: NSFetchRequest<Group> = Group.fetchRequest(), for selectedDate: String) -> [Group] {
         let selectedDatePredicate = NSPredicate(format: "ANY task.date MATCHES %@", selectedDate)
-
+        
         request.predicate = selectedDatePredicate
         
         do {
@@ -53,14 +107,14 @@ class CoreDataHelper {
             return []
         }
     }
- 
+    
     //MARK: - Task CoreData Methods
     func loadTaskByDate(with request: NSFetchRequest<Task> = Task.fetchRequest(), selectedGroup: Group?, selectedDate: String) -> [Task] {
         
         let groupPredicate = NSPredicate(format: "parentGroup.title MATCHES %@", selectedGroup!.title!)
         
         let selectedDatePredicate = NSPredicate(format: "date MATCHES %@", selectedDate)
-
+        
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [groupPredicate, selectedDatePredicate])
         
         do {
@@ -74,11 +128,68 @@ class CoreDataHelper {
     
 }
 
+
+extension CoreDataHelper {
+    func isShared(objectID: NSManagedObjectID) -> Bool {
+        var isShared = false
+        if let persistentStore = objectID.persistentStore {
+            if persistentStore == sharedPersistentStore {
+                isShared = true
+            } else {
+                let container = persistentContainer
+                do {
+                    let shares = try container.fetchShares(matching: [objectID])
+                    if shares.first != nil {
+                        isShared = true
+                    }
+                } catch {
+                    print("Failed to fetch share for \(objectID): \(error)")
+                }
+            }
+        }
+        return isShared
+    }
+    
+    func isShared(object: NSManagedObject) -> Bool {
+        isShared(objectID: object.objectID)
+    }
+    
+    func canEdit(object: NSManagedObject) -> Bool {
+        return persistentContainer.canUpdateRecord(forManagedObjectWith: object.objectID)
+    }
+    
+    func canDelete(object: NSManagedObject) -> Bool {
+        return persistentContainer.canDeleteRecord(forManagedObjectWith: object.objectID)
+    }
+    
+    func isOwner(object: NSManagedObject) -> Bool {
+        guard isShared(object: object) else { return false }
+        guard let share = try? persistentContainer.fetchShares(matching: [object.objectID])[object.objectID] else {
+            print("Get ckshare error")
+            return false
+        }
+        if let currentUser = share.currentUserParticipant, currentUser == share.owner {
+            return true
+        }
+        return false
+    }
+    
+    func getShare(_ group: Group) -> CKShare? {
+        guard isShared(object: group) else { return nil }
+        guard let share = try? persistentContainer.fetchShares(matching: [group.objectID])[group.objectID] else {
+            print("Get ckshare error")
+            return nil
+        }
+        share[CKShare.SystemFieldKey.title] = group.title
+        return share
+    }
+}
+
 extension CoreDataHelper {
     func createGroup(named title: String) {
         let group = Group(context: persistentContainer.viewContext)
         group.title = title
-
+        
         do {
             try persistentContainer.viewContext.save()
         } catch {

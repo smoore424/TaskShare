@@ -29,6 +29,7 @@ extension TaskViewController {
         }
         
         let shareGroup = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
+            self.shareGroup()
             //code to share via cloudkit goes here
             print("SHARE SELECTED")
         }

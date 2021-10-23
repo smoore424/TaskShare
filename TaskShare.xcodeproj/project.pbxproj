@@ -26,6 +26,7 @@
 		0165F8B926EC463D00F79788 /* Date+Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0165F8B826EC463D00F79788 /* Date+Extension+UIViewController.swift */; };
 		016BDFF626F6464800727DC6 /* UITextView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016BDFF526F6464800727DC6 /* UITextView + Extension.swift */; };
 		016BDFFB26F6966D00727DC6 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016BDFFA26F6966D00727DC6 /* CloudKit.framework */; };
+		0172B8D9272475A700A98190 /* TaskViewController+Sharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172B8D8272475A700A98190 /* TaskViewController+Sharing.swift */; };
 		01ACC71126E6DC360030650C /* CustomAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71026E6DC360030650C /* CustomAction.swift */; };
 		01ACC71326E6DD2C0030650C /* Alert+Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71226E6DD2C0030650C /* Alert+Extension+UIViewController.swift */; };
 		01ACC71626E7A61C0030650C /* Menu+Extension+TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01ACC71526E7A61C0030650C /* Menu+Extension+TaskViewController.swift */; };
@@ -58,6 +59,7 @@
 		016BDFF526F6464800727DC6 /* UITextView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView + Extension.swift"; sourceTree = "<group>"; };
 		016BDFF826F6962400727DC6 /* TaskShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskShare.entitlements; sourceTree = "<group>"; };
 		016BDFFA26F6966D00727DC6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		0172B8D8272475A700A98190 /* TaskViewController+Sharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskViewController+Sharing.swift"; sourceTree = "<group>"; };
 		01ACC71026E6DC360030650C /* CustomAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAction.swift; sourceTree = "<group>"; };
 		01ACC71226E6DD2C0030650C /* Alert+Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		01ACC71526E7A61C0030650C /* Menu+Extension+TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Menu+Extension+TaskViewController.swift"; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				0165F8B526E974B700F79788 /* TodayViewController.swift */,
 				013E918A2706C639008DC590 /* SettingsViewController.swift */,
 				013E91912707758B008DC590 /* TabBarController.swift */,
+				0172B8D8272475A700A98190 /* TaskViewController+Sharing.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01C33702270CAD3B0025F1FB /* UIColor+Extension.swift in Sources */,
+				0172B8D9272475A700A98190 /* TaskViewController+Sharing.swift in Sources */,
 				01E2A77F26E65A4200BE5956 /* CoreDataHelper.swift in Sources */,
 				01F88DAF26D5319D00C0A76B /* TaskTableViewCell.swift in Sources */,
 				0102F4DE26CC02F900000945 /* TaskViewController.swift in Sources */,
