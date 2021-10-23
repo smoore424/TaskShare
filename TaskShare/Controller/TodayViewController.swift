@@ -14,8 +14,8 @@ class TodayViewController: UIViewController {
     @IBOutlet weak var calendarView: UIDatePicker!
     @IBOutlet weak var todayTableView: UITableView!
     
-    let coreDataHelper = CoreDataHelper.coreDataHelper
-    let colors = Colors.colors
+    let coreDataHelper = CoreDataHelper.shared
+    let colors = Colors.shared
     
     var groupArray = [Group]()
     var selectedDate = String()

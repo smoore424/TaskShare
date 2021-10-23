@@ -15,8 +15,8 @@ class TaskViewController: UITableViewController {
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    let coreDataHelper = CoreDataHelper.coreDataHelper
-    let colors = Colors.colors
+    let coreDataHelper = CoreDataHelper.shared
+    let colors = Colors.shared
    
     var taskArray = [Task]()
     

@@ -12,7 +12,7 @@ import UIKit
 
 class CoreDataHelper {
     
-    static let coreDataHelper = CoreDataHelper()
+    static let shared = CoreDataHelper()
     
     let persistentContainer: NSPersistentCloudKitContainer
     

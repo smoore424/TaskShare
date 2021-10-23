@@ -9,7 +9,7 @@ import UIKit
 
 class TabBarController: UITabBarController {
 
-    let colors = Colors.colors
+    let colors = Colors.shared
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

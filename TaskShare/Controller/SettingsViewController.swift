@@ -12,7 +12,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var saveButton: UIButton!
     
-    let colors = Colors.colors
+    let colors = Colors.shared
     
     let defaults = UserDefaults.standard
 

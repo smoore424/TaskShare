@@ -10,9 +10,9 @@ import UIKit
 
 class GroupViewController: UITableViewController {
     
-    let coreDataHelper = CoreDataHelper.coreDataHelper
+    let coreDataHelper = CoreDataHelper.shared
     
-    let colors = Colors.colors
+    let colors = Colors.shared
     
     var groupArray = [Group]()
     

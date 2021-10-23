@@ -9,7 +9,7 @@ import UIKit
 
 class Colors {
     
-    static let colors = Colors()
+    static let shared = Colors()
     
     let defaults = UserDefaults.standard
     
