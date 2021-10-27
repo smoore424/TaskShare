@@ -5,6 +5,7 @@
 //  Created by Stacey Moore on 8/16/21.
 //
 
+import CloudKit
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -52,6 +53,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
+    func windowScene(_ windowScene: UIWindowScene, userDidAcceptCloudKitShareWith cloudKitShareMetadata: CKShare.Metadata) {
+        let sharedStore = CoreDataHelper.shared.sharedPersistentStore
+        let container = CoreDataHelper.shared.persistentContainer
 
+        container.acceptShareInvitations(from: [cloudKitShareMetadata], into: sharedStore, completion: nil)
+    }
 }
 

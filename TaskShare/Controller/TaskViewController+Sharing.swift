@@ -11,13 +11,11 @@ import UIKit
 
 extension TaskViewController: UICloudSharingControllerDelegate {
 
-    
     @objc func shareGroup() {
         
         guard let group = self.selectedGroup else { fatalError("Cannot share without a group")}
         
         let container = CoreDataHelper.shared.persistentContainer
-        
         
         let cloudSharingController = UICloudSharingController {
             (controller, completion: @escaping (CKShare?, CKContainer?, Error?) -> Void) in
@@ -25,6 +23,7 @@ extension TaskViewController: UICloudSharingControllerDelegate {
                 if let actualShare = share {
                     group.managedObjectContext?.performAndWait {
                         actualShare[CKShare.SystemFieldKey.title] = group.title
+                        
                     }
                 }
                 completion(share, container, error)

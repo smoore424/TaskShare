@@ -13,6 +13,7 @@ import UIKit
 class CoreDataHelper {
     
     static let shared = CoreDataHelper()
+    private weak var fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate?
     
     init() {}
     
@@ -203,7 +204,7 @@ extension CoreDataHelper {
 extension CoreDataHelper {
     func loadGroups() -> [Group] {
         let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
-        
+
         do {
             return try persistentContainer.viewContext.fetch(fetchRequest)
         } catch {
@@ -211,6 +212,7 @@ extension CoreDataHelper {
             return []
         }
     }
+    
 }
 
 extension CoreDataHelper {
