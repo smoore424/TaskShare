@@ -129,62 +129,61 @@ class CoreDataHelper {
     
 }
 
-
-extension CoreDataHelper {
-    func isShared(objectID: NSManagedObjectID) -> Bool {
-        var isShared = false
-        if let persistentStore = objectID.persistentStore {
-            if persistentStore == sharedPersistentStore {
-                isShared = true
-            } else {
-                let container = persistentContainer
-                do {
-                    let shares = try container.fetchShares(matching: [objectID])
-                    if shares.first != nil {
-                        isShared = true
-                    }
-                } catch {
-                    print("Failed to fetch share for \(objectID): \(error)")
-                }
-            }
-        }
-        return isShared
-    }
-    
-    func isShared(object: NSManagedObject) -> Bool {
-        isShared(objectID: object.objectID)
-    }
-    
-    func canEdit(object: NSManagedObject) -> Bool {
-        return persistentContainer.canUpdateRecord(forManagedObjectWith: object.objectID)
-    }
-    
-    func canDelete(object: NSManagedObject) -> Bool {
-        return persistentContainer.canDeleteRecord(forManagedObjectWith: object.objectID)
-    }
-    
-    func isOwner(object: NSManagedObject) -> Bool {
-        guard isShared(object: object) else { return false }
-        guard let share = try? persistentContainer.fetchShares(matching: [object.objectID])[object.objectID] else {
-            print("Get ckshare error")
-            return false
-        }
-        if let currentUser = share.currentUserParticipant, currentUser == share.owner {
-            return true
-        }
-        return false
-    }
-    
-    func getShare(_ group: Group) -> CKShare? {
-        guard isShared(object: group) else { return nil }
-        guard let share = try? persistentContainer.fetchShares(matching: [group.objectID])[group.objectID] else {
-            print("Get ckshare error")
-            return nil
-        }
-        share[CKShare.SystemFieldKey.title] = group.title
-        return share
-    }
-}
+//extension CoreDataHelper {
+//    func isShared(objectID: NSManagedObjectID) -> Bool {
+//        var isShared = false
+//        if let persistentStore = objectID.persistentStore {
+//            if persistentStore == sharedPersistentStore {
+//                isShared = true
+//            } else {
+//                let container = persistentContainer
+//                do {
+//                    let shares = try container.fetchShares(matching: [objectID])
+//                    if shares.first != nil {
+//                        isShared = true
+//                    }
+//                } catch {
+//                    print("Failed to fetch share for \(objectID): \(error)")
+//                }
+//            }
+//        }
+//        return isShared
+//    }
+//
+//    func isShared(object: NSManagedObject) -> Bool {
+//        isShared(objectID: object.objectID)
+//    }
+//
+//    func canEdit(object: NSManagedObject) -> Bool {
+//        return persistentContainer.canUpdateRecord(forManagedObjectWith: object.objectID)
+//    }
+//
+//    func canDelete(object: NSManagedObject) -> Bool {
+//        return persistentContainer.canDeleteRecord(forManagedObjectWith: object.objectID)
+//    }
+//
+//    func isOwner(object: NSManagedObject) -> Bool {
+//        guard isShared(object: object) else { return false }
+//        guard let share = try? persistentContainer.fetchShares(matching: [object.objectID])[object.objectID] else {
+//            print("Get ckshare error")
+//            return false
+//        }
+//        if let currentUser = share.currentUserParticipant, currentUser == share.owner {
+//            return true
+//        }
+//        return false
+//    }
+//
+//    func getShare(_ group: Group) -> CKShare? {
+//        guard isShared(object: group) else { return nil }
+//        guard let share = try? persistentContainer.fetchShares(matching: [group.objectID])[group.objectID] else {
+//            print("Get ckshare error")
+//            return nil
+//        }
+//        share[CKShare.SystemFieldKey.title] = group.title
+//        return share
+//    }
+//}
 
 extension CoreDataHelper {
     func createGroup(named title: String) {
@@ -258,14 +257,14 @@ extension CoreDataHelper {
 }
 
 extension CoreDataHelper {
-    func loadTasks(for selectedGroup: Group) -> [Task] {
+    func loadTasks(with request: NSFetchRequest<Task> = Task.fetchRequest(), for selectedGroup: Group) -> [Task] {
         let groupPredicate = NSPredicate(format: "%K MATCHES %@", #keyPath(Task.parentGroup.title), selectedGroup.title!)
         
-        let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest()
-        fetchRequest.predicate = groupPredicate
+        request.predicate = groupPredicate
+        
         
         do {
-            let result = try persistentContainer.viewContext.fetch(fetchRequest)
+            let result = try persistentContainer.viewContext.fetch(request)
             return result
         } catch {
             print("Failed to fetch Tasks for \(selectedGroup); \(error)")
