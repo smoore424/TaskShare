@@ -29,6 +29,7 @@ class TodayViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavControllerAppearance()
+        getTableViewData()
         calendarView.tintColor = colors.getCurrentColor()
         todayTableView.reloadData()
     }
@@ -37,7 +38,6 @@ class TodayViewController: UIViewController {
         super.viewDidLoad()
         todayTableView.delegate = self
         todayTableView.dataSource = self
-        getTableViewData()
         todayTableView.refreshControl = refreshController
     }
     
@@ -78,7 +78,6 @@ extension TodayViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-        title = "Today"
     }
     
     func getTableViewData() {

@@ -15,5 +15,6 @@ class TabBarController: UITabBarController {
         super.viewWillAppear(animated)
         colors.setSelectedColor()
         tabBar.tintColor = colors.getCurrentColor()
+        tabBar.items![1].title = convertDateToString(date: Date())
     }
 }
