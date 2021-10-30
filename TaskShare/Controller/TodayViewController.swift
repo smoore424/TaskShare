@@ -26,6 +26,15 @@ class TodayViewController: UIViewController {
         return refreshControl
     }()
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        todayTableView.delegate = self
+        todayTableView.dataSource = self
+        todayTableView.refreshControl = refreshController
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavControllerAppearance()
@@ -34,12 +43,6 @@ class TodayViewController: UIViewController {
         todayTableView.reloadData()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        todayTableView.delegate = self
-        todayTableView.dataSource = self
-        todayTableView.refreshControl = refreshController
-    }
     
     //MARK: - Pull to Refresh
     @objc func pullToRefresh() {
@@ -52,10 +55,12 @@ class TodayViewController: UIViewController {
         }
     }
     
+    
     //MARK: - Date Selection
     @IBAction func dateSelected(_ sender: UIDatePicker) {
         getTableViewData()
     }
+    
     
     //MARK: - Segue Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

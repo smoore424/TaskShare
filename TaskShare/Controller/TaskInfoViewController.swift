@@ -51,11 +51,6 @@ class TaskInfoViewController: UITableViewController {
         isModalInPresentation = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setNavControllerAppeareance()
-        updateDateLabel()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,9 +63,18 @@ class TaskInfoViewController: UITableViewController {
         self.noteTextView.addDoneButton(target: self, selector: #selector(doneTapped(sender:)))
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavControllerAppeareance()
+        updateDateLabel()
+    }
+    
+    
     @objc func doneTapped(sender: Any) {
         self.view.endEditing(true)
     }
+    
     
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
         dismissModalAlert {
@@ -78,9 +82,11 @@ class TaskInfoViewController: UITableViewController {
         }
     }
     
+    
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         dateLabel.text = convertDateToString(date: datePicker.date)
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let task = task {

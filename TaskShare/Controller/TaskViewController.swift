@@ -31,11 +31,6 @@ class TaskViewController: UITableViewController {
         return refreshControl
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setNavControllerAppearence()
-        tableView.reloadData()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +39,14 @@ class TaskViewController: UITableViewController {
         moreButton.menu = menuItems()
         tableView.refreshControl = refreshController
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavControllerAppearence()
+        tableView.reloadData()
+    }
+    
     
     //MARK: - Pull to Refresh
     @objc func pullToRefresh() {

@@ -34,9 +34,11 @@ extension TaskViewController: UICloudSharingControllerDelegate {
        present(cloudSharingController, animated: true)
     }
     
+    
     func cloudSharingController(_ csc: UICloudSharingController, failedToSaveShareWithError error: Error) {
         fatalError("Failed to save share \(error)")
     }
+    
     
     func itemTitle(for csc: UICloudSharingController) -> String? {
         guard let title = selectedGroup?.title else {

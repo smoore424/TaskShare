@@ -22,16 +22,18 @@ class GroupViewController: UITableViewController {
         return refreshControl
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setNavControllerAppearance()
-        groupArray = coreDataHelper.loadGroups()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelectionDuringEditing = true
         tableView.refreshControl = refreshController
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavControllerAppearance()
+        groupArray = coreDataHelper.loadGroups()
     }
     
     
