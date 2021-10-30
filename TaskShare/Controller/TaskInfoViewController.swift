@@ -53,7 +53,6 @@ class TaskInfoViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         setNavControllerAppeareance()
         updateDateLabel()
     }
@@ -80,7 +79,6 @@ class TaskInfoViewController: UITableViewController {
     }
     
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
-       
         dateLabel.text = convertDateToString(date: datePicker.date)
     }
     

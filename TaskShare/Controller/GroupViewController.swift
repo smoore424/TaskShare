@@ -32,7 +32,6 @@ class GroupViewController: UITableViewController {
         super.viewDidLoad()
         tableView.allowsSelectionDuringEditing = true
         tableView.refreshControl = refreshController
-        
     }
     
     //MARK: - Pull to Refresh
@@ -99,7 +98,8 @@ extension GroupViewController {
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .destructive, title: "") { (contextualAction, view, actionPerformed: (Bool) -> Void) in
+        let delete = UIContextualAction(style: .destructive, title: "") { [weak self] (contextualAction, view, actionPerformed: (Bool) -> Void) in
+            guard let self = self else{ return }
             //while we still have the index of the object delete from context
             self.coreDataHelper.deleteGroup(self.groupArray[indexPath.row])
             //remove the item from the group array

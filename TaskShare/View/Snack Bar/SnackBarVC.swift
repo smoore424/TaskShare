@@ -65,6 +65,7 @@ class SnackBarVC: UIViewController {
         ])
     }
     
+    
     func configureLabel() {
         containerView.addSubview(label)
         

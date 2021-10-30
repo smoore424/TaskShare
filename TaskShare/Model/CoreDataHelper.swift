@@ -82,14 +82,8 @@ class CoreDataHelper {
     }
     
     var context: NSManagedObjectContext {
-        let context = persistentContainer.viewContext
-        context.automaticallyMergesChangesFromParent = true
-        return context
-            
+        persistentContainer.viewContext      
     }
-    
-    
-    
     
     //MARK: - Saving CoreData Methods
     func saveData() {
@@ -135,63 +129,9 @@ class CoreDataHelper {
     
 }
 
-//extension CoreDataHelper {
-//    func isShared(objectID: NSManagedObjectID) -> Bool {
-//        var isShared = false
-//        if let persistentStore = objectID.persistentStore {
-//            if persistentStore == sharedPersistentStore {
-//                isShared = true
-//            } else {
-//                let container = persistentContainer
-//                do {
-//                    let shares = try container.fetchShares(matching: [objectID])
-//                    if shares.first != nil {
-//                        isShared = true
-//                    }
-//                } catch {
-//                    print("Failed to fetch share for \(objectID): \(error)")
-//                }
-//            }
-//        }
-//        return isShared
-//    }
-//
-//    func isShared(object: NSManagedObject) -> Bool {
-//        isShared(objectID: object.objectID)
-//    }
-//
-//    func canEdit(object: NSManagedObject) -> Bool {
-//        return persistentContainer.canUpdateRecord(forManagedObjectWith: object.objectID)
-//    }
-//
-//    func canDelete(object: NSManagedObject) -> Bool {
-//        return persistentContainer.canDeleteRecord(forManagedObjectWith: object.objectID)
-//    }
-//
-//    func isOwner(object: NSManagedObject) -> Bool {
-//        guard isShared(object: object) else { return false }
-//        guard let share = try? persistentContainer.fetchShares(matching: [object.objectID])[object.objectID] else {
-//            print("Get ckshare error")
-//            return false
-//        }
-//        if let currentUser = share.currentUserParticipant, currentUser == share.owner {
-//            return true
-//        }
-//        return false
-//    }
-//
-//    func getShare(_ group: Group) -> CKShare? {
-//        guard isShared(object: group) else { return nil }
-//        guard let share = try? persistentContainer.fetchShares(matching: [group.objectID])[group.objectID] else {
-//            print("Get ckshare error")
-//            return nil
-//        }
-//        share[CKShare.SystemFieldKey.title] = group.title
-//        return share
-//    }
-//}
-
+//MARK: Group CRUD Methods
 extension CoreDataHelper {
+    
     func createGroup(named title: String) {
         let group = Group(context: persistentContainer.viewContext)
         group.title = title
@@ -204,9 +144,8 @@ extension CoreDataHelper {
             print("Failed to create group: \(error)")
         }
     }
-}
-
-extension CoreDataHelper {
+    
+    
     func loadGroups() -> [Group] {
         let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
 
@@ -218,9 +157,7 @@ extension CoreDataHelper {
         }
     }
     
-}
-
-extension CoreDataHelper {
+    
     func deleteGroup(_ group: Group) {
         persistentContainer.viewContext.delete(group)
         
@@ -231,9 +168,8 @@ extension CoreDataHelper {
             print("Failed to save context: \(error)")
         }
     }
-}
-
-extension CoreDataHelper {
+    
+    
     func updateGroup() {
         do {
             try persistentContainer.viewContext.save()
@@ -244,6 +180,7 @@ extension CoreDataHelper {
     }
 }
 
+//MARK: Task CRUD Methods
 extension CoreDataHelper {
     func createTask(parentGroup: Group, name: String, note: String, date: String, completed: Bool) {
         let task = Task(context: persistentContainer.viewContext)
@@ -260,9 +197,8 @@ extension CoreDataHelper {
             print("Failed to te task: \(error)")
         }
     }
-}
-
-extension CoreDataHelper {
+    
+    
     func loadTasks(with request: NSFetchRequest<Task> = Task.fetchRequest(), for selectedGroup: Group) -> [Task] {
         let groupPredicate = NSPredicate(format: "%K MATCHES %@", #keyPath(Task.parentGroup.title), selectedGroup.title!)
         
@@ -277,9 +213,8 @@ extension CoreDataHelper {
             return []
         }
     }
-}
-
-extension CoreDataHelper {
+    
+    
     func searchTasks(for selectedGroup: Group, with text: String) -> [Task] {
         let groupPredicate = NSPredicate(format: "%K MATCHES %@", #keyPath(Task.parentGroup.title), selectedGroup.title!)
         

@@ -8,6 +8,7 @@ import CoreData
 import UIKit
 
 extension TaskViewController {
+    
     static var showComplete: Bool = false
     
     func menuItems() -> UIMenu {
@@ -39,6 +40,7 @@ extension TaskViewController {
         return addMenuItems
     }
     
+    
     func showOrHideComplete(show: Bool, request: NSFetchRequest<Task> = Task.fetchRequest()) {
         if show {
             let show = NSSortDescriptor(key: "completed", ascending: true)
@@ -50,6 +52,7 @@ extension TaskViewController {
             }
         }
     }
+    
     
     func sortBy(ascending: Bool, request: NSFetchRequest<Task> = Task.fetchRequest()) {
         let sort = NSSortDescriptor(key: "name", ascending: ascending, selector: #selector(NSString.localizedStandardCompare))

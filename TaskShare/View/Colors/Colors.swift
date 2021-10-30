@@ -23,9 +23,11 @@ class Colors {
         selectedColorIndex = defaults.object(forKey: "color") as? Int ?? 8
     }
     
+    
     func getCurrentColor() -> UIColor {
         return colorOptions[selectedColorIndex]
     }
+    
     
     func setCellColors(cellLocation: Int, arrayCount: Int) -> UIColor {
         setSelectedColor()

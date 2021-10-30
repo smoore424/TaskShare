@@ -34,6 +34,7 @@ extension UIColor {
         return (0.2126 * newRed) + (0.7152 * newGreen) + (0.0722 * newBlue)
     }
     
+    
     var isLight: Bool {
         return luminance >= 0.6
     }
