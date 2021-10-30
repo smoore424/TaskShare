@@ -147,8 +147,8 @@
 		01640DBA26CA964A000CC565 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				01AB47C9272A2F5E00ED36C2 /* Snack Bar */,
 				01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */,
+				01AB47C9272A2F5E00ED36C2 /* Snack Bar */,
 				01ACC70F26E6DC1E0030650C /* Alerts */,
 				013E9190270769E9008DC590 /* CollectionView Cells */,
 				010F1CD1270C98B20089EF86 /* Colors */,

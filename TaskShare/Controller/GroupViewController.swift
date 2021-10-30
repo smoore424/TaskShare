@@ -74,7 +74,7 @@ extension GroupViewController {
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = self.editButtonItem
-        title = "Groups"
+        title = "Lists"
         tableView.reloadData()
     }
 }
@@ -99,7 +99,7 @@ extension GroupViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "") { [weak self] (contextualAction, view, actionPerformed: (Bool) -> Void) in
-            guard let self = self else{ return }
+            guard let self = self else { return }
             //while we still have the index of the object delete from context
             self.coreDataHelper.deleteGroup(self.groupArray[indexPath.row])
             //remove the item from the group array
