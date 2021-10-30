@@ -137,7 +137,7 @@ extension CoreDataHelper {
         group.title = title
         
         do {
-            try persistentContainer.viewContext.save()
+            try context.save()
         } catch {
             // failed to save, discard anything already on context
             persistentContainer.viewContext.rollback()
@@ -150,7 +150,7 @@ extension CoreDataHelper {
         let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
 
         do {
-            return try persistentContainer.viewContext.fetch(fetchRequest)
+            return try context.fetch(fetchRequest)
         } catch {
             print("Failed to fetch groups: \(error)")
             return []
@@ -159,7 +159,7 @@ extension CoreDataHelper {
     
     
     func deleteGroup(_ group: Group) {
-        persistentContainer.viewContext.delete(group)
+        context.delete(group)
         
         do {
             try persistentContainer.viewContext.save()
@@ -172,7 +172,7 @@ extension CoreDataHelper {
     
     func updateGroup() {
         do {
-            try persistentContainer.viewContext.save()
+            try context.save()
         } catch {
             persistentContainer.viewContext.rollback()
             print("Failed to save context: \(error)")
@@ -183,7 +183,7 @@ extension CoreDataHelper {
 //MARK: Task CRUD Methods
 extension CoreDataHelper {
     func createTask(parentGroup: Group, name: String, note: String, date: String, completed: Bool) {
-        let task = Task(context: persistentContainer.viewContext)
+        let task = Task(context: context)
         task.parentGroup = parentGroup
         task.name = name
         task.note = note
@@ -191,7 +191,7 @@ extension CoreDataHelper {
         task.completed = completed
         
         do {
-            try persistentContainer.viewContext.save()
+            try context.save()
         } catch {
             persistentContainer.viewContext.rollback()
             print("Failed to te task: \(error)")
@@ -206,7 +206,7 @@ extension CoreDataHelper {
         
         
         do {
-            let result = try persistentContainer.viewContext.fetch(request)
+            let result = try context.fetch(request)
             return result
         } catch {
             print("Failed to fetch Tasks for \(selectedGroup); \(error)")
@@ -226,7 +226,7 @@ extension CoreDataHelper {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         
         do {
-            let result = try persistentContainer.viewContext.fetch(fetchRequest)
+            let result = try context.fetch(fetchRequest)
             return result
         } catch {
             print("Failed to load Tasks for \(selectedGroup) with search paramater of \(text); \(error)")

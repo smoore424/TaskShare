@@ -34,6 +34,19 @@ class GroupViewController: UITableViewController {
         tableView.refreshControl = refreshController
     }
     
+    
+//    func loadData() {
+//        groupArray = coreDataHelper.loadGroups()
+//        if groupArray.isEmpty {
+//            showEmptyStateView(with: "Tap + to add a new list.", in: self.view)
+//        } else {
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//                self.view.bringSubviewToFront(self.tableView)
+//            }
+//        }
+//    }
+    
     //MARK: - Pull to Refresh
     @objc func pullToRefresh() {
         refreshController.beginRefreshing()

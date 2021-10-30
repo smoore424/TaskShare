@@ -10,7 +10,7 @@ import UIKit
 class SnackBarVC: UIViewController {
 
     let containerView = TSContainerView()
-    let label = UILabel()
+    let label = TSLabel(textAlignment: .left)
     let imageView = UIImageView()
     
     var snackMessage: String?
@@ -69,12 +69,8 @@ class SnackBarVC: UIViewController {
     func configureLabel() {
         containerView.addSubview(label)
         
-        label.textAlignment = .left
-        label.textColor = .label
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.text = snackMessage
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             label.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),

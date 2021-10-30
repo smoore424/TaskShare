@@ -27,6 +27,8 @@
 		016BDFF626F6464800727DC6 /* UITextView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016BDFF526F6464800727DC6 /* UITextView + Extension.swift */; };
 		016BDFFB26F6966D00727DC6 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016BDFFA26F6966D00727DC6 /* CloudKit.framework */; };
 		0172B8D9272475A700A98190 /* TaskViewController+Sharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172B8D8272475A700A98190 /* TaskViewController+Sharing.swift */; };
+		01A20DA1272DACE9003438D3 /* TSEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A20DA0272DACE9003438D3 /* TSEmptyStateView.swift */; };
+		01A20DA3272DAE6B003438D3 /* TSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A20DA2272DAE6B003438D3 /* TSLabel.swift */; };
 		01AB47CB272A2F8A00ED36C2 /* TSContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AB47CA272A2F8A00ED36C2 /* TSContainerView.swift */; };
 		01AB47CD272A467B00ED36C2 /* SnackBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AB47CC272A467B00ED36C2 /* SnackBarVC.swift */; };
 		01AB47D0272A508E00ED36C2 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AB47CF272A508E00ED36C2 /* UIViewController+Extension.swift */; };
@@ -63,6 +65,8 @@
 		016BDFF826F6962400727DC6 /* TaskShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskShare.entitlements; sourceTree = "<group>"; };
 		016BDFFA26F6966D00727DC6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		0172B8D8272475A700A98190 /* TaskViewController+Sharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskViewController+Sharing.swift"; sourceTree = "<group>"; };
+		01A20DA0272DACE9003438D3 /* TSEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSEmptyStateView.swift; sourceTree = "<group>"; };
+		01A20DA2272DAE6B003438D3 /* TSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSLabel.swift; sourceTree = "<group>"; };
 		01AB47CA272A2F8A00ED36C2 /* TSContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSContainerView.swift; sourceTree = "<group>"; };
 		01AB47CC272A467B00ED36C2 /* SnackBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBarVC.swift; sourceTree = "<group>"; };
 		01AB47CF272A508E00ED36C2 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 		01640DBA26CA964A000CC565 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				01A20DA4272DAE70003438D3 /* UIElements */,
+				01A20D9F272DACB7003438D3 /* Empty State */,
 				01F88DAE26D5319D00C0A76B /* TaskTableViewCell.swift */,
 				01AB47C9272A2F5E00ED36C2 /* Snack Bar */,
 				01ACC70F26E6DC1E0030650C /* Alerts */,
@@ -209,6 +215,22 @@
 				016BDFFA26F6966D00727DC6 /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		01A20D9F272DACB7003438D3 /* Empty State */ = {
+			isa = PBXGroup;
+			children = (
+				01A20DA0272DACE9003438D3 /* TSEmptyStateView.swift */,
+			);
+			path = "Empty State";
+			sourceTree = "<group>";
+		};
+		01A20DA4272DAE70003438D3 /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				01A20DA2272DAE6B003438D3 /* TSLabel.swift */,
+			);
+			path = UIElements;
 			sourceTree = "<group>";
 		};
 		01AB47C9272A2F5E00ED36C2 /* Snack Bar */ = {
@@ -318,6 +340,7 @@
 			files = (
 				01AB47D0272A508E00ED36C2 /* UIViewController+Extension.swift in Sources */,
 				01C33702270CAD3B0025F1FB /* UIColor+Extension.swift in Sources */,
+				01A20DA1272DACE9003438D3 /* TSEmptyStateView.swift in Sources */,
 				0172B8D9272475A700A98190 /* TaskViewController+Sharing.swift in Sources */,
 				01E2A77F26E65A4200BE5956 /* CoreDataHelper.swift in Sources */,
 				01F88DAF26D5319D00C0A76B /* TaskTableViewCell.swift in Sources */,
@@ -332,6 +355,7 @@
 				01595F01270526B200A5A3C8 /* Colors.swift in Sources */,
 				01AB47CD272A467B00ED36C2 /* SnackBarVC.swift in Sources */,
 				013E91922707758B008DC590 /* TabBarController.swift in Sources */,
+				01A20DA3272DAE6B003438D3 /* TSLabel.swift in Sources */,
 				0165F8B926EC463D00F79788 /* Date+Extension+UIViewController.swift in Sources */,
 				01640DAD26CA92C1000CC565 /* TaskShare.xcdatamodeld in Sources */,
 				013E918B2706C639008DC590 /* SettingsViewController.swift in Sources */,

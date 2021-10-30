@@ -19,4 +19,11 @@ extension UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { vc.dismiss(animated: true, completion: nil) }
         }
     }
+    
+    
+    func showEmptyStateView(with message: String, in view: UIView) {
+        let emptyStateView = TSEmptyStateView(message: message)
+        emptyStateView.frame = view.bounds
+        view.addSubview(emptyStateView)
+    }
 }
