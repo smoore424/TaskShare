@@ -82,8 +82,14 @@ class CoreDataHelper {
     }
     
     var context: NSManagedObjectContext {
-        persistentContainer.viewContext
+        let context = persistentContainer.viewContext
+        context.automaticallyMergesChangesFromParent = true
+        return context
+            
     }
+    
+    
+    
     
     //MARK: - Saving CoreData Methods
     func saveData() {

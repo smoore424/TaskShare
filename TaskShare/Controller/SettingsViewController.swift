@@ -28,6 +28,8 @@ class SettingsViewController: UIViewController {
         defaults.set(colors.selectedColorIndex, forKey: "color")
         colors.setSelectedColor()
         self.tabBarController?.tabBar.tintColor = colors.getCurrentColor()
+        //call snack
+        self.presentSnackOnMainThread(message: "Theme Saved", image: UIImage(systemName: "checkmark.circle")!)
     }
 }
 

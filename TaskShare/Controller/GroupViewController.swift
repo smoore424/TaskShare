@@ -32,6 +32,7 @@ class GroupViewController: UITableViewController {
         super.viewDidLoad()
         tableView.allowsSelectionDuringEditing = true
         tableView.refreshControl = refreshController
+        
     }
     
     //MARK: - Pull to Refresh
@@ -139,3 +140,15 @@ extension GroupViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+//TODO: need fetch results controller, see link Frank sent
+//extension GroupViewController: NSFetchedResultsControllerDelegate {
+//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        tableView.beginUpdates()
+//    }
+//
+//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        tableView.endUpdates()
+//
+//        groupArray = coreDataHelper.loadGroups()
+//    }
+//}
