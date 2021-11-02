@@ -1,4 +1,4 @@
-#  Task Share - Get it done...together!
+#  Share-A-Task - Get it done...together!
 
 ## Features
 
