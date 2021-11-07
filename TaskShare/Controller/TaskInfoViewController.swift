@@ -60,6 +60,7 @@ class TaskInfoViewController: UITableViewController {
         taskNameTextField.becomeFirstResponder()
         
         noteTextView.text = task?.note
+        noteTextView.contentInset = UIEdgeInsets(top: 0, left: 6, bottom: 0, right: 6)
         self.noteTextView.addDoneButton(target: self, selector: #selector(doneTapped(sender:)))
     }
     
