@@ -10,7 +10,7 @@ import UIKit
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButton: TSButton!
     
     let colors = Colors.shared
     
@@ -18,6 +18,7 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        saveButton.set(backgroundColor: colors.getCurrentColor(), title: "Save")
         colors.setSelectedColor()
         setColors()
         setCollectionView()

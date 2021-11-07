@@ -27,6 +27,7 @@
 		016BDFF626F6464800727DC6 /* UITextView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016BDFF526F6464800727DC6 /* UITextView + Extension.swift */; };
 		016BDFFB26F6966D00727DC6 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016BDFFA26F6966D00727DC6 /* CloudKit.framework */; };
 		0172B8D9272475A700A98190 /* TaskViewController+Sharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172B8D8272475A700A98190 /* TaskViewController+Sharing.swift */; };
+		019262B02738709E00E2BF72 /* TSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019262AF2738709E00E2BF72 /* TSButton.swift */; };
 		01A20DA1272DACE9003438D3 /* TSEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A20DA0272DACE9003438D3 /* TSEmptyStateView.swift */; };
 		01A20DA3272DAE6B003438D3 /* TSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A20DA2272DAE6B003438D3 /* TSLabel.swift */; };
 		01AB47CB272A2F8A00ED36C2 /* TSContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AB47CA272A2F8A00ED36C2 /* TSContainerView.swift */; };
@@ -65,6 +66,7 @@
 		016BDFF826F6962400727DC6 /* TaskShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskShare.entitlements; sourceTree = "<group>"; };
 		016BDFFA26F6966D00727DC6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		0172B8D8272475A700A98190 /* TaskViewController+Sharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskViewController+Sharing.swift"; sourceTree = "<group>"; };
+		019262AF2738709E00E2BF72 /* TSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSButton.swift; sourceTree = "<group>"; };
 		01A20DA0272DACE9003438D3 /* TSEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSEmptyStateView.swift; sourceTree = "<group>"; };
 		01A20DA2272DAE6B003438D3 /* TSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSLabel.swift; sourceTree = "<group>"; };
 		01AB47CA272A2F8A00ED36C2 /* TSContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSContainerView.swift; sourceTree = "<group>"; };
@@ -173,7 +175,6 @@
 				0165F8B526E974B700F79788 /* TodayViewController.swift */,
 				013E918A2706C639008DC590 /* SettingsViewController.swift */,
 				013E91912707758B008DC590 /* TabBarController.swift */,
-				0172B8D8272475A700A98190 /* TaskViewController+Sharing.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -229,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				01A20DA2272DAE6B003438D3 /* TSLabel.swift */,
+				019262AF2738709E00E2BF72 /* TSButton.swift */,
 			);
 			path = UIElements;
 			sourceTree = "<group>";
@@ -245,6 +247,7 @@
 		01AB47CE272A507200ED36C2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0172B8D8272475A700A98190 /* TaskViewController+Sharing.swift */,
 				01AB47CF272A508E00ED36C2 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
@@ -349,6 +352,7 @@
 				01ACC71126E6DC360030650C /* CustomAction.swift in Sources */,
 				01ACC71626E7A61C0030650C /* Menu+Extension+TaskViewController.swift in Sources */,
 				0102F4DA26CB44F400000945 /* Constants.swift in Sources */,
+				019262B02738709E00E2BF72 /* TSButton.swift in Sources */,
 				016BDFF626F6464800727DC6 /* UITextView + Extension.swift in Sources */,
 				0165F8B626E974B700F79788 /* TodayViewController.swift in Sources */,
 				01AB47CB272A2F8A00ED36C2 /* TSContainerView.swift in Sources */,
