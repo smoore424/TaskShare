@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0102F4DA26CB44F400000945 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0102F4D926CB44F400000945 /* Constants.swift */; };
 		0102F4DE26CC02F900000945 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0102F4DD26CC02F900000945 /* TaskViewController.swift */; };
+		01294CE2279F38F3001F21AA /* ListView.png in Resources */ = {isa = PBXBuildFile; fileRef = 01294CE1279F38F3001F21AA /* ListView.png */; };
+		01294CE4279F38F8001F21AA /* CalendarView.png in Resources */ = {isa = PBXBuildFile; fileRef = 01294CE3279F38F8001F21AA /* CalendarView.png */; };
+		01294CE6279F38FC001F21AA /* settings.gif in Resources */ = {isa = PBXBuildFile; fileRef = 01294CE5279F38FC001F21AA /* settings.gif */; };
+		01294CE8279F3900001F21AA /* GroupView.png in Resources */ = {isa = PBXBuildFile; fileRef = 01294CE7279F3900001F21AA /* GroupView.png */; };
 		0135C2A826CC6A3400732596 /* TaskInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0135C2A726CC6A3400732596 /* TaskInfoViewController.swift */; };
 		013E918B2706C639008DC590 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013E918A2706C639008DC590 /* SettingsViewController.swift */; };
 		013E918E2706C7B9008DC590 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013E918C2706C7B9008DC590 /* MyCell.swift */; };
@@ -44,6 +48,10 @@
 /* Begin PBXFileReference section */
 		0102F4D926CB44F400000945 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0102F4DD26CC02F900000945 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		01294CE1279F38F3001F21AA /* ListView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ListView.png; sourceTree = "<group>"; };
+		01294CE3279F38F8001F21AA /* CalendarView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalendarView.png; sourceTree = "<group>"; };
+		01294CE5279F38FC001F21AA /* settings.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = settings.gif; sourceTree = "<group>"; };
+		01294CE7279F3900001F21AA /* GroupView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GroupView.png; sourceTree = "<group>"; };
 		0135C2A726CC6A3400732596 /* TaskInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInfoViewController.swift; sourceTree = "<group>"; };
 		013E918A2706C639008DC590 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = TaskShare/Controller/SettingsViewController.swift; sourceTree = SOURCE_ROOT; };
 		013E918C2706C7B9008DC590 /* MyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
@@ -63,7 +71,6 @@
 		0165F8B526E974B700F79788 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		0165F8B826EC463D00F79788 /* Date+Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		016BDFF526F6464800727DC6 /* UITextView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView + Extension.swift"; sourceTree = "<group>"; };
-		016BDFF826F6962400727DC6 /* TaskShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskShare.entitlements; sourceTree = "<group>"; };
 		016BDFFA26F6966D00727DC6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		0172B8D8272475A700A98190 /* TaskViewController+Sharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskViewController+Sharing.swift"; sourceTree = "<group>"; };
 		019262AF2738709E00E2BF72 /* TSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSButton.swift; sourceTree = "<group>"; };
@@ -101,6 +108,17 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
+		01294CD6279F3756001F21AA /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				01294CE1279F38F3001F21AA /* ListView.png */,
+				01294CE3279F38F8001F21AA /* CalendarView.png */,
+				01294CE5279F38FC001F21AA /* settings.gif */,
+				01294CE7279F3900001F21AA /* GroupView.png */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
 		013E9190270769E9008DC590 /* CollectionView Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +131,7 @@
 		01640D9626CA92C1000CC565 = {
 			isa = PBXGroup;
 			children = (
+				01294CD6279F3756001F21AA /* Demo */,
 				013E91942707B587008DC590 /* README.md */,
 				01640DA126CA92C1000CC565 /* TaskShare */,
 				01640DA026CA92C1000CC565 /* Products */,
@@ -131,7 +150,6 @@
 		01640DA126CA92C1000CC565 /* TaskShare */ = {
 			isa = PBXGroup;
 			children = (
-				016BDFF826F6962400727DC6 /* TaskShare.entitlements */,
 				01640DBB26CA965C000CC565 /* Controller */,
 				01640DB926CA9642000CC565 /* Model */,
 				01640DBA26CA964A000CC565 /* View */,
@@ -327,7 +345,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01294CE8279F3900001F21AA /* GroupView.png in Resources */,
+				01294CE2279F38F3001F21AA /* ListView.png in Resources */,
 				01640DB226CA92C4000CC565 /* LaunchScreen.storyboard in Resources */,
+				01294CE4279F38F8001F21AA /* CalendarView.png in Resources */,
+				01294CE6279F38FC001F21AA /* settings.gif in Resources */,
 				013E918F2706C7B9008DC590 /* MyCell.xib in Resources */,
 				01640DAF26CA92C4000CC565 /* Assets.xcassets in Resources */,
 				01640DAA26CA92C1000CC565 /* Main.storyboard in Resources */,
@@ -516,7 +538,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TaskShare/TaskShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = V88BNY2LA6;
 				INFOPLIST_FILE = TaskShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -539,7 +561,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TaskShare/TaskShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = V88BNY2LA6;
 				INFOPLIST_FILE = TaskShare/Info.plist;
 				"INFOPLIST_FILE[sdk=*]" = TaskShare/Info.plist;

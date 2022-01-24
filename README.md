@@ -4,9 +4,13 @@
 
 * Group your to do items by category by creating multiple lists
 
+![](/Demo/GroupView.png)
+
 * Assign tasks a due date
 
 * View and complete tasks by date
+
+<!--![](/Demo/CalendarView.png)-->
 
 * View or hide completed tasks
 
@@ -15,6 +19,8 @@
 * Sync across multiple devices using iCloud
 
 * Choose your color - choose your theme!
+
+![](/Demo/settings.gif)
 
 * Share lists with others - and get it done...together!
 
