@@ -10,7 +10,7 @@
 
 * View and complete tasks by date
 
-<!--![](/Demo/CalendarView.png)-->
+![](/Demo/CalendarView.png)
 
 * View or hide completed tasks
 
