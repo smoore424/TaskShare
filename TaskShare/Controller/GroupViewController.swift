@@ -60,6 +60,7 @@ class GroupViewController: UITableViewController {
         }
     }
     
+    
     //MARK: - Add Item
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         addGroupAlert {
@@ -68,6 +69,7 @@ class GroupViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
+    
     
     //MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,6 +81,7 @@ class GroupViewController: UITableViewController {
         }
     }
 }
+
 
 //MARK: - Setting the View
 extension GroupViewController {
@@ -94,11 +97,14 @@ extension GroupViewController {
     }
 }
 
+
 //MARK: - TableView DataSource
 extension GroupViewController {
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupArray.count
     }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.groupCell, for: indexPath)
@@ -111,6 +117,7 @@ extension GroupViewController {
         
         return cell
     }
+    
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "") { [weak self] (contextualAction, view, actionPerformed: (Bool) -> Void) in
@@ -128,9 +135,11 @@ extension GroupViewController {
         return UISwipeActionsConfiguration(actions: [delete])
     }
     
+    
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         groupArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
@@ -141,6 +150,7 @@ extension GroupViewController {
 
 //MARK: - TableView Delegate
 extension GroupViewController {
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.isEditing {
             let selectedGroup = groupArray[indexPath.row]

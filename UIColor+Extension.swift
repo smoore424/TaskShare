@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIColor {
+    
     var luminance: CGFloat {
         var red: CGFloat = 0
         var green: CGFloat = 0
@@ -23,9 +24,11 @@ extension UIColor {
             }
         }
         
+        
         func getRGBOfAlpha(for value: CGFloat) -> CGFloat {
             return (alpha * value) + (1 - alpha) * backgroundColor
         }
+        
         
         let newRed: CGFloat = getRGBOfAlpha(for: red)
         let newGreen: CGFloat = getRGBOfAlpha(for: green)

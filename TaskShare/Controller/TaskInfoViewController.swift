@@ -45,6 +45,7 @@ class TaskInfoViewController: UITableViewController {
         }
     }
     
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         //TODO: - write a method/model to detect if there are changes and dynamically set this with that method
@@ -108,6 +109,7 @@ class TaskInfoViewController: UITableViewController {
     }
 }
 
+
 //MARK: - Set the View
 extension TaskInfoViewController {
     func setNavControllerAppeareance() {
@@ -126,8 +128,10 @@ extension TaskInfoViewController {
     }
 }
 
+
 //MARK: - TableView Delegate
 extension TaskInfoViewController {
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -143,6 +147,7 @@ extension TaskInfoViewController {
         tableView.reloadData()
     }
     
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch (indexPath.row, indexPath.section) {
         case (noteTextViewCellIndexPath.row, noteTextViewCellIndexPath.section):
@@ -155,6 +160,7 @@ extension TaskInfoViewController {
     }
 }
 
+
 //MARK: - PresentationControllerDelegate
 extension TaskInfoViewController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
@@ -163,6 +169,7 @@ extension TaskInfoViewController: UIAdaptivePresentationControllerDelegate {
         }
     }
 }
+
 
 //MARK: - TextField Delegate Methods
 extension TaskInfoViewController: UITextFieldDelegate {

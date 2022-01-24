@@ -65,7 +65,6 @@ class TaskViewController: UITableViewController {
     }
     
     
-
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
         let tableViewEditingMode = tableView.isEditing
         
@@ -95,6 +94,7 @@ class TaskViewController: UITableViewController {
         }
     }
     
+    
     @IBAction func unwindToTaskVC(_ unwindSegue: UIStoryboardSegue) {
         let taskInfoVC = unwindSegue.source as! TaskInfoViewController
         
@@ -112,6 +112,7 @@ class TaskViewController: UITableViewController {
     }    
 }
 
+
 //MARK: - Set the View
 extension TaskViewController {
     func setNavControllerAppearence() {
@@ -121,11 +122,14 @@ extension TaskViewController {
     }
 }
 
+
 // MARK: - TableView DataSource
 extension TaskViewController {
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
     }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.taskCell, for: indexPath) as! TaskTableViewCell
@@ -144,6 +148,7 @@ extension TaskViewController {
         return cell
     }
     
+    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "") { (contextualAction, view, actionPerformed: (Bool) -> Void) in
             let context = self.coreDataHelper.context
@@ -156,15 +161,18 @@ extension TaskViewController {
         return UISwipeActionsConfiguration(actions: [delete])
     }
     
+    
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         taskArray.swapAt(sourceIndexPath.row, destinationIndexPath.row)
         coreDataHelper.saveData()
     }
 }
+
 
 //MARK: - TableView Delegate
 extension TaskViewController {
@@ -181,8 +189,10 @@ extension TaskViewController {
     }
 }
 
+
 //MARK: - SearchBarDelegate
 extension TaskViewController: UISearchBarDelegate {
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         taskArray = coreDataHelper.searchTasks(for: selectedGroup!, with: searchBar.text!)
         //TODO: check if filterdate and add appropriate predicate
@@ -192,6 +202,7 @@ extension TaskViewController: UISearchBarDelegate {
             searchBar.resignFirstResponder()
         }
     }
+    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
@@ -208,13 +219,16 @@ extension TaskViewController: UISearchBarDelegate {
     }
 }
 
+
 //MARK: - TaskInfoViewController Delegate
 extension TaskViewController: TaskInfoViewControllerDelegate {
+    
     func taskInfoViewControllerDidCancel(_ taskInfoViewController: TaskInfoViewController) {
         dismiss(animated: true, completion: nil)
         tableView.reloadData()
     }
 }
+
 
 //MARK: - TaskTableViewCellDelegate
 extension TaskViewController: TaskTableViewCellDelegate {

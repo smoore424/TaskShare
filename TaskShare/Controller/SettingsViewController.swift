@@ -24,6 +24,7 @@ class SettingsViewController: UIViewController {
         setCollectionView()
     }
     
+    
     //MARK: - Save Button
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         defaults.set(colors.selectedColorIndex, forKey: "color")
@@ -34,8 +35,10 @@ class SettingsViewController: UIViewController {
     }
 }
 
+
 //MARK: - Setting the View
 extension SettingsViewController {
+    
     func setCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 44, height: 44)
@@ -46,6 +49,7 @@ extension SettingsViewController {
         collectionView.selectItem(at: IndexPath(item: colors.selectedColorIndex, section: 0), animated: true, scrollPosition: .bottom)
     }
     
+    
     func setColors() {
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
         saveButton.backgroundColor = colors.getCurrentColor()
@@ -53,12 +57,14 @@ extension SettingsViewController {
     }
 }
 
+
 //MARK: - CollectionView DataSource
 extension SettingsViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return colors.colorOptions.count
     }
+    
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCell.identifier, for: indexPath) as! MyCell
@@ -67,6 +73,7 @@ extension SettingsViewController: UICollectionViewDataSource {
         return cell
     }
 }
+
 
 //MARK: - CollectionView Delegate
 extension SettingsViewController: UICollectionViewDelegate {
@@ -79,6 +86,7 @@ extension SettingsViewController: UICollectionViewDelegate {
         colors.selectedColorIndex = indexPath.item
         setColors()
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? MyCell {

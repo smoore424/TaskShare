@@ -22,5 +22,4 @@ class TaskTableViewCell: UITableViewCell {
     @IBAction func checkmarkToggle(_ sender: UIButton) {
         delegate?.checkMarkToggle(sender: self)
     }
-    
 }

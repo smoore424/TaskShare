@@ -30,6 +30,7 @@ class CoreDataHelper {
         guard let sharedStoreDescription = privateStoreDescription.copy() as? NSPersistentStoreDescription else {
             fatalError("Copying the private store description returned an unexpected value.")
         }
+        
         sharedStoreDescription.url = sharedStoreURL
         
         let containerIdentifier = privateStoreDescription.cloudKitContainerOptions!.containerIdentifier
@@ -85,6 +86,7 @@ class CoreDataHelper {
         persistentContainer.viewContext      
     }
     
+    
     //MARK: - Saving CoreData Methods
     func saveData() {
         do {
@@ -93,6 +95,7 @@ class CoreDataHelper {
             print("error saving data to context \(error)")
         }
     }
+    
     
     //MARK: - Group CoreData Method
     func loadGroupByDate(with request: NSFetchRequest<Group> = Group.fetchRequest(), for selectedDate: String) -> [Group] {
@@ -108,6 +111,7 @@ class CoreDataHelper {
             return []
         }
     }
+    
     
     //MARK: - Task CoreData Methods
     func loadTaskByDate(with request: NSFetchRequest<Task> = Task.fetchRequest(), selectedGroup: Group?, selectedDate: String) -> [Task] {
@@ -126,8 +130,8 @@ class CoreDataHelper {
             return []
         }
     }
-    
 }
+
 
 //MARK: Group CRUD Methods
 extension CoreDataHelper {
@@ -180,6 +184,7 @@ extension CoreDataHelper {
     }
 }
 
+
 //MARK: Task CRUD Methods
 extension CoreDataHelper {
     func createTask(parentGroup: Group, name: String, note: String, date: String, completed: Bool) {
@@ -203,7 +208,6 @@ extension CoreDataHelper {
         let groupPredicate = NSPredicate(format: "%K MATCHES %@", #keyPath(Task.parentGroup.title), selectedGroup.title!)
         
         request.predicate = groupPredicate
-        
         
         do {
             let result = try context.fetch(request)

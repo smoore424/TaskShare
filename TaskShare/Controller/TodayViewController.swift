@@ -10,7 +10,6 @@ import UIKit
 
 class TodayViewController: UIViewController {
     
-    
     @IBOutlet weak var calendarView: UIDatePicker!
     @IBOutlet weak var todayTableView: UITableView!
     
@@ -75,8 +74,10 @@ class TodayViewController: UIViewController {
     }
 }
 
+
 //MARK: - Set the View
 extension TodayViewController {
+    
     func setNavControllerAppearance() {
         colors.setSelectedColor()
         navigationController?.navigationBar.tintColor = colors.getCurrentColor()
@@ -84,6 +85,7 @@ extension TodayViewController {
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
     }
+    
     
     func getTableViewData() {
         selectedDate = convertDateToString(date: calendarView.date)
@@ -93,15 +95,18 @@ extension TodayViewController {
     }
 }
 
+
 //MARK: - TableView DataSource
 extension TodayViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupArray.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = todayTableView.dequeueReusableCell(withIdentifier: K.todayCell, for: indexPath)
-        //configure the cell
+
         let group = groupArray[indexPath.row]
         cell.textLabel?.text = group.title
         
@@ -113,6 +118,7 @@ extension TodayViewController: UITableViewDataSource {
         return cell
     }
 }
+
 
 //MARK: - TableView Delegate
 extension TodayViewController: UITableViewDelegate {
