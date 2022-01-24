@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		0102F4DA26CB44F400000945 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0102F4D926CB44F400000945 /* Constants.swift */; };
 		0102F4DE26CC02F900000945 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0102F4DD26CC02F900000945 /* TaskViewController.swift */; };
-		01294CE2279F38F3001F21AA /* ListView.png in Resources */ = {isa = PBXBuildFile; fileRef = 01294CE1279F38F3001F21AA /* ListView.png */; };
-		01294CE4279F38F8001F21AA /* CalendarView.png in Resources */ = {isa = PBXBuildFile; fileRef = 01294CE3279F38F8001F21AA /* CalendarView.png */; };
 		01294CE6279F38FC001F21AA /* settings.gif in Resources */ = {isa = PBXBuildFile; fileRef = 01294CE5279F38FC001F21AA /* settings.gif */; };
-		01294CE8279F3900001F21AA /* GroupView.png in Resources */ = {isa = PBXBuildFile; fileRef = 01294CE7279F3900001F21AA /* GroupView.png */; };
+		01294CEA279F3A89001F21AA /* GroupView.png in Resources */ = {isa = PBXBuildFile; fileRef = 01294CE9279F3A89001F21AA /* GroupView.png */; };
+		01294CEC279F3AAF001F21AA /* CalendarView.png in Resources */ = {isa = PBXBuildFile; fileRef = 01294CEB279F3AAF001F21AA /* CalendarView.png */; };
+		01294CEE279F3AD1001F21AA /* ListView.png in Resources */ = {isa = PBXBuildFile; fileRef = 01294CED279F3AD0001F21AA /* ListView.png */; };
 		0135C2A826CC6A3400732596 /* TaskInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0135C2A726CC6A3400732596 /* TaskInfoViewController.swift */; };
 		013E918B2706C639008DC590 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013E918A2706C639008DC590 /* SettingsViewController.swift */; };
 		013E918E2706C7B9008DC590 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013E918C2706C7B9008DC590 /* MyCell.swift */; };
@@ -48,10 +48,10 @@
 /* Begin PBXFileReference section */
 		0102F4D926CB44F400000945 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0102F4DD26CC02F900000945 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
-		01294CE1279F38F3001F21AA /* ListView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ListView.png; sourceTree = "<group>"; };
-		01294CE3279F38F8001F21AA /* CalendarView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalendarView.png; sourceTree = "<group>"; };
 		01294CE5279F38FC001F21AA /* settings.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = settings.gif; sourceTree = "<group>"; };
-		01294CE7279F3900001F21AA /* GroupView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GroupView.png; sourceTree = "<group>"; };
+		01294CE9279F3A89001F21AA /* GroupView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GroupView.png; sourceTree = "<group>"; };
+		01294CEB279F3AAF001F21AA /* CalendarView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalendarView.png; sourceTree = "<group>"; };
+		01294CED279F3AD0001F21AA /* ListView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ListView.png; sourceTree = "<group>"; };
 		0135C2A726CC6A3400732596 /* TaskInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInfoViewController.swift; sourceTree = "<group>"; };
 		013E918A2706C639008DC590 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = TaskShare/Controller/SettingsViewController.swift; sourceTree = SOURCE_ROOT; };
 		013E918C2706C7B9008DC590 /* MyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
@@ -111,10 +111,10 @@
 		01294CD6279F3756001F21AA /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				01294CE1279F38F3001F21AA /* ListView.png */,
-				01294CE3279F38F8001F21AA /* CalendarView.png */,
+				01294CED279F3AD0001F21AA /* ListView.png */,
+				01294CEB279F3AAF001F21AA /* CalendarView.png */,
 				01294CE5279F38FC001F21AA /* settings.gif */,
-				01294CE7279F3900001F21AA /* GroupView.png */,
+				01294CE9279F3A89001F21AA /* GroupView.png */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -345,13 +345,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01294CE8279F3900001F21AA /* GroupView.png in Resources */,
-				01294CE2279F38F3001F21AA /* ListView.png in Resources */,
+				01294CEC279F3AAF001F21AA /* CalendarView.png in Resources */,
+				01294CEA279F3A89001F21AA /* GroupView.png in Resources */,
 				01640DB226CA92C4000CC565 /* LaunchScreen.storyboard in Resources */,
-				01294CE4279F38F8001F21AA /* CalendarView.png in Resources */,
 				01294CE6279F38FC001F21AA /* settings.gif in Resources */,
 				013E918F2706C7B9008DC590 /* MyCell.xib in Resources */,
 				01640DAF26CA92C4000CC565 /* Assets.xcassets in Resources */,
+				01294CEE279F3AD1001F21AA /* ListView.png in Resources */,
 				01640DAA26CA92C1000CC565 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
