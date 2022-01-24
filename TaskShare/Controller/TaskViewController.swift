@@ -11,10 +11,10 @@ import UIKit
 
 class TaskViewController: UITableViewController {
     
-    @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var moreButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     let coreDataHelper = CoreDataHelper.shared
     let colors = Colors.shared
@@ -64,6 +64,21 @@ class TaskViewController: UITableViewController {
         performSegue(withIdentifier: K.goToTaskInfoSegue, sender: self)
     }
     
+    
+
+    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
+        let tableViewEditingMode = tableView.isEditing
+        
+        tableView.setEditing(!tableViewEditingMode, animated: true)
+        
+        if tableViewEditingMode {
+            editButton.title = "Edit"
+        } else {
+            editButton.title = "Done"
+        }
+    }
+    
+    
     //MARK: - Segue Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! TaskInfoViewController
@@ -103,8 +118,6 @@ extension TaskViewController {
         colors.setSelectedColor()
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: colors.getCurrentColor()]
         navigationController?.navigationBar.tintColor = colors.getCurrentColor()
-        self.navigationItem.leftItemsSupplementBackButton = true
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
 }
 

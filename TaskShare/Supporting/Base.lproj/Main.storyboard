@@ -137,11 +137,17 @@
                                     <segue destination="8Wk-Lj-4Ml" kind="presentation" identifier="goToTaskInfo" id="8KU-fe-GGG"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem title="Edit" id="66K-v6-vEo">
+                                <connections>
+                                    <action selector="editButtonTapped:" destination="0Qp-Hc-MkB" id="hxU-Hi-98a"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="ellipsis.circle" catalog="system" id="pSf-wp-hiG"/>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="MC7-8l-mxw" id="jXT-La-MM6"/>
+                        <outlet property="editButton" destination="66K-v6-vEo" id="8Kz-kK-hMl"/>
                         <outlet property="moreButton" destination="pSf-wp-hiG" id="M9U-B2-Eq5"/>
                         <outlet property="searchBar" destination="1rM-gf-Yqz" id="dM4-c5-Ki3"/>
                     </connections>
